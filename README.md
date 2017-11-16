@@ -1,7 +1,7 @@
 # eCV
 Plataforma para CVs
 
-## CHANGE LOG
+#### CHANGE LOG
 
 * V0.3.0:
   * Landing Page
