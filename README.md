@@ -3,8 +3,6 @@ Plataforma para CVs
 
 ## CHANGE LOG
 
-***
-
 * V0.3.0:
   * Landing Page
 * V0.2.0:
