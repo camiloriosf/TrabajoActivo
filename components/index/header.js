@@ -2,14 +2,11 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
-import compose from 'recompose/compose';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import Slide from 'material-ui/transitions/Slide';
-import withWidth from 'material-ui/utils/withWidth';
+// component imports
 import HeaderMenu from './headerMenu';
 import HeaderItem from './headerItem';
 
@@ -19,53 +16,114 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
   },
   appBar: {
     backgroundColor: theme.palette.common.transparent,
-    boxShadow: 'none',
     [theme.breakpoints.down('md')]: {
-      backgroundColor: theme.palette.primary[500],
+      backgroundColor: theme.palette.common.white,
+      position: 'fixed',
+    },
+    [theme.breakpoints.up('md')]: {
+      boxShadow: 'none',
     },
   },
   flex: {
     flex: 1,
   },
+  menuExtended: {
+    display: 'flex',
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    },
+  },
+  menu: {
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+  },
+  image: {
+    height: 30,
+  },
 });
 
 class Header extends Component {
-  renderItems = () => {
-    if (this.props.width === 'sm' || this.props.width === 'xs') return <HeaderMenu items={this.props.items} onClickHandler={this.props.onClickHandler} />;
-    return (
-      this.props.items.map(item => (
+  renderCTA = () => {
+    if (this.props.loggedIn) {
+      return (
         <HeaderItem
-          key={item.title}
-          backdrop={item.backdrop}
-          title={item.title}
-          link={item.link}
-          menu={item.menu}
-          menuItem={item.menuItem}
+          title={this.props.header.callToAction.title}
+          link={this.props.header.callToAction.linkAuth}
+          menu={this.props.header.callToAction.menu}
+          menuItem={this.props.header.callToAction.menuAuth}
           onClickHandler={this.props.onClickHandler}
         />
-      ))
+      );
+    }
+    return (
+      <HeaderItem
+        title={this.props.header.callToAction.title}
+        link={this.props.header.callToAction.linkNoAuth}
+        menu={this.props.header.callToAction.menu}
+        menuItem={this.props.header.callToAction.menuAuth}
+        onClickHandler={this.props.onClickHandler}
+      />
+    );
+  }
+  renderItems = () => (
+    this.props.header.menu.map(item => (
+      <HeaderItem
+        key={item.title}
+        title={item.title}
+        link={item.link}
+        menu={item.menu}
+        menuItem={item.menuItem}
+        onClickHandler={this.props.onClickHandler}
+      />
+    ))
+  )
+  renderAccount = () => {
+    if (this.props.loggedIn) {
+      return (
+        <HeaderItem
+          title={this.props.header.account.title}
+          link={this.props.header.account.link}
+          menu={this.props.header.account.menu}
+          menuItem={this.props.header.account.menuAuth}
+          onClickHandler={this.props.onClickHandler}
+        />
+      );
+    }
+    return (
+      <HeaderItem
+        title={this.props.header.account.title}
+        link={this.props.header.account.link}
+        menu={this.props.header.account.menu}
+        menuItem={this.props.header.account.menuNoAuth}
+        onClickHandler={this.props.onClickHandler}
+      />
     );
   }
   render() {
     const {
       classes,
-      title,
-      width,
     } = this.props;
     return (
       <div className={classes.root}>
-        <Slide in >
-          <AppBar position={width === 'sm' || width === 'xs' ? 'fixed' : 'absolute'} className={classes.appBar}>
-            <Toolbar>
-              <Typography type="title" className={classes.flex} color="inherit">
-                {title}
-              </Typography>
-              {
-                this.renderItems()
-              }
-            </Toolbar>
-          </AppBar>
-        </Slide>
+        <AppBar position="absolute" className={classes.appBar}>
+          <Toolbar>
+            <div className={classes.flex}>
+              <img src="static/images/bittersweet.png" alt="Bittersweet.io" className={classes.image} />
+            </div>
+            <div className={classes.menuExtended}>
+              {this.renderCTA()}
+              {this.renderItems()}
+              {this.renderAccount()}
+            </div>
+            <div className={classes.menu}>
+              <HeaderMenu
+                items={this.props.header}
+                onClickHandler={this.props.onClickHandler}
+              />
+            </div>
+          </Toolbar>
+        </AppBar>
       </div>
     );
   }
@@ -73,9 +131,13 @@ class Header extends Component {
 
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
-  title: PropTypes.any.isRequired,
-  items: PropTypes.array.isRequired,
+  header: PropTypes.object.isRequired,
   onClickHandler: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool,
 };
 
-export default compose(withStyles(styles), withWidth())(Header);
+Header.defaultProps = {
+  loggedIn: false,
+};
+
+export default withStyles(styles)(Header);

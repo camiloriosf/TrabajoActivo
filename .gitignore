@@ -1,3 +1,5 @@
 /node_modules
 /.next
 /lib/google/config.js
+/functions/node_modules
+firebase-debug.log

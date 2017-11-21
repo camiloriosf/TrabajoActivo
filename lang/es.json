@@ -1,0 +1,418 @@
+{
+  "index": {
+    "header": {
+      "menu": [
+        {
+          "title": "Blog",
+          "link": "/blog",
+          "menu": true, 
+          "menuItem": [
+            { "title": "Todos", "link": "/blog", "divider": true },
+            { "title": "Ejemplos CV", "link": "/blog/cv-examples" },
+            { "title": "Redacción de CV", "link": "/blog/cv-writing" },
+            { "title": "Entrevistas de trabajo", "link": "/blog/job-interviews" },
+            { "title": "Busqueda de trabajo", "link": "/blog/job-search" }
+          ]
+        },
+        {
+          "title": "Precios",
+          "link": "/pricing",
+          "menu": false, 
+          "menuItem": null
+        },
+        {
+          "title": "Sobre nosotros",
+          "link": "/about",
+          "menu": false, 
+          "menuItem": null
+        },
+        {
+          "title": "Contactanos",
+          "link": "/contact",
+          "menu": false, 
+          "menuItem": null
+        }
+      ],
+      "account": {
+        "title": "Mi cuenta",
+        "link": "/user",
+        "menu": true, 
+        "menuNoAuth": [
+          { "title": "Iniciar sesión", "link": "/login" },
+          { "title": "Crear cuenta", "link": "/register" }
+        ],
+        "menuAuth": [
+          { "title": "Mis CVs", "link": "/user/cv" },
+          { "title": "Mis tests", "link": "/user/tests" },
+          { "title": "Mis cursos", "link": "/user/coaching", "divider": true },
+          { "title": "Configuración", "link": "/user/settings" },
+          { "title": "Cerrar sesión", "link": "/logout" }
+        ]
+      },
+      "callToAction": {
+        "title": "Crear CV",
+        "menu": false, 
+        "menuItem": null,
+        "linkNoAuth": "/register",
+        "linkAuth": "/user/cv"
+      }
+    },
+    "hero": [
+      {
+        "image":"/static/images/editor_bg.jpg",
+        "text1": "Resume Builder Online",
+        "text2": "Fast. Easy to Use. Professional.",
+        "button": "create my resume now"
+      },
+      {
+        "image":"/static/images/editor_bg.jpg",
+        "text1": "Write and publish your professional resume online.",
+        "text2": "Use your online resume to attract employers. Track your performance.",
+        "button": "go to resume builder"
+      }
+    ],
+    "press":{ 
+      "link": "/we-are-famous",
+      "items": [
+        {
+          "image":"/static/images/press/the-guardian",
+          "alt":"the-guardian"
+        },
+        {
+          "image":"/static/images/press/the-huffington-post",
+          "alt":"the-huffington-post"
+        },
+        {
+          "image":"/static/images/press/lifehacker",
+          "alt":"lifehacker"
+        },
+        {
+          "image":"/static/images/press/business",
+          "alt":"business"
+        },
+        {
+          "image":"/static/images/press/tech-co",
+          "alt":"tech-co"
+        },
+        {
+          "image":"/static/images/press/recruiter",
+          "alt":"recruiter"
+        },
+        {
+          "image":"/static/images/press/workopolis",
+          "alt":"workopolis"
+        }
+      ]
+    },
+    "features": {
+      "title": "What are the benefits of Uptowork’s online resume maker?",
+      "items": [
+        {
+          "title": "Cover Letter Builder",
+          "body": "Write a cover letter using the same templates as your resume."
+        },
+        {
+          "title": "Track Your Resume",
+          "body": "Find out if employers are reading and downloading your resumes."
+        },
+        {
+          "title": "It's Fast and Easy to Use",
+          "body": "Our online resume builder will help you write a perfect resume in minutes."
+        },
+        {
+          "title": "20 Best Resume Templates",
+          "body": "Create a modern and professional resume and cover letter."
+        },
+        {
+          "title": "Follow Tips From Experts",
+          "body": "Our experts' tips will show you how to write a resume."
+        },
+        {
+          "title": "Flexible Text Editor",
+          "body": "You will have access to the best text editor available."
+        }
+      ]
+    },
+    "quotes": [
+      {
+        "quote": "I found an article about how to write a professional resume on Uptowork. Then I discovered the application. It's useful and simple to use. It's not a free resume builder, but I guess you can't have everything.",
+        "author": "~ Thomas Freeman"
+      },
+      {
+        "quote": "Uptowork's CV builder is fast and easy to use. I loved the great resume templates, and I loved the fact that I can have my cover letter in the same design.",
+        "author": "~ Mark Horotsky"
+      }
+    ],
+    "benefits": {
+      "title": "Why is Uptowork the best resume builder online?",
+      "items": [
+        {
+          "title": "Professional Resume Templates",
+          "body": "Choose professional, elegant, creative, or modern resume templates. Uptowork's resume maker offers 20 templates in 400 colors. You can easily adapt the designs to any resume format you choose: functional, reverse-chronological, or combination.",
+          "image": "/static/images/benefits/uptowork-resume-builder-screenshot-editor.png"
+        },
+        {
+          "title": "Tips From Recruiters",
+          "body": "You no longer have to worry about how to make a resume. Our resume generator will guide you through the process of writing each section, step-by-step. Resume writing tips will help you get more job offers.",
+          "image": "/static/images/benefits/tooltip.png",
+          "reverse": true
+        },
+        {
+          "title": "Edit Your Resume As You Like",
+          "body": "Choose font types, sizes, and spacing. You can bold, italicize, and underline your text. Want to add live URLs? We've got you covered. It's like creating your resume in Word, but we take care of the formatting, and give you access to the best resume templates.",
+          "image": "/static/images/benefits/uptowork-resume-builder-screenshot-editor.png"
+        },
+        {
+          "title": "Cover Letter and Resume Builder",
+          "body": "Create your professional Cover Letter in just a few simple steps. Use the same template for your cover letter and resume. Convince hiring managers to set up an interview with you.",
+          "image": "/static/images/benefits/iconic-9.png",
+          "reverse": true,
+          "noDivider": true
+        }
+      ]
+    },
+    "publish": {
+      "link": "https://uptowork.com/mycv/johnsmith",
+      "items":[
+        {
+          "text":"Create an individual URL for your online resume."
+        },
+        {
+          "text":"Employers can view and download your resume."
+        },
+        {
+          "text":"Track how many employers view and download your resume."
+        },
+        {
+          "text":"Edit, publish and download your resumes any time you want."
+        }
+      ]
+    },
+    "prices": {
+      "title": "Choose the plan that best fits you",
+      "items": [
+        {
+          "name": "Starter",
+          "features": [{ "text": "Resume template" }, { "text": "Create 1 resume" }, { "text": "Expert tips" }, { "text": "Share resume online" }],
+          "price":"Free",
+          "free": true
+        },
+        {
+          "name": "Premium",
+          "features": [{ "text": "Everything from Starter +" }, { "text": "Multiple resumes" }, { "text": "Online tests" }, { "text": "Track your resume" }],
+          "price": "9"
+        },
+        {
+          "name": "Professional",
+          "features": [{ "text": "Everything from Premium +" }, { "text": "Videos" }, { "text": "Expert feedback" }, { "text": "Applications tracking" }],
+          "price": "19"
+        }
+      ]
+    },
+    "section": {
+      "title": "Try Uptowork's professional resume builder now.",
+      "button": "Create my resume now"
+    },
+    "footer": {
+      "text": "© 2016 - 2017 Uptowork. All rights reserved.",
+      "items": [
+        {
+          "link": "/about",
+          "text": "About Us",
+          "divider": true
+        },
+        {
+          "link": "/contact",
+          "text": "Contact Us",
+          "divider": true
+        },
+        {
+          "link": "/terms",
+          "text": "Terms of Service",
+          "divider": true
+        },
+        {
+          "link": "/privacy",
+          "text": "Privacy Policy"
+        }
+      ]
+    }
+  },
+  "error": {
+    "text1": "Oops",
+    "text2": "Go back to ",
+    "text3": "or contact us ",
+    "text4": "and describe your issue",
+    "link1": {
+      "link": "/",
+      "text": "main page"
+    },
+    "link2": {
+      "link": "/contact",
+      "text": "here"
+    }
+  },
+  "login": {
+    "header": {
+      "button": {
+        "title": "¿Necesitas una cuenta?",
+        "button": "Registrate",
+        "link": "/register"
+      },
+      "account": {
+        "button": "Mi cuenta",
+        "link": "/user"
+      }
+    },
+    "dialog": {
+      "title": "Correo enviado",
+      "content": "Te hemos enviado un correo para que restablezcas tu contraseña.",
+      "button": "Aceptar"
+    },
+    "signin": {
+      "title": "Iniciar sesión",
+      "emailPlaceholder": "Ingresa tu correo electrónico",
+      "passwordPlaceholder": "Ingresa tu contraseña",
+      "button": "Crear mi CV",
+      "resetPassword": {
+        "text": "¿No recuerdas tu clave? ",
+        "button": "Recuperar contraseña"
+      }
+    }
+  },
+  "register": {
+    "header": {
+      "button": {
+        "title": "¿Ya tienes una cuenta?",
+        "button": "Inicia sesión",
+        "link": "/login"
+      },
+      "account": {
+        "button": "Mi cuenta",
+        "link": "/user"
+      }
+    },
+    "signup": {
+      "title": "Crear cuenta",
+      "emailPlaceholder": "Ingresa tu correo electrónico",
+      "passwordPlaceholder": "Ingresa tu contraseña",
+      "button": "Crear mi CV",
+      "footer": {
+        "text1": "Al crear tu cuenta, aceptas los",
+        "text2": " y ",
+        "button1": "Terminos de Servicio",
+        "button2": "Politicas de Privacidad",
+        "link1": "/terms",
+        "link2": "/privacy"
+      }
+    }
+  },
+  "reset": {
+    "header": {
+      "button": {
+        "title": "¿Ya tienes una cuenta?",
+        "button": "Inicia sesión",
+        "link": "/login"
+      },
+      "account": {
+        "button": "Mi cuenta",
+        "link": "/user"
+      }
+    },
+    "dialog": {
+      "title": "Contraseña restablecida",
+      "content": "Hemos actualizado tu contraseña, ahora te redigiremos a la pagina de inicio de sesión.",
+      "button": "Aceptar"
+    },
+    "reset": {
+      "title": "Cambiar contraseña",
+      "passwordPlaceholder": "Ingresa tu nueva contraseña",
+      "button": "guardar"
+    }
+  },
+  "reviews": {
+    "title": "Reviews",
+    "items": [
+      {
+        "quote": "The documents from the Resume Creator are professional and allow candidates to stand out. The templates are clear and they help showcase the most important information.",
+        "author": "Megan McBride",
+        "role": "Office Assistant"
+      },
+      {
+        "quote": "Uptowork's resume creator made my documents look much better. I am very happy with the template that I found, because it helped me make a professional resume.",
+        "author": "Ashley Price",
+        "role": "Office Assistant"
+      },
+      {
+        "quote": "The online resume creator offers eye-catching templates, and the tips help you create an effective resume. I landed a number of internship interviews.",
+        "author": "Angelica Roth",
+        "role": "Student"
+      }
+    ]
+  },
+  "errors":{
+    "invalidEmail": "Debes ingresar un correo válido.",
+    "invalidPassword": "La contraseña debe contener al menos 8 caracteres, con al menos 1 numero y 1 letra.",
+    "noAccount": "No existe una cuenta asociada a este correo.",
+    "accountSocialExist": "Ya existe una cuenta asociada a este correo, intenta ingresando por Facebook o Google",
+    "emailPassNoMatch": "La contraseña y el usuario no coinciden, verifica tu clave e intentalo nuevamente.",
+    "badResetCode": "El código para restablecer la contraseña ya no es válido, vuelve a solicitar restablecer la contraseña.",
+    "unknown": "Algo salió mal, intentalo nuevamente."
+  },
+  "user": {
+    "header": {
+      "menu": [
+        {
+          "title": "Precios",
+          "link": "/pricing",
+          "menu": false, 
+          "menuItem": null
+        },
+        {
+          "title": "Ayuda",
+          "link": "/help",
+          "menu": true, 
+          "menuItem": [
+            { "title": "Centro de ayuda", "link": "/help" },
+            { "title": "Contacto", "link": "/contact" }
+          ]
+        },
+        {
+          "title": "Mi cuenta",
+          "link": "/user",
+          "menu": true, 
+          "menuItem": [
+            { "title": "Mis CVs", "link": "/user/cv" },
+            { "title": "Mis tests", "link": "/user/tests" },
+            { "title": "Mis cursos", "link": "/user/coaching", "divider": true },
+            { "title": "Configuración", "link": "/user/settings" },
+            { "title": "Cerrar sesión", "link": "/logout" }
+          ]
+        }
+      ]
+    },
+    "options": [
+      {
+        "title": "Mis CVs",
+        "body": "Crea y edita tus CVs",
+        "button": "Empezar",
+        "link": "/user/cv",
+        "image": "/static/images/user/awrds.png"
+      },
+      {
+        "title": "Mis Tests",
+        "body": "Realiza tests psicolaborales y ve tus resultados",
+        "button": "Empezar",
+        "link": "/user/tests",
+        "image": "/static/images/user/analytics.png"
+      },
+      {
+        "title": "Mis videos",
+        "body": "Sigue nuestros cursos de coaching",
+        "button": "Empezar",
+        "link": "/user/videos",
+        "image": "/static/images/user/notifications.png"
+      }
+    ]
+  }
+}

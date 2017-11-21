@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
+// component imports
+import BenefitsItem from './benefitsItem';
 
 const styles = theme => ({ // eslint-disable-line no-unused-vars
   root: {
@@ -16,11 +18,22 @@ class Benefits extends Component {
   render() {
     const {
       classes,
-      children,
+      benefits,
     } = this.props;
     return (
       <div className={classes.root}>
-        {children}
+        {
+          benefits.map(item => (
+            <BenefitsItem
+              key={item.title}
+              title={item.title}
+              body={item.body}
+              image={item.image}
+              reverse={item.reverse}
+              noDivider={item.noDivider}
+            />
+          ))
+        }
       </div>
     );
   }
@@ -28,7 +41,7 @@ class Benefits extends Component {
 
 Benefits.propTypes = {
   classes: PropTypes.object.isRequired,
-  children: PropTypes.any.isRequired,
+  benefits: PropTypes.array.isRequired,
 };
 
 export default withStyles(styles)(Benefits);

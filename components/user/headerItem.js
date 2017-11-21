@@ -33,13 +33,19 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
   },
   backdrop: {
     position: 'absolute',
-    background: theme.palette.common.white,
+    background: theme.palette.common.black,
     left: 0,
     right: 0,
     top: 0,
     bottom: 0,
     opacity: 0,
     transition: theme.transitions.create('opacity'),
+  },
+  popper: {
+    zIndex: 10,
+  },
+  icon: {
+    color: theme.palette.common.black,
   },
 });
 
@@ -87,14 +93,14 @@ class HeaderItem extends Component {
             onClick={this.handleClick}
           >
             <div className={classes.backdrop} />
-            <Typography type="body1" color="inherit" >
+            <Typography type="body1" color="default" >
               {title}
             </Typography>
-            {menu && !open && <ArrowDropDownIcon color="inherit" />}
-            {menu && open && <ArrowDropUpIcon color="inherit" />}
+            {menu && !open && <ArrowDropDownIcon className={classes.icon} />}
+            {menu && open && <ArrowDropUpIcon className={classes.icon} />}
           </ButtonBase>
         </Target>
-        <Popper placement="bottom-start" eventsEnabled={open}>
+        <Popper placement="bottom-start" eventsEnabled={open} className={classes.popper} >
           <ClickAwayListener onClickAway={this.handleRequestClose}>
             <Grow in={open} id="menu-list" timeout={300} style={{ transformOrigin: '0 0 0' }}>
               <Paper>

@@ -43,7 +43,7 @@ class HeaderButton extends Component {
     return (
       <div className={classes.root}>
         <Hidden xsDown>
-          <Typography type="body1" className={classes.typography} color="inherit">
+          <Typography type="body1" className={classes.typography} color="default">
             {title}
           </Typography>
         </Hidden>

@@ -6,9 +6,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import Button from 'material-ui/Button';
-// component imports
-import HeaderButton from './headerButton';
+import HeaderMenu from './headerMenu';
+import HeaderItem from './headerItem';
 
 const styles = theme => ({ // eslint-disable-line no-unused-vars
   root: {
@@ -20,30 +19,35 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
   flex: {
     flex: 1,
   },
+  menuExtended: {
+    display: 'flex',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+  },
+  menu: {
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
+    },
+  },
   image: {
     height: 30,
   },
 });
 
 class Header extends Component {
-  renderButtons = () => {
-    if (this.props.loggedIn) {
-      return (
-        <Button raised color="primary" onClick={this.props.handleClick(this.props.header.account.link)}>
-          {this.props.header.account.button}
-        </Button>
-      );
-    }
-    return (
-      <HeaderButton
-        loading={this.props.loading}
-        title={this.props.header.button.title}
-        button={this.props.header.button.button}
-        link={this.props.header.button.link}
-        handleClick={this.props.handleClick}
+  renderItems = () => (
+    this.props.header.menu.map(item => (
+      <HeaderItem
+        key={item.title}
+        title={item.title}
+        link={item.link}
+        menu={item.menu}
+        menuItem={item.menuItem}
+        onClickHandler={this.props.onClickHandler}
       />
-    );
-  }
+    ))
+  )
   render() {
     const {
       classes,
@@ -55,7 +59,15 @@ class Header extends Component {
             <div className={classes.flex}>
               <img src="static/images/bittersweet.png" alt="Bittersweet.io" className={classes.image} />
             </div>
-            {this.renderButtons()}
+            <div className={classes.menuExtended}>
+              {this.renderItems()}
+            </div>
+            <div className={classes.menu}>
+              <HeaderMenu
+                items={this.props.header.menu}
+                onClickHandler={this.props.onClickHandler}
+              />
+            </div>
           </Toolbar>
         </AppBar>
       </div>
@@ -66,14 +78,7 @@ class Header extends Component {
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
   header: PropTypes.object.isRequired,
-  loggedIn: PropTypes.bool,
-  handleClick: PropTypes.func.isRequired,
-  loading: PropTypes.bool,
-};
-
-Header.defaultProps = {
-  loggedIn: false,
-  loading: false,
+  onClickHandler: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(Header);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
+import 'isomorphic-unfetch';
 import withRoot from '../hoc/withRoot';
 import IndexContainer from '../containers/index';
 
@@ -10,10 +11,6 @@ const styles = {
 };
 
 class Index extends Component {
-  state = {
-
-  }
-
   render() {
     return (
       <div>

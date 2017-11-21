@@ -2,11 +2,9 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
-import compose from 'recompose/compose';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
-import withWidth from 'material-ui/utils/withWidth';
 
 const styles = theme => ({ // eslint-disable-line no-unused-vars
   root: {
@@ -24,6 +22,14 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
   title: {
     color: theme.palette.common.darkBlack,
     fontSize: 20,
+    marginBottom: 10,
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '90%',
+      margin: 0,
+      textAlign: 'center',
+      display: 'inline',
+      marginBottom: 0,
+    },
   },
   subTitle: {
     color: theme.palette.common.lightBlack,
@@ -37,7 +43,6 @@ class FeaturesItem extends Component {
       title,
       body,
       icon,
-      width,
     } = this.props;
     return (
       <div className={classes.root}>
@@ -45,7 +50,7 @@ class FeaturesItem extends Component {
           {icon}
         </div>
         <div>
-          <Typography type="subheading" color="inherit" className={classes.title} paragraph={width !== 'sm' && width !== 'xs' && true} >
+          <Typography type="subheading" color="inherit" className={classes.title} >
             {title}
           </Typography>
           <Typography type="body2" color="inherit" className={classes.subTitle} >
@@ -64,4 +69,4 @@ FeaturesItem.propTypes = {
   icon: PropTypes.object.isRequired,
 };
 
-export default compose(withStyles(styles), withWidth())(FeaturesItem);
+export default withStyles(styles)(FeaturesItem);
