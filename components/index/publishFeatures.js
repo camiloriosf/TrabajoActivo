@@ -4,6 +4,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
+import TimelineIcon from 'material-ui-icons/Timeline';
+import LanguageIcon from 'material-ui-icons/Language';
+import CloudDownloadIcon from 'material-ui-icons/CloudDownload';
+import SettingsIcon from 'material-ui-icons/Settings';
+// component imports
+import PublishFeaturesItem from './publishFeaturesItem';
 
 const styles = theme => ({ // eslint-disable-line no-unused-vars
   root: {
@@ -19,17 +25,41 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
       paddingBottom: 20,
     },
   },
+  publishFeaturesItemIcon: {
+    color: theme.palette.common.darkWhite,
+    width: 50,
+    height: 50,
+    [theme.breakpoints.down('sm')]: {
+      width: 20,
+      height: 20,
+    },
+  },
 });
 
 class PublishFeatures extends Component {
   render() {
     const {
       classes,
-      children,
+      items,
     } = this.props;
     return (
       <div className={classes.root}>
-        {children}
+        <PublishFeaturesItem
+          text={items[0].text}
+          icon={<LanguageIcon className={classes.publishFeaturesItemIcon} />}
+        />
+        <PublishFeaturesItem
+          text={items[1].text}
+          icon={<CloudDownloadIcon className={classes.publishFeaturesItemIcon} />}
+        />
+        <PublishFeaturesItem
+          text={items[2].text}
+          icon={<TimelineIcon className={classes.publishFeaturesItemIcon} />}
+        />
+        <PublishFeaturesItem
+          text={items[3].text}
+          icon={<SettingsIcon className={classes.publishFeaturesItemIcon} />}
+        />
       </div>
     );
   }
@@ -37,7 +67,7 @@ class PublishFeatures extends Component {
 
 PublishFeatures.propTypes = {
   classes: PropTypes.object.isRequired,
-  children: PropTypes.any.isRequired,
+  items: PropTypes.array.isRequired,
 };
 
 export default withStyles(styles)(PublishFeatures);

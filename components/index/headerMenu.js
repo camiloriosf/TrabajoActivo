@@ -10,6 +10,7 @@ import MenuIcon from 'material-ui-icons/Menu';
 import { MenuItem, MenuList } from 'material-ui/Menu';
 import Grow from 'material-ui/transitions/Grow';
 import Paper from 'material-ui/Paper';
+import Divider from 'material-ui/Divider';
 import ClickAwayListener from 'material-ui/utils/ClickAwayListener';
 
 const styles = theme => ({ // eslint-disable-line no-unused-vars
@@ -48,7 +49,7 @@ class HeaderMenu extends Component {
         <Manager>
           <Target>
             <IconButton
-              color="contrast"
+              color="default"
               aria-label="Menu"
               aria-owns={this.state.open ? 'simple-menu' : null}
               aria-haspopup="true"
@@ -57,21 +58,38 @@ class HeaderMenu extends Component {
               <MenuIcon />
             </IconButton>
           </Target>
-          <Popper placement="bottom-start" eventsEnabled={open}>
+          <Popper placement="bottom-end" eventsEnabled={open}>
             <ClickAwayListener onClickAway={this.handleRequestClose}>
               <Grow in={open} id="menu-list" timeout={300} style={{ transformOrigin: '0 0 0' }}>
                 <Paper>
                   <MenuList role="menu">
                     {
-                      open && items.map(item =>
-                        (
-                          <MenuItem
-                            key={item.title}
-                            onClick={this.handleMenuItemClick(item.link)}
-                          >
-                            {item.title}
-                          </MenuItem>
-                        ))
+                      [
+                        open &&
+                        <MenuItem
+                          key={items.callToAction.title}
+                          onClick={this.handleMenuItemClick(items.callToAction.link)}
+                        >
+                          {items.callToAction.title}
+                        </MenuItem>,
+                        open && items.menu.map(item =>
+                          (
+                            <MenuItem
+                              key={item.title}
+                              onClick={this.handleMenuItemClick(item.link)}
+                            >
+                              {item.title}
+                            </MenuItem>
+                          )),
+                        open && <Divider key="divider" />,
+                        open &&
+                        <MenuItem
+                          key={items.account.title}
+                          onClick={this.handleMenuItemClick(items.account.link)}
+                        >
+                          {items.account.title}
+                        </MenuItem>,
+                      ]
                     }
                   </MenuList>
                 </Paper>
@@ -86,7 +104,7 @@ class HeaderMenu extends Component {
 
 HeaderMenu.propTypes = {
   classes: PropTypes.object.isRequired,
-  items: PropTypes.array.isRequired,
+  items: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(HeaderMenu);

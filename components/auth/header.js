@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
+import Button from 'material-ui/Button';
 // component imports
 import HeaderButton from './headerButton';
 
@@ -15,35 +15,31 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
     width: '100%',
   },
   appBar: {
-    backgroundColor: theme.palette.common.faintBlack,
-    boxShadow: 'none',
+    backgroundColor: theme.palette.common.white,
   },
   flex: {
     flex: 1,
+  },
+  image: {
+    height: 30,
   },
 });
 
 class Header extends Component {
   renderButtons = () => {
     if (this.props.loggedIn) {
-      return 'My account';
-    } else if (this.props.register) {
       return (
-        <HeaderButton
-          loading={this.props.loading}
-          title="Already have an account?"
-          button="Log in now"
-          link="/login"
-          handleClick={this.props.handleClick}
-        />
+        <Button raised color="primary" onClick={this.props.handleClick(this.props.header.account.link)}>
+          {this.props.header.account.button}
+        </Button>
       );
     }
     return (
       <HeaderButton
         loading={this.props.loading}
-        title="Need an account?"
-        button="Sign up"
-        link="/register"
+        title={this.props.header.button.title}
+        button={this.props.header.button.button}
+        link={this.props.header.button.link}
         handleClick={this.props.handleClick}
       />
     );
@@ -51,15 +47,14 @@ class Header extends Component {
   render() {
     const {
       classes,
-      title,
     } = this.props;
     return (
       <div className={classes.root}>
         <AppBar position="static" className={classes.appBar}>
           <Toolbar>
-            <Typography type="title" className={classes.flex} color="inherit">
-              {title}
-            </Typography>
+            <div className={classes.flex}>
+              <img src="static/images/bittersweet.png" alt="Bittersweet.io" className={classes.image} />
+            </div>
             {this.renderButtons()}
           </Toolbar>
         </AppBar>
@@ -70,16 +65,14 @@ class Header extends Component {
 
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
-  title: PropTypes.string.isRequired,
+  header: PropTypes.object.isRequired,
   loggedIn: PropTypes.bool,
-  register: PropTypes.bool,
   handleClick: PropTypes.func.isRequired,
   loading: PropTypes.bool,
 };
 
 Header.defaultProps = {
   loggedIn: false,
-  register: true,
   loading: false,
 };
 

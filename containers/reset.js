@@ -9,16 +9,16 @@ import { withStyles } from 'material-ui/styles';
 import Header from '../components/auth/header';
 import ResetPassword from '../components/auth/reset';
 import Reviews from '../components/auth/reviews';
-import ActionDialog from '../components/auth/actionDialog';
+import ActionDialog from '../components/common/actionDialog';
 // error page
 import Error from '../pages/_error';
 // local imports
 import { app } from '../lib/google/firebase';
+import { reset, reviews, errors } from '../lang/es.json';
 
 const styles = theme => ({
   root: {
-    backgroundColor: theme.palette.grey[700],
-    minHeight: '100vh',
+
   },
   content: {
     display: 'flex',
@@ -30,23 +30,6 @@ const styles = theme => ({
   },
 });
 
-const reviews = [
-  {
-    quote: 'The documents from the Resume Creator are professional and allow candidates to stand out. The templates are clear and they help showcase the most important information.',
-    author: 'Megan McBride',
-    role: 'Office Assistant',
-  },
-  {
-    quote: 'Uptowork\'s resume creator made my documents look much better. I am very happy with the template that I found, because it helped me make a professional resume.',
-    author: 'Ashley Price',
-    role: 'Office Assistant',
-  },
-  {
-    quote: 'The online resume creator offers eye-catching templates, and the tips help you create an effective resume. I landed a number of internship interviews.',
-    author: 'Angelica Roth',
-    role: 'Student',
-  },
-];
 
 class Reset extends Component {
   state = {
@@ -55,8 +38,8 @@ class Reset extends Component {
     errorSubmit: '',
     errorPage: false,
     dialogOpen: false,
-    dialogTitle: 'Contraseña restablecida',
-    dialogContent: 'Hemos actualizado tu contraseña, ahora te redigiremos a la pagina de inicio de sesión.',
+    dialogTitle: reset.dialog.title,
+    dialogContent: reset.dialog.content,
   };
   componentWillMount = () => {
     const {
@@ -75,7 +58,7 @@ class Reset extends Component {
     const hasNumber = /\d/;
     const hasAlpha = /[a-z]/i;
     if (password.length < 8 || !hasAlpha.test(password) || !hasNumber.test(password)) {
-      this.setState({ loading: false, errorPassword: 'La contraseña debe contener al menos 8 caracteres, con al menos 1 numero y 1 letra.' });
+      this.setState({ loading: false, errorPassword: errors.invalidPassword });
       return;
     }
     this.setState({
@@ -90,8 +73,8 @@ class Reset extends Component {
       const {
         code,
       } = err;
-      if (code === 'auth/invalid-action-code') this.setState({ loading: false, errorSubmit: 'El código para restablecer la contraseña ya no es válido, vuelve a solicitar restablecer la contraseña.' });
-      else this.setState({ loading: false, errorSubmit: 'Algo salió mal, intentalo nuevamente.' });
+      if (code === 'auth/invalid-action-code') this.setState({ loading: false, errorSubmit: errors.badResetCode });
+      else this.setState({ loading: false, errorSubmit: errors.unknown });
     }
   }
   render() {
@@ -104,21 +87,26 @@ class Reset extends Component {
     }
     return (
       <div className={classes.root}>
-        <Header title="eCV" handleClick={this.handleHeaderClick} loading={this.state.loading} />
+        <Header
+          header={reset.header}
+          handleClick={this.handleHeaderClick}
+          loading={this.state.loading}
+        />
         <div className={classes.content}>
           <ResetPassword
             handleFormSubmit={this.handleFormSubmit}
             loading={this.state.loading}
             errorPassword={this.state.errorPassword}
             errorSubmit={this.state.errorSubmit}
+            reset={reset.reset}
           />
-          <Reviews title="Reviews" reviews={reviews} />
+          <Reviews title={reviews.title} reviews={reviews.items} />
         </div>
         <ActionDialog
           open={this.state.dialogOpen}
           title={this.state.dialogTitle}
           content={this.state.dialogContent}
-          button="aceptar"
+          button={reset.dialog.button}
           handleRequestClose={this.handleDialogRequestClose}
         />
       </div>

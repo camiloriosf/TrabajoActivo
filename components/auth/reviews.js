@@ -21,9 +21,6 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
       paddingTop: 0,
     },
   },
-  textWhite: {
-    color: theme.palette.common.darkWhite,
-  },
   quoteDiv: {
     display: 'flex',
     alignItems: 'center',
@@ -42,13 +39,11 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
     padding: 20,
   },
   author: {
-    color: theme.palette.common.darkWhite,
     textAlign: 'left',
     marginLeft: 30,
     marginTop: 15,
   },
   role: {
-    color: theme.palette.common.darkWhite,
     textAlign: 'left',
     marginLeft: 30,
     fontStyle: 'italic',
@@ -67,7 +62,7 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
     paddingRight: 3,
   },
   whiteDot: {
-    color: theme.palette.common.darkWhite,
+    color: theme.palette.primary[500],
     height: 18,
     width: 18,
   },
@@ -77,7 +72,7 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
     width: 18,
     cursor: 'pointer',
     '&:hover': {
-      color: theme.palette.common.darkWhite,
+      color: theme.palette.primary[500],
     },
   },
 });
@@ -131,7 +126,7 @@ class Reviews extends Component {
     const { dot } = this.state;
     return (
       <div className={classes.root}>
-        <Typography type="headline" className={classes.textWhite} paragraph>
+        <Typography type="headline" paragraph>
           {title}
         </Typography>
         {this.renderReview()}

@@ -21,9 +21,6 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
       paddingBottom: 10,
     },
   },
-  textWhite: {
-    color: theme.palette.common.darkWhite,
-  },
   textFieldRoot: {
     padding: 0,
     marginTop: 20,
@@ -42,7 +39,6 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
     fontSize: 20,
   },
   terms: {
-    color: theme.palette.common.darkWhite,
     fontSize: 12,
     marginTop: 10,
   },
@@ -62,7 +58,7 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
     marginLeft: -20,
   },
   error: {
-    color: theme.palette.secondary[100],
+    color: theme.palette.secondary[500],
     textAlign: 'center',
     marginTop: 20,
     minWidth: 500,
@@ -94,11 +90,12 @@ class Signup extends Component {
       errorPassword,
       errorSubmit,
       handleClick,
+      signup,
     } = this.props;
     return (
       <div className={classes.root}>
-        <Typography type="headline" className={classes.textWhite}>
-          Sign up
+        <Typography type="headline">
+          {signup.title}
         </Typography>
         <form noValidate onSubmit={this.handleSubmit}>
           <TextField
@@ -108,7 +105,7 @@ class Signup extends Component {
             disabled={loading}
             value={this.state.email}
             onChange={this.handleChange('email')}
-            placeholder="Enter your e-mail address"
+            placeholder={signup.emailPlaceholder}
             InputProps={{
               disableUnderline: true,
               classes: {
@@ -125,7 +122,7 @@ class Signup extends Component {
             disabled={loading}
             value={this.state.password}
             onChange={this.handleChange('password')}
-            placeholder="Enter your password"
+            placeholder={signup.passwordPlaceholder}
             InputProps={{
               disableUnderline: true,
               classes: {
@@ -144,31 +141,31 @@ class Signup extends Component {
               disabled={loading}
               className={classes.button}
             >
-              create my resume
+              {signup.button}
             </Button>
             {loading && <CircularProgress size={40} className={classes.buttonProgress} />}
           </div>
         </form>
         <Typography type="caption" className={classes.terms}>
-          {'By signing up, you agree to the'}
+          {signup.footer.text1}
         </Typography>
         <Typography type="caption" className={classes.terms}>
           <Button
-            color="contrast"
+            color="primary"
             disabled={loading}
             className={classes.termsButton}
-            onClick={handleClick('/terms')}
+            onClick={handleClick(signup.footer.link1)}
           >
-            Terms of Service
+            {signup.footer.button1}
           </Button>
-          {' and '}
+          {signup.footer.text2}
           <Button
-            color="contrast"
+            color="primary"
             disabled={loading}
             className={classes.termsButton}
-            onClick={handleClick('/privacy')}
+            onClick={handleClick(signup.footer.link2)}
           >
-            Privacy Policy
+            {signup.footer.button2}
           </Button>
         </Typography>
       </div>
@@ -184,6 +181,7 @@ Signup.propTypes = {
   errorEmail: PropTypes.string.isRequired,
   errorPassword: PropTypes.string.isRequired,
   errorSubmit: PropTypes.string.isRequired,
+  signup: PropTypes.object.isRequired,
 };
 
 Signup.defaultProps = {

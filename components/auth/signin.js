@@ -21,9 +21,6 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
       paddingBottom: 10,
     },
   },
-  textWhite: {
-    color: theme.palette.common.darkWhite,
-  },
   textFieldRoot: {
     padding: 0,
     marginTop: 20,
@@ -53,13 +50,12 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
     marginLeft: -20,
   },
   error: {
-    color: theme.palette.secondary[100],
+    color: theme.palette.secondary[500],
     textAlign: 'center',
     marginTop: 20,
     minWidth: 500,
   },
   terms: {
-    color: theme.palette.common.darkWhite,
     fontSize: 12,
     marginTop: 10,
   },
@@ -95,11 +91,12 @@ class Signin extends Component {
       loading,
       errorEmail,
       errorSubmit,
+      signin,
     } = this.props;
     return (
       <div className={classes.root}>
-        <Typography type="headline" className={classes.textWhite}>
-          Sign in
+        <Typography type="headline">
+          {signin.title}
         </Typography>
         <form noValidate onSubmit={this.handleSubmit}>
           <TextField
@@ -109,7 +106,7 @@ class Signin extends Component {
             disabled={loading}
             value={this.state.email}
             onChange={this.handleChange('email')}
-            placeholder="Enter your e-mail address"
+            placeholder={signin.emailPlaceholder}
             InputProps={{
               disableUnderline: true,
               classes: {
@@ -126,7 +123,7 @@ class Signin extends Component {
             disabled={loading}
             value={this.state.password}
             onChange={this.handleChange('password')}
-            placeholder="Enter your password"
+            placeholder={signin.passwordPlaceholder}
             InputProps={{
               disableUnderline: true,
               classes: {
@@ -144,20 +141,20 @@ class Signin extends Component {
               disabled={loading}
               className={classes.button}
             >
-              create my resume
+              {signin.button}
             </Button>
             {loading && <CircularProgress size={40} className={classes.buttonProgress} />}
           </div>
         </form>
         <Typography type="caption" className={classes.terms}>
-          {'¿No recuerdas tu clave? '}
+          {signin.resetPassword.text}
           <Button
-            color="contrast"
+            color="primary"
             disabled={loading}
             className={classes.termsButton}
             onClick={this.handleReset}
           >
-            Recuperar contraseña
+            {signin.resetPassword.button}
           </Button>
         </Typography>
       </div>
@@ -172,6 +169,7 @@ Signin.propTypes = {
   errorEmail: PropTypes.string.isRequired,
   errorSubmit: PropTypes.string.isRequired,
   handleResetSubmit: PropTypes.func.isRequired,
+  signin: PropTypes.object.isRequired,
 };
 
 Signin.defaultProps = {

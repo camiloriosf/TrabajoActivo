@@ -6,8 +6,9 @@ import Link from 'next/link';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
 import NotInterestedIcon from 'material-ui-icons/NotInterested';
+// local imports
+import { error } from '../lang/es.json';
 
 const styles = theme => ({
   root: {
@@ -48,7 +49,7 @@ const styles = theme => ({
     },
   },
 });
-
+/* eslint-disable jsx-a11y/anchor-is-valid */
 class Error extends Component {
   render() {
     const {
@@ -60,23 +61,23 @@ class Error extends Component {
         <div className={classes.content}>
           <NotInterestedIcon className={classes.icon} />
           <Typography type="display4" color="inherit" className={classes.error} >
-            {statusCode || 'Oops'}
+            {statusCode || error.text1}
           </Typography>
         </div>
         <Typography type="body2" color="inherit" className={classes.text} >
-          {'Go back to '}
-          <Link href="/">
-            <a className={classes.link} >main page</a>
+          {error.text2}
+          <Link href={error.link1.link}>
+            <a className={classes.link} >{error.link1.text}</a>
           </Link>
         </Typography>
         <Typography type="body2" color="inherit" className={classes.text} >
-          {'or contact us '}
-          <Link href="/contact">
-            <a className={classes.link} >here</a>
+          {error.text3}
+          <Link href={error.link2.link}>
+            <a className={classes.link} >{error.link2.text}</a>
           </Link>
         </Typography>
         <Typography type="body2" color="inherit" className={classes.text} >
-          and describe your issue
+          {error.text4}
         </Typography>
       </div>
     );

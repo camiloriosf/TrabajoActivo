@@ -4,9 +4,9 @@
   "description": "Plataforma para CVs",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start"
+    "start": "NODE_ENV=production node server.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,10 @@
   },
   "homepage": "https://github.com/camiloriosf/eCV#readme",
   "dependencies": {
+    "@google-cloud/firestore": "^0.10.0",
+    "express": "^4.16.2",
     "firebase": "^4.6.2",
+    "isomorphic-unfetch": "^2.0.0",
     "lodash": "^4.17.4",
     "material-ui": "^1.0.0-beta.20",
     "material-ui-icons": "^1.0.0-beta.17",

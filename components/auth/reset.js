@@ -21,9 +21,6 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
       paddingBottom: 10,
     },
   },
-  textWhite: {
-    color: theme.palette.common.darkWhite,
-  },
   textFieldRoot: {
     padding: 0,
     marginTop: 20,
@@ -53,7 +50,7 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
     marginLeft: -20,
   },
   error: {
-    color: theme.palette.secondary[100],
+    color: theme.palette.secondary[500],
     textAlign: 'center',
     marginTop: 20,
     minWidth: 500,
@@ -81,11 +78,12 @@ class Signin extends Component {
       loading,
       errorPassword,
       errorSubmit,
+      reset,
     } = this.props;
     return (
       <div className={classes.root}>
-        <Typography type="headline" className={classes.textWhite}>
-          Change password
+        <Typography type="headline">
+          {reset.title}
         </Typography>
         <form noValidate onSubmit={this.handleSubmit}>
           <TextField
@@ -95,7 +93,7 @@ class Signin extends Component {
             disabled={loading}
             value={this.state.password}
             onChange={this.handleChange('password')}
-            placeholder="Enter your new password"
+            placeholder={reset.passwordPlaceholder}
             InputProps={{
               disableUnderline: true,
               classes: {
@@ -114,7 +112,7 @@ class Signin extends Component {
               disabled={loading}
               className={classes.button}
             >
-              change password
+              {reset.button}
             </Button>
             {loading && <CircularProgress size={40} className={classes.buttonProgress} />}
           </div>
@@ -130,6 +128,7 @@ Signin.propTypes = {
   loading: PropTypes.bool,
   errorPassword: PropTypes.string.isRequired,
   errorSubmit: PropTypes.string.isRequired,
+  reset: PropTypes.object.isRequired,
 };
 
 Signin.defaultProps = {

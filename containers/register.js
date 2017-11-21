@@ -12,11 +12,11 @@ import Signup from '../components/auth/signup';
 import Reviews from '../components/auth/reviews';
 // local imports
 import { app } from '../lib/google/firebase';
+import { register, reviews, errors } from '../lang/es.json';
 
 const styles = theme => ({ // eslint-disable-line no-unused-vars
   root: {
-    backgroundColor: theme.palette.grey[700],
-    minHeight: '100vh',
+
   },
   content: {
     display: 'flex',
@@ -27,24 +27,6 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
     },
   },
 });
-
-const reviews = [
-  {
-    quote: 'The documents from the Resume Creator are professional and allow candidates to stand out. The templates are clear and they help showcase the most important information.',
-    author: 'Megan McBride',
-    role: 'Office Assistant',
-  },
-  {
-    quote: 'Uptowork\'s resume creator made my documents look much better. I am very happy with the template that I found, because it helped me make a professional resume.',
-    author: 'Ashley Price',
-    role: 'Office Assistant',
-  },
-  {
-    quote: 'The online resume creator offers eye-catching templates, and the tips help you create an effective resume. I landed a number of internship interviews.',
-    author: 'Angelica Roth',
-    role: 'Student',
-  },
-];
 
 class Register extends Component {
   state = {
@@ -64,11 +46,11 @@ class Register extends Component {
     const hasNumber = /\d/;
     const hasAlpha = /[a-z]/i;
     if (!validator.isEmail(email)) {
-      this.setState({ loading: false, errorEmail: 'Debes ingresar un correo válido.' });
+      this.setState({ loading: false, errorEmail: errors.invalidEmail });
       error = true;
     }
     if (password.length < 8 || !hasAlpha.test(password) || !hasNumber.test(password)) {
-      this.setState({ loading: false, errorPassword: 'La contraseña debe contener al menos 8 caracteres, con al menos 1 numero y 1 letra.' });
+      this.setState({ loading: false, errorPassword: errors.invalidPassword });
       error = true;
     }
     if (error) return;
@@ -80,20 +62,17 @@ class Register extends Component {
       const providers = await app.auth().fetchProvidersForEmail(email);
       if (providers.length === 0) {
         await app.auth().createUserWithEmailAndPassword(email, password);
-        await app.auth().signInWithEmailAndPassword(email, password);
-        Router.push('/user');
       } else if (providers.indexOf('password') === -1) {
-        this.setState({ loading: false, errorSubmit: 'Ya existe una cuenta asociada a este correo, intenta ingresando por Facebook o Google' });
+        this.setState({ loading: false, errorSubmit: errors.accountSocialExist });
       } else {
         await app.auth().signInWithEmailAndPassword(email, password);
-        Router.push('/user');
       }
     } catch (err) {
       const {
         code,
       } = err;
-      if (code === 'auth/wrong-password') this.setState({ loading: false, errorSubmit: 'La contraseña y el usuario no coinciden, verifica tu clave e intentalo nuevamente.' });
-      else this.setState({ loading: false, errorSubmit: 'Algo salió mal, intentalo nuevamente.' });
+      if (code === 'auth/wrong-password') this.setState({ loading: false, errorSubmit: errors.emailPassNoMatch });
+      else this.setState({ loading: false, errorSubmit: errors.unknown });
     }
   }
   render() {
@@ -102,7 +81,11 @@ class Register extends Component {
     } = this.props;
     return (
       <div className={classes.root}>
-        <Header title="eCV" handleClick={this.handleHeaderClick} loading={this.state.loading} />
+        <Header
+          header={register.header}
+          handleClick={this.handleHeaderClick}
+          loading={this.state.loading}
+        />
         <div className={classes.content}>
           <Signup
             handleFormSubmit={this.handleFormSubmit}
@@ -111,8 +94,9 @@ class Register extends Component {
             errorEmail={this.state.errorEmail}
             errorPassword={this.state.errorPassword}
             errorSubmit={this.state.errorSubmit}
+            signup={register.signup}
           />
-          <Reviews title="Reviews" reviews={reviews} />
+          <Reviews title={reviews.title} reviews={reviews.items} />
         </div>
       </div>
     );
