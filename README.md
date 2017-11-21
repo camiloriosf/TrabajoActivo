@@ -8,6 +8,9 @@ Plataforma para CVs
   * Added logout
   * Updated register container to create user in Firestore
   * Updated server.js for custom routes
+  * Refactor auth flow
+  * Added /user page
+  * Created Firebase functions to send Welcome Email
 * V0.4.0:
   * Added auth pages (Register, Login, Recover)
   * Integrated Firebase auth
