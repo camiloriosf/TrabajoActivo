@@ -389,7 +389,12 @@
             { "title": "Cerrar sesión", "link": "/logout" }
           ]
         }
-      ]
+      ],
+      "options": {
+        "cvs": "Mis CVs",
+        "tests": "Mis Tests",
+        "videos": "Mis Cursos"
+      }
     },
     "options": [
       {
@@ -407,12 +412,39 @@
         "image": "/static/images/user/analytics.png"
       },
       {
-        "title": "Mis videos",
+        "title": "Mis Cursos",
         "body": "Sigue nuestros cursos de coaching",
         "button": "Empezar",
-        "link": "/user/videos",
+        "link": "/user/coaching",
         "image": "/static/images/user/notifications.png"
       }
-    ]
+    ],
+    "cv": {
+      "actions": {
+        "title": "Mis CVs",
+        "button": "Crear nuevo CV"
+      },
+      "table": {
+        "columns": {
+          "name": "Nombre",
+          "updatedAt": "Fecha de modificación",
+          "visits": "Visitas",
+          "active": "Activo"
+        },
+        "sortingHint": "Ordenar",
+        "pagging": {
+          "showAll": "Todos",
+          "rowsPerPage": "Ítems por página",
+          "info": "{from}-{to} de {count}"
+        },
+        "actionItem": {
+          "edit": "Editar",
+          "pdf": "Descargar PDF",
+          "txt": "Descargar .txt",
+          "copy": "Copiar",
+          "delete": "Borrar"
+        }
+      }
+    }
   }
 }

@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
+import Tabs, { Tab } from 'material-ui/Tabs';
+// component imports
 import HeaderMenu from './headerMenu';
 import HeaderItem from './headerItem';
 
@@ -33,6 +35,9 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
   image: {
     height: 30,
   },
+  options: {
+
+  },
 });
 
 class Header extends Component {
@@ -51,13 +56,17 @@ class Header extends Component {
   render() {
     const {
       classes,
+      header,
+      options,
+      index,
+      onChangeHandler,
     } = this.props;
     return (
       <div className={classes.root}>
         <AppBar position="static" className={classes.appBar}>
           <Toolbar>
             <div className={classes.flex}>
-              <img src="static/images/bittersweet.png" alt="Bittersweet.io" className={classes.image} />
+              <img src="/static/images/bittersweet.png" alt="Bittersweet.io" className={classes.image} />
             </div>
             <div className={classes.menuExtended}>
               {this.renderItems()}
@@ -69,6 +78,23 @@ class Header extends Component {
               />
             </div>
           </Toolbar>
+          {
+            options && (
+              <div className={classes.options}>
+                <Tabs
+                  value={index}
+                  onChange={onChangeHandler}
+                  indicatorColor="primary"
+                  textColor="primary"
+                  fullWidth
+                >
+                  <Tab label={header.options.cvs} />
+                  <Tab label={header.options.tests} />
+                  <Tab label={header.options.videos} />
+                </Tabs>
+              </div>
+            )
+          }
         </AppBar>
       </div>
     );
@@ -79,6 +105,15 @@ Header.propTypes = {
   classes: PropTypes.object.isRequired,
   header: PropTypes.object.isRequired,
   onClickHandler: PropTypes.func.isRequired,
+  options: PropTypes.bool,
+  index: PropTypes.number,
+  onChangeHandler: PropTypes.func,
+};
+
+Header.defaultProps = {
+  options: false,
+  index: 0,
+  onChangeHandler: null,
 };
 
 export default withStyles(styles)(Header);
