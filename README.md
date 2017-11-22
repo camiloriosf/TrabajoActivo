@@ -3,6 +3,9 @@ Plataforma para CVs
 
 #### CHANGE LOG
 ***
+* V0.6.0:
+  * Created /user/cv page
+  * Added custom route to server.js (Express)
 * V0.5.0:
   * Refactor Index container to remove mapping for better SEO
   * Added logout
