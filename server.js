@@ -10,7 +10,8 @@ app.prepare()
   .then(() => {
     const server = express();
 
-    server.get('/user/cv', (req, res) => app.render(req, res, '/cv', req.query));
+    server.get('/user/cv/create/:id', (req, res) =>
+      app.render(req, res, '/user/cv/create', { id: req.params.id }));
 
     server.get('*', (req, res) => handle(req, res));
 
