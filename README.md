@@ -3,6 +3,8 @@ Plataforma para CVs
 
 #### CHANGE LOG
 ***
+* V0.6.1:
+  * Check if cv was created
 * V0.6.0:
   * Created /user/cv page
   * Added custom route to server.js (Express)

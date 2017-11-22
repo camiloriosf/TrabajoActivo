@@ -27,6 +27,7 @@ class Create extends Component {
   state = {
     open: true,
     user: null,
+    cv: null,
   }
   componentDidMount = async () => {
     this.mounted = true;
@@ -37,8 +38,18 @@ class Create extends Component {
           await db.collection('users').doc(user.uid).set({
             email: user.email,
           }, { merge: true });
-          this.setState({ open: false, user });
-        } else this.setState({ open: false, user });
+          const cv = await db.collection('users').doc(user.uid)
+            .collection('cvs').doc(this.props.url.query.id)
+            .get();
+          if (cv.exists) this.setState({ open: false, user, cv });
+          else Router.push('/user/cv');
+        } else {
+          const cv = await db.collection('users').doc(user.uid)
+            .collection('cvs').doc(this.props.url.query.id)
+            .get();
+          if (cv.exists) this.setState({ open: false, user, cv });
+          else Router.push('/user/cv');
+        }
       } else if (this.mounted) Router.push('/login');
     });
   }
@@ -53,7 +64,7 @@ class Create extends Component {
       <div>
         <FullLoader open={this.state.open} />
         <div className={this.state.open ? classes.root : null}>
-          <CreateContainer user={this.state.user} />
+          { this.state.cv !== null && <CreateContainer user={this.state.user} cv={this.state.cv} />}
         </div>
       </div>
     );

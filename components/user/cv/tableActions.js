@@ -7,6 +7,7 @@ import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
+import { CircularProgress } from 'material-ui/Progress';
 
 const styles = theme => ({ // eslint-disable-line no-unused-vars
   root: {
@@ -27,6 +28,17 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
     marginBottom: 10,
     marginRight: 10,
   },
+  wrapper: {
+    position: 'relative',
+  },
+  buttonProgress: {
+    color: theme.palette.primary[500],
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginTop: -15,
+    marginLeft: -15,
+  },
 });
 
 class TableActions extends Component {
@@ -34,6 +46,7 @@ class TableActions extends Component {
     const {
       classes,
       actions,
+      loading,
       onClickHandler,
     } = this.props;
     return (
@@ -42,9 +55,18 @@ class TableActions extends Component {
           <Typography type="headline" className={classes.title}>
             {actions.title}
           </Typography>
-          <Button raised color="primary" className={classes.buttonCV} onClick={onClickHandler}>
-            {actions.button}
-          </Button>
+          <div className={classes.wrapper}>
+            <Button
+              raised
+              color="primary"
+              disabled={loading}
+              className={classes.buttonCV}
+              onClick={onClickHandler}
+            >
+              {actions.button}
+            </Button>
+            {loading && <CircularProgress size={30} className={classes.buttonProgress} />}
+          </div>
         </Paper>
       </div>
     );
@@ -54,7 +76,12 @@ class TableActions extends Component {
 TableActions.propTypes = {
   classes: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
+  loading: PropTypes.bool,
   onClickHandler: PropTypes.func.isRequired,
+};
+
+TableActions.defaultProps = {
+  loading: false,
 };
 
 export default withStyles(styles)(TableActions);
