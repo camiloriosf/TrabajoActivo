@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
 import Router from 'next/router';
+import { translate } from 'react-i18next';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
@@ -21,7 +22,6 @@ import PublishFeatures from '../components/index/publishFeatures';
 import Prices from '../components/index/prices';
 import Footer from '../components/index/footer';
 // local imports
-import { index } from '../lang/es.json';
 import { app } from '../lib/google/firebase';
 
 const styles = theme => ({ // eslint-disable-line no-unused-vars
@@ -59,99 +59,87 @@ class Index extends Component {
     loggedIn: false,
   }
   componentDidMount = () => {
+    this.mounted = true;
     app.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({ loggedIn: true });
-      }
+      if (user && this.mounted) this.setState({ loggedIn: true });
     });
   }
-  onHeaderClickHandler = (page) => {
-    Router.push(page);
-  };
+  shouldComponentUpdate = (nextProps, nextState) => {
+    if (this.state.loggedIn === nextState.loggedIn) return false;
+    console.log('update index');
+    return true;
+  }
+  componentWillUnmount = () => {
+    this.mounted = false;
+  }
   onHeroClickHandler = () => {
     Router.push('/register');
-  };
-  onPressClickHandler = link => () => {
-    Router.push(link);
   };
   onHeroPublishClickHandler = () => {
     Router.push('/register');
   };
-  onPriceClickHandler = plan => () => {
-    Router.push({ pathname: '/register', query: { plan } });
-  };
   onFooterCallToActionClickHandler = () => {
     Router.push('/register');
   };
-  onFooterClickHandler = link => () => {
-    Router.push(link);
-  }
   render() {
     const {
       classes,
+      t,
     } = this.props;
     return (
       <div className={classes.root}>
-        <Header
-          header={index.header}
-          onClickHandler={this.onHeaderClickHandler}
-          loggedIn={this.state.loggedIn}
-        />
-        <Hero image={index.hero[0].image}>
+        <Header loggedIn={this.state.loggedIn} />
+        <Hero image={t('hero.0.image')}>
           <Typography type="display1" color="inherit" className={classes.heroTitle} >
-            {index.hero[0].text1}
+            {t('hero.0.text1')}
           </Typography>
           <Typography type="display1" color="inherit" className={classes.heroSubTitle} >
-            {index.hero[0].text2}
+            {t('hero.0.text2')}
           </Typography>
           <Button raised color="primary" className={classes.heroCallToAction} onClick={this.onHeroClickHandler} >
-            {index.hero[0].button}
+            {t('hero.0.button')}
           </Button>
         </Hero>
-        <Press press={index.press} handleClick={this.onPressClickHandler} />
-        <Section title={index.features.title}>
-          <Features features={index.features.items} />
+        <Press />
+        <Section title={t('features.title')}>
+          <Features />
         </Section>
         <Quote
-          quote={index.quotes[0].quote}
-          author={index.quotes[0].author}
+          quote={t('quotes.0.quote')}
+          author={t('quotes.0.author')}
         />
-        <Section title={index.benefits.title}>
-          <Benefits benefits={index.benefits.items} />
+        <Section title={t('benefits.title')}>
+          <Benefits />
         </Section>
-        <Hero image={index.hero[1].image}>
+        <Hero image={t('hero.1.image')}>
           <Typography type="body1" color="inherit" className={classes.publishTitle} >
-            {index.hero[1].text1}
+            {t('hero.1.text1')}
           </Typography>
           <Typography type="body1" color="inherit" className={classes.publishSubTitle} >
-            {index.hero[1].text2}
+            {t('hero.1.text2')}
           </Typography>
-          <PublishLink link={index.publish.link} />
+          <PublishLink link={t('publish.link')} />
           <Button raised color="primary" className={classes.publishCallToAction} onClick={this.onHeroPublishClickHandler} >
-            {index.hero[1].button}
+            {t('hero.1.button')}
           </Button>
-          <PublishFeatures items={index.publish.items} />
+          <PublishFeatures />
         </Hero>
-        <Section title={index.prices.title}>
-          <Prices items={index.prices.items} handleClick={this.onPriceClickHandler} />
+        <Section title={t('prices.title')}>
+          <Prices />
         </Section>
         <Quote
-          quote={index.quotes[1].quote}
-          author={index.quotes[1].author}
+          quote={t('quotes.1.quote')}
+          author={t('quotes.1.author')}
         />
         <Section
-          title={index.section.title}
+          title={t('section.title')}
           icon={<LightbulbOutlineIcon className={classes.footerCallToActionIcon} />}
         >
           <Button raised color="accent" className={classes.footerCallToAction} onClick={this.onFooterCallToActionClickHandler}>
-            {index.section.button}
+            {t('section.button')}
           </Button>
         </Section>
-        <Footer
-          text={index.footer.text}
-          items={index.footer.items}
-          handleClick={this.onFooterClickHandler}
-        />
+        <Footer />
       </div>
     );
   }
@@ -161,4 +149,4 @@ Index.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Index);
+export default translate('index')(withStyles(styles)(Index));

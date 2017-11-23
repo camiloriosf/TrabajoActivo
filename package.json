@@ -1,6 +1,6 @@
 {
   "name": "e-cv",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "Plataforma para CVs",
   "main": "index.js",
   "scripts": {
@@ -28,6 +28,11 @@
     "@google-cloud/firestore": "^0.10.0",
     "express": "^4.16.2",
     "firebase": "^4.6.2",
+    "i18next": "^10.1.0",
+    "i18next-browser-languagedetector": "^2.1.0",
+    "i18next-express-middleware": "^1.0.7",
+    "i18next-node-fs-backend": "^1.0.0",
+    "i18next-xhr-backend": "^1.5.0",
     "isomorphic-unfetch": "^2.0.0",
     "lodash": "^4.17.4",
     "material-ui": "^1.0.0-beta.20",
@@ -36,6 +41,7 @@
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-i18next": "^6.2.0",
     "react-popper": "^0.7.4",
     "recompose": "^0.26.0",
     "validator": "^9.1.1"

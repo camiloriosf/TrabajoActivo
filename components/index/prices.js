@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import BorderClearIcon from 'material-ui-icons/BorderClear';
@@ -29,34 +30,52 @@ class Prices extends Component {
   render() {
     const {
       classes,
-      items,
-      handleClick,
+      t,
     } = this.props;
     return (
       <div className={classes.root}>
         <PricesItem
           icon={<BorderClearIcon className={classes.pricesItemIcon} />}
-          name={items[0].name}
-          features={items[0].features}
-          price={items[0].price}
-          free={items[0].free}
-          handleClick={handleClick}
+          name={t('prices.items.0.name')}
+          features={
+            [
+              { text: t('prices.items.0.features.0.text') },
+              { text: t('prices.items.0.features.1.text') },
+              { text: t('prices.items.0.features.2.text') },
+              { text: t('prices.items.0.features.3.text') },
+            ]
+          }
+          price={t('prices.items.0.price')}
+          month={t('prices.month')}
+          free
         />
         <PricesItem
           icon={<BorderInnerIcon className={classes.pricesItemIcon} />}
-          name={items[1].name}
-          features={items[1].features}
-          price={items[1].price}
-          free={items[1].free}
-          handleClick={handleClick}
+          name={t('prices.items.1.name')}
+          features={
+            [
+              { text: t('prices.items.1.features.0.text') },
+              { text: t('prices.items.1.features.1.text') },
+              { text: t('prices.items.1.features.2.text') },
+              { text: t('prices.items.1.features.3.text') },
+            ]
+          }
+          price={t('prices.items.1.price')}
+          month={t('prices.month')}
         />
         <PricesItem
           icon={<BorderAllIcon className={classes.pricesItemIcon} />}
-          name={items[2].name}
-          features={items[2].features}
-          price={items[2].price}
-          free={items[2].free}
-          handleClick={handleClick}
+          name={t('prices.items.2.name')}
+          features={
+            [
+              { text: t('prices.items.2.features.0.text') },
+              { text: t('prices.items.2.features.1.text') },
+              { text: t('prices.items.2.features.2.text') },
+              { text: t('prices.items.2.features.3.text') },
+            ]
+          }
+          price={t('prices.items.2.price')}
+          month={t('prices.month')}
         />
       </div>
     );
@@ -65,8 +84,6 @@ class Prices extends Component {
 
 Prices.propTypes = {
   classes: PropTypes.object.isRequired,
-  items: PropTypes.array.isRequired,
-  handleClick: PropTypes.any.isRequired,
 };
 
-export default withStyles(styles)(Prices);
+export default translate('index')(withStyles(styles)(Prices));

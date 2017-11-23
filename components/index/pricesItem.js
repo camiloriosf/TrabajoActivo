@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
+import Router from 'next/router';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
@@ -46,6 +47,9 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
 });
 
 class PricesItem extends Component {
+  handleClick = () => {
+    Router.push({ pathname: '/register', query: { plan: this.props.name } });
+  };
   render() {
     const {
       classes,
@@ -54,7 +58,7 @@ class PricesItem extends Component {
       features,
       price,
       free,
-      handleClick,
+      month,
     } = this.props;
     return (
       <Paper className={classes.root} elevation={4}>
@@ -79,9 +83,9 @@ class PricesItem extends Component {
           <Typography type="display3" component="h3" className={classes.priceText}>
             {price}
           </Typography>
-          {!free && <Typography type="body1" component="h3" className={classes.monthText}>/month</Typography>}
+          {!free && <Typography type="body1" component="h3" className={classes.monthText}>{month}</Typography>}
         </div>
-        <Button raised color="primary" onClick={handleClick(name)} className={classes.button}>
+        <Button raised color="primary" onClick={this.handleClick} className={classes.button}>
           Get Started
         </Button>
       </Paper>
@@ -96,7 +100,7 @@ PricesItem.propTypes = {
   features: PropTypes.array.isRequired,
   price: PropTypes.string.isRequired,
   free: PropTypes.bool,
-  handleClick: PropTypes.func.isRequired,
+  month: PropTypes.string.isRequired,
 };
 
 PricesItem.defaultProps = {

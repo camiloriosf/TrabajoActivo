@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
@@ -35,27 +36,33 @@ class Footer extends Component {
   render() {
     const {
       classes,
-      text,
-      items,
-      handleClick,
+      t,
     } = this.props;
     return (
       <div className={classes.root}>
         <Typography type="subheading" className={classes.flex} color="inherit">
-          {text}
+          {t('footer.text')}
         </Typography>
         <div className={classes.menu}>
-          {
-            items.map(item => (
-              <FooterItem
-                key={item.link}
-                handleClick={handleClick}
-                link={item.link}
-                text={item.text}
-                divider={item.divider}
-              />
-            ))
-          }
+          <FooterItem
+            link={t('footer.items.0.link')}
+            text={t('footer.items.0.text')}
+            divider
+          />
+          <FooterItem
+            link={t('footer.items.1.link')}
+            text={t('footer.items.1.text')}
+            divider
+          />
+          <FooterItem
+            link={t('footer.items.2.link')}
+            text={t('footer.items.2.text')}
+            divider
+          />
+          <FooterItem
+            link={t('footer.items.3.link')}
+            text={t('footer.items.3.text')}
+          />
         </div>
       </div>
     );
@@ -64,9 +71,6 @@ class Footer extends Component {
 
 Footer.propTypes = {
   classes: PropTypes.object.isRequired,
-  text: PropTypes.string.isRequired,
-  items: PropTypes.array.isRequired,
-  handleClick: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(Footer);
+export default translate('index')(withStyles(styles)(Footer));

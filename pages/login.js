@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
 import Router from 'next/router';
+import { translate } from 'react-i18next';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
-import withRoot from '../hoc/withRoot';
+// component imports
 import LoginContainer from '../containers/login';
 import FullLoader from '../components/common/fullLoader';
 // local imports
+import withRoot from '../hoc/withRoot';
 import { app } from '../lib/google/firebase';
+import i18n from '../lib/i18n/i18n';
 
 const styles = {
   root: {
@@ -56,4 +59,11 @@ Login.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withRoot(withStyles(styles)(Login));
+const Extended = translate(['auth', 'common'], { i18n, wait: process.browser })(withRoot(withStyles(styles)(Login)));
+
+Extended.getInitialProps = async ({ req }) => {
+  if (req && !process.browser) return i18n.getInitialProps(req, ['auth', 'common']);
+  return {};
+};
+
+export default Extended;

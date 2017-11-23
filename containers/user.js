@@ -2,15 +2,13 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
-import Router from 'next/router';
+import { translate } from 'react-i18next';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 // component imports
 import Header from '../components/user/header';
 import Options from '../components/user/options';
-// local imports
-import { user } from '../lang/es.json';
 
 const styles = theme => ({ // eslint-disable-line no-unused-vars
   root: {
@@ -34,29 +32,24 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
 });
 
 class User extends Component {
-  onHeaderClickHandler = (page) => {
-    Router.push(page);
-  };
-  onCardClickHandler = link => () => {
-    Router.push(link);
-  }
   render() {
     const {
       classes,
+      t,
     } = this.props;
     return (
       <div className={classes.root}>
-        <Header onClickHandler={this.onHeaderClickHandler} header={user.header} />
+        <Header />
         <div className={classes.container}>
           <div className={classes.head}>
             <Typography type="headline" color="default" >
-              ¡Te damos la bienvenida a eCV!
+              {t('title')}
             </Typography>
             <Typography type="display3" color="default">
-              Empieza aquí
+              {t('subtitle')}
             </Typography>
           </div>
-          <Options handleClick={this.onCardClickHandler} options={user.options} />
+          <Options />
         </div>
       </div>
     );
@@ -67,4 +60,4 @@ User.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(User);
+export default translate('user')(withStyles(styles)(User));

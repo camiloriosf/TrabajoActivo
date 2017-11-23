@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import TimelineIcon from 'material-ui-icons/Timeline';
@@ -40,24 +41,24 @@ class PublishFeatures extends Component {
   render() {
     const {
       classes,
-      items,
+      t,
     } = this.props;
     return (
       <div className={classes.root}>
         <PublishFeaturesItem
-          text={items[0].text}
+          text={t('publish.items.0.text')}
           icon={<LanguageIcon className={classes.publishFeaturesItemIcon} />}
         />
         <PublishFeaturesItem
-          text={items[1].text}
+          text={t('publish.items.1.text')}
           icon={<CloudDownloadIcon className={classes.publishFeaturesItemIcon} />}
         />
         <PublishFeaturesItem
-          text={items[2].text}
+          text={t('publish.items.2.text')}
           icon={<TimelineIcon className={classes.publishFeaturesItemIcon} />}
         />
         <PublishFeaturesItem
-          text={items[3].text}
+          text={t('publish.items.3.text')}
           icon={<SettingsIcon className={classes.publishFeaturesItemIcon} />}
         />
       </div>
@@ -67,7 +68,6 @@ class PublishFeatures extends Component {
 
 PublishFeatures.propTypes = {
   classes: PropTypes.object.isRequired,
-  items: PropTypes.array.isRequired,
 };
 
-export default withStyles(styles)(PublishFeatures);
+export default translate('index')(withStyles(styles)(PublishFeatures));

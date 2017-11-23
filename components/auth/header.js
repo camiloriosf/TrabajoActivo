@@ -2,11 +2,11 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import Button from 'material-ui/Button';
 // component imports
 import HeaderButton from './headerButton';
 
@@ -26,36 +26,28 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
 });
 
 class Header extends Component {
-  renderButtons = () => {
-    if (this.props.loggedIn) {
-      return (
-        <Button raised color="primary" onClick={this.props.handleClick(this.props.header.account.link)}>
-          {this.props.header.account.button}
-        </Button>
-      );
-    }
-    return (
-      <HeaderButton
-        loading={this.props.loading}
-        title={this.props.header.button.title}
-        button={this.props.header.button.button}
-        link={this.props.header.button.link}
-        handleClick={this.props.handleClick}
-      />
-    );
-  }
   render() {
     const {
       classes,
+      title,
+      button,
+      link,
+      loading,
+      t,
     } = this.props;
     return (
       <div className={classes.root}>
         <AppBar position="static" className={classes.appBar}>
           <Toolbar>
             <div className={classes.flex}>
-              <img src="static/images/bittersweet.png" alt="Bittersweet.io" className={classes.image} />
+              <img src={t('header.image')} alt={t('header.alt')} className={classes.image} />
             </div>
-            {this.renderButtons()}
+            <HeaderButton
+              title={title}
+              button={button}
+              link={link}
+              loading={loading}
+            />
           </Toolbar>
         </AppBar>
       </div>
@@ -65,15 +57,14 @@ class Header extends Component {
 
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
-  header: PropTypes.object.isRequired,
-  loggedIn: PropTypes.bool,
-  handleClick: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  button: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
   loading: PropTypes.bool,
 };
 
 Header.defaultProps = {
-  loggedIn: false,
   loading: false,
 };
 
-export default withStyles(styles)(Header);
+export default translate('auth')(withStyles(styles)(Header));

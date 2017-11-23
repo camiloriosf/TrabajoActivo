@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 // component imports
@@ -20,34 +21,30 @@ class Options extends Component {
   render() {
     const {
       classes,
-      options,
-      handleClick,
+      t,
     } = this.props;
     return (
       <div className={classes.root}>
         <OptionCard
-          title={options[0].title}
-          body={options[0].body}
-          button={options[0].button}
-          link={options[0].link}
-          image={options[0].image}
-          handleClick={handleClick}
+          title={t('options.0.title')}
+          body={t('options.0.body')}
+          button={t('options.0.button')}
+          link={t('options.0.link')}
+          image={t('options.0.image')}
         />
         <OptionCard
-          title={options[1].title}
-          body={options[1].body}
-          button={options[1].button}
-          link={options[1].link}
-          image={options[1].image}
-          handleClick={handleClick}
+          title={t('options.1.title')}
+          body={t('options.1.body')}
+          button={t('options.1.button')}
+          link={t('options.1.link')}
+          image={t('options.1.image')}
         />
         <OptionCard
-          title={options[2].title}
-          body={options[2].body}
-          button={options[2].button}
-          link={options[2].link}
-          image={options[2].image}
-          handleClick={handleClick}
+          title={t('options.2.title')}
+          body={t('options.2.body')}
+          button={t('options.2.button')}
+          link={t('options.2.link')}
+          image={t('options.2.image')}
         />
       </div>
     );
@@ -56,8 +53,6 @@ class Options extends Component {
 
 Options.propTypes = {
   classes: PropTypes.object.isRequired,
-  options: PropTypes.array.isRequired,
-  handleClick: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(Options);
+export default translate('user')(withStyles(styles)(Options));

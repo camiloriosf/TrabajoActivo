@@ -2,13 +2,12 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 import Link from 'next/link';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import NotInterestedIcon from 'material-ui-icons/NotInterested';
-// local imports
-import { error } from '../lang/es.json';
 
 const styles = theme => ({
   root: {
@@ -55,29 +54,30 @@ class Error extends Component {
     const {
       classes,
       statusCode,
+      t,
     } = this.props;
     return (
       <div className={classes.root}>
         <div className={classes.content}>
           <NotInterestedIcon className={classes.icon} />
           <Typography type="display4" color="inherit" className={classes.error} >
-            {statusCode || error.text1}
+            {statusCode || t('text1')}
           </Typography>
         </div>
         <Typography type="body2" color="inherit" className={classes.text} >
-          {error.text2}
-          <Link href={error.link1.link}>
-            <a className={classes.link} >{error.link1.text}</a>
+          {t('text2')}
+          <Link href={t('link1.link')}>
+            <a className={classes.link} >{t('link1.text')}</a>
           </Link>
         </Typography>
         <Typography type="body2" color="inherit" className={classes.text} >
-          {error.text3}
-          <Link href={error.link2.link}>
-            <a className={classes.link} >{error.link2.text}</a>
+          {t('text3')}
+          <Link href={t('link2.link')}>
+            <a className={classes.link} >{t('link2.text')}</a>
           </Link>
         </Typography>
         <Typography type="body2" color="inherit" className={classes.text} >
-          {error.text4}
+          {t('text4')}
         </Typography>
       </div>
     );
@@ -88,4 +88,4 @@ Error.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Error);
+export default translate('error')(withStyles(styles)(Error));

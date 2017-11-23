@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
+import Router from 'next/router';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
@@ -31,13 +32,14 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
 });
 
 class HeaderButton extends Component {
+  handleClick = () => {
+    Router.push(this.props.link);
+  }
   render() {
     const {
       classes,
       title,
       button,
-      link,
-      handleClick,
       loading,
     } = this.props;
     return (
@@ -48,7 +50,7 @@ class HeaderButton extends Component {
           </Typography>
         </Hidden>
         <div className={classes.wrapper}>
-          <Button raised color="primary" disabled={loading} onClick={handleClick(link)}>
+          <Button raised color="primary" disabled={loading} onClick={this.handleClick}>
             {button}
           </Button>
           {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
@@ -63,7 +65,6 @@ HeaderButton.propTypes = {
   title: PropTypes.string.isRequired,
   button: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
-  handleClick: PropTypes.func.isRequired,
   loading: PropTypes.bool,
 };
 

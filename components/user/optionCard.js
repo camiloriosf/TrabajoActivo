@@ -2,11 +2,12 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
+import Router from 'next/router';
+// material-ui imports
+import { withStyles } from 'material-ui/styles';
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
-// material-ui imports
-import { withStyles } from 'material-ui/styles';
 
 const styles = theme => ({ // eslint-disable-line no-unused-vars
   root: {
@@ -28,15 +29,16 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
 });
 
 class OptionCard extends Component {
+  handleClick = () => {
+    Router.push(this.props.link);
+  }
   render() {
     const {
       classes,
       title,
       body,
       button,
-      link,
       image,
-      handleClick,
     } = this.props;
     return (
       <div className={classes.root}>
@@ -55,7 +57,7 @@ class OptionCard extends Component {
             </Typography>
           </CardContent>
           <CardActions className={classes.cardActions}>
-            <Button dense color="primary" onClick={handleClick(link)}>
+            <Button dense color="primary" onClick={this.handleClick}>
               {button}
             </Button>
           </CardActions>
@@ -72,7 +74,6 @@ OptionCard.propTypes = {
   button: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
-  handleClick: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(OptionCard);

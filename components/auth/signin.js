@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
@@ -91,12 +92,12 @@ class Signin extends Component {
       loading,
       errorEmail,
       errorSubmit,
-      signin,
+      t,
     } = this.props;
     return (
       <div className={classes.root}>
         <Typography type="headline">
-          {signin.title}
+          {t('login.signin.title')}
         </Typography>
         <form noValidate onSubmit={this.handleSubmit}>
           <TextField
@@ -106,7 +107,7 @@ class Signin extends Component {
             disabled={loading}
             value={this.state.email}
             onChange={this.handleChange('email')}
-            placeholder={signin.emailPlaceholder}
+            placeholder={t('login.signin.emailPlaceholder')}
             InputProps={{
               disableUnderline: true,
               classes: {
@@ -123,7 +124,7 @@ class Signin extends Component {
             disabled={loading}
             value={this.state.password}
             onChange={this.handleChange('password')}
-            placeholder={signin.passwordPlaceholder}
+            placeholder={t('login.signin.passwordPlaceholder')}
             InputProps={{
               disableUnderline: true,
               classes: {
@@ -141,20 +142,20 @@ class Signin extends Component {
               disabled={loading}
               className={classes.button}
             >
-              {signin.button}
+              {t('login.signin.button')}
             </Button>
             {loading && <CircularProgress size={40} className={classes.buttonProgress} />}
           </div>
         </form>
         <Typography type="caption" className={classes.terms}>
-          {signin.resetPassword.text}
+          {t('login.signin.resetPassword.text')}
           <Button
             color="primary"
             disabled={loading}
             className={classes.termsButton}
             onClick={this.handleReset}
           >
-            {signin.resetPassword.button}
+            {t('login.signin.resetPassword.button')}
           </Button>
         </Typography>
       </div>
@@ -169,11 +170,10 @@ Signin.propTypes = {
   errorEmail: PropTypes.string.isRequired,
   errorSubmit: PropTypes.string.isRequired,
   handleResetSubmit: PropTypes.func.isRequired,
-  signin: PropTypes.object.isRequired,
 };
 
 Signin.defaultProps = {
   loading: false,
 };
 
-export default withStyles(styles)(Signin);
+export default translate('auth')(withStyles(styles)(Signin));

@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
+import Router from 'next/router';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import ButtonBase from 'material-ui/Button';
@@ -26,11 +27,12 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
 });
 
 class FooterItem extends Component {
+  handleClick = () => {
+    Router.push(this.props.link);
+  }
   render() {
     const {
       classes,
-      handleClick,
-      link,
       text,
       divider,
     } = this.props;
@@ -40,7 +42,7 @@ class FooterItem extends Component {
           key="footerButton"
           focusRipple
           className={classes.button}
-          onClick={handleClick(link)}
+          onClick={this.handleClick}
         >
           <Typography type="body1" color="inherit" className={classes.typography} >
             {text}
@@ -54,7 +56,6 @@ class FooterItem extends Component {
 
 FooterItem.propTypes = {
   classes: PropTypes.object.isRequired,
-  handleClick: PropTypes.func.isRequired,
   link: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   divider: PropTypes.bool,
