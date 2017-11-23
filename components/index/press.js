@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 // component imports
@@ -17,22 +18,45 @@ class Press extends Component {
   render() {
     const {
       classes,
-      press,
-      handleClick,
+      t,
     } = this.props;
     return (
       <div className={classes.root}>
-        {
-          press.items.map(item => (
-            <PressItem
-              key={item.alt}
-              image={item.image}
-              link={press.link}
-              alt={item.alt}
-              handleClick={handleClick}
-            />
-          ))
-        }
+        <PressItem
+          image={t('press.items.0.image')}
+          link={t('press.link')}
+          alt={t('press.items.0.alt')}
+        />
+        <PressItem
+          image={t('press.items.1.image')}
+          link={t('press.link')}
+          alt={t('press.items.1.alt')}
+        />
+        <PressItem
+          image={t('press.items.2.image')}
+          link={t('press.link')}
+          alt={t('press.items.2.alt')}
+        />
+        <PressItem
+          image={t('press.items.3.image')}
+          link={t('press.link')}
+          alt={t('press.items.3.alt')}
+        />
+        <PressItem
+          image={t('press.items.4.image')}
+          link={t('press.link')}
+          alt={t('press.items.4.alt')}
+        />
+        <PressItem
+          image={t('press.items.5.image')}
+          link={t('press.link')}
+          alt={t('press.items.5.alt')}
+        />
+        <PressItem
+          image={t('press.items.6.image')}
+          link={t('press.link')}
+          alt={t('press.items.6.alt')}
+        />
       </div>
     );
   }
@@ -40,8 +64,6 @@ class Press extends Component {
 
 Press.propTypes = {
   classes: PropTypes.object.isRequired,
-  press: PropTypes.object.isRequired,
-  handleClick: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(Press);
+export default translate('index')(withStyles(styles)(Press));

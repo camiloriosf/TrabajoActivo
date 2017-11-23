@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
+import Router from 'next/router';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import ButtonBase from 'material-ui/ButtonBase';
@@ -23,6 +24,9 @@ class PressItem extends Component {
   state = {
     hover: 'off',
   }
+  handleClick = () => {
+    Router.push(this.props.link);
+  }
   handleMouseEnter = () => {
     this.setState({ hover: 'on' });
   }
@@ -33,12 +37,10 @@ class PressItem extends Component {
     const {
       classes,
       image,
-      link,
-      handleClick,
     } = this.props;
     const { hover } = this.state;
     return (
-      <ButtonBase onClick={handleClick(link)} disableRipple>
+      <ButtonBase onClick={this.handleClick} disableRipple>
         <img
           src={`${image}-${hover}.png`}
           alt="press"
@@ -55,7 +57,6 @@ PressItem.propTypes = {
   classes: PropTypes.object.isRequired,
   image: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
-  handleClick: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(PressItem);

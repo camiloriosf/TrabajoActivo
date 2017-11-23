@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
 import Router from 'next/router';
+import { translate } from 'react-i18next';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 // component imports
@@ -14,7 +15,6 @@ import ActionDialog from '../components/common/actionDialog';
 import Error from '../pages/_error';
 // local imports
 import { app } from '../lib/google/firebase';
-import { reset, reviews, errors } from '../lang/es.json';
 
 const styles = theme => ({
   root: {
@@ -38,8 +38,6 @@ class Reset extends Component {
     errorSubmit: '',
     errorPage: false,
     dialogOpen: false,
-    dialogTitle: reset.dialog.title,
-    dialogContent: reset.dialog.content,
   };
   componentWillMount = () => {
     const {
@@ -58,7 +56,7 @@ class Reset extends Component {
     const hasNumber = /\d/;
     const hasAlpha = /[a-z]/i;
     if (password.length < 8 || !hasAlpha.test(password) || !hasNumber.test(password)) {
-      this.setState({ loading: false, errorPassword: errors.invalidPassword });
+      this.setState({ loading: false, errorPassword: this.props.t('common:errors.invalidPassword') });
       return;
     }
     this.setState({
@@ -73,13 +71,14 @@ class Reset extends Component {
       const {
         code,
       } = err;
-      if (code === 'auth/invalid-action-code') this.setState({ loading: false, errorSubmit: errors.badResetCode });
-      else this.setState({ loading: false, errorSubmit: errors.unknown });
+      if (code === 'auth/invalid-action-code') this.setState({ loading: false, errorSubmit: this.props.t('common:errors.badResetCode') });
+      else this.setState({ loading: false, errorSubmit: this.props.t('common:errors.unknown') });
     }
   }
   render() {
     const {
       classes,
+      t,
     } = this.props;
 
     if (this.state.errorPage) {
@@ -88,8 +87,9 @@ class Reset extends Component {
     return (
       <div className={classes.root}>
         <Header
-          header={reset.header}
-          handleClick={this.handleHeaderClick}
+          title={t('auth:reset.header.title')}
+          button={t('auth:reset.header.button')}
+          link={t('auth:reset.header.link')}
           loading={this.state.loading}
         />
         <div className={classes.content}>
@@ -98,15 +98,14 @@ class Reset extends Component {
             loading={this.state.loading}
             errorPassword={this.state.errorPassword}
             errorSubmit={this.state.errorSubmit}
-            reset={reset.reset}
           />
-          <Reviews title={reviews.title} reviews={reviews.items} />
+          <Reviews />
         </div>
         <ActionDialog
           open={this.state.dialogOpen}
-          title={this.state.dialogTitle}
-          content={this.state.dialogContent}
-          button={reset.dialog.button}
+          title={t('auth:reset.dialog.title')}
+          content={t('auth:reset.dialog.content')}
+          button={t('auth:reset.dialog.button')}
           handleRequestClose={this.handleDialogRequestClose}
         />
       </div>
@@ -119,4 +118,4 @@ Reset.propTypes = {
   url: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Reset);
+export default translate(['auth', 'common'])(withStyles(styles)(Reset));

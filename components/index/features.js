@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
@@ -29,50 +30,50 @@ class Features extends Component {
   render() {
     const {
       classes,
-      features,
+      t,
     } = this.props;
     return (
       <div className={classes.root}>
         <Grid container justify="center" alignItems="center">
           <Grid item xs={12} sm={6} md={4}>
             <FeaturesItem
-              title={features[0].title}
-              body={features[0].body}
+              title={t('features.items.0.title')}
+              body={t('features.items.0.body')}
               icon={<LockOutlineIcon className={classes.featuresIcon} />}
             />
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <FeaturesItem
-              title={features[1].title}
-              body={features[1].body}
+              title={t('features.items.1.title')}
+              body={t('features.items.1.body')}
               icon={<TimelineIcon className={classes.featuresIcon} />}
             />
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <FeaturesItem
-              title={features[2].title}
-              body={features[2].body}
+              title={t('features.items.2.title')}
+              body={t('features.items.2.body')}
               icon={<AvTimerIcon className={classes.featuresIcon} />}
             />
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <FeaturesItem
-              title={features[3].title}
-              body={features[3].body}
+              title={t('features.items.3.title')}
+              body={t('features.items.3.body')}
               icon={<StarBorderIcon className={classes.featuresIcon} />}
             />
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <FeaturesItem
-              title={features[4].title}
-              body={features[4].body}
+              title={t('features.items.4.title')}
+              body={t('features.items.4.body')}
               icon={<LightbulbOutlineIcon className={classes.featuresIcon} />}
             />
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <FeaturesItem
-              title={features[5].title}
-              body={features[5].body}
+              title={t('features.items.5.title')}
+              body={t('features.items.5.body')}
               icon={<DescriptionIcon className={classes.featuresIcon} />}
             />
           </Grid>
@@ -84,7 +85,6 @@ class Features extends Component {
 
 Features.propTypes = {
   classes: PropTypes.object.isRequired,
-  features: PropTypes.array.isRequired,
 };
 
-export default withStyles(styles)(Features);
+export default translate('index')(withStyles(styles)(Features));

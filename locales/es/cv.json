@@ -1,0 +1,58 @@
+{
+  "actions": {
+    "title": "Mis CVs",
+    "button": "Crear nuevo CV"
+  },
+  "table": {
+    "columns": {
+      "name": "Nombre",
+      "updatedAt": "Fecha de modificación",
+      "visits": "Visitas",
+      "active": "Activo",
+      "options": " "
+    },
+    "sortingHint": "Ordenar",
+    "pagging": {
+      "showAll": "Todos",
+      "rowsPerPage": "Ítems por página",
+      "info": "{from}-{to} de {count}"
+    },
+    "actionItem": {
+      "edit": {
+        "action": "edit",
+        "text": "Editar"
+      },
+      "pdf": {
+        "action": "pdf",
+        "text": "Descargar PDF"
+      },
+      "txt": {
+        "action": "txt",
+        "text": "Descargar .txt"
+      },
+      "copy": {
+        "action": "Copiar",
+        "text": "Editar"
+      },
+      "delete": {
+        "action": "delete",
+        "text": "Borrar"
+      }
+    }
+  },
+  "messages": {
+    "cvLimit": {
+      "title": "Ya tienes 1 CV creado",
+      "content": "Esta es una versión beta, por lo que por el momento solo permitimos crear 1 CV por usuario",
+      "button": "aceptar"
+    },
+    "unknown": {
+      "title": "Error Desconocido",
+      "content": "Ha ocurrido un error desconocido, por favor contactanos para solucionar este problema.",
+      "button": "aceptar"
+    }
+  },
+  "create": {
+    
+  }
+}

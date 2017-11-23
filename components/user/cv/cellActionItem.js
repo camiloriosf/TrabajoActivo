@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import IconButton from 'material-ui/IconButton';
@@ -29,12 +30,12 @@ class CellActionItem extends Component {
   };
   handleClick = action => () => {
     this.setState({ open: false });
-    this.props.handleClick({ id: this.props.id, action });
+    console.log({ id: this.props.id, action });
   }
   render() {
     const {
       classes,
-      actionItem,
+      t,
     } = this.props;
     return (
       <div className={classes.root}>
@@ -52,11 +53,21 @@ class CellActionItem extends Component {
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
         >
-          <MenuItem onClick={this.handleClick('edit')}>{actionItem.edit}</MenuItem>
-          <MenuItem onClick={this.handleClick('pdf')}>{actionItem.pdf}</MenuItem>
-          <MenuItem onClick={this.handleClick('txt')}>{actionItem.txt}</MenuItem>
-          <MenuItem onClick={this.handleClick('copy')}>{actionItem.copy}</MenuItem>
-          <MenuItem onClick={this.handleClick('delete')}>{actionItem.delete}</MenuItem>
+          <MenuItem onClick={this.handleClick(t('table.actionItem.edit.action'))}>
+            {t('table.actionItem.edit.text')}
+          </MenuItem>
+          <MenuItem onClick={this.handleClick(t('table.actionItem.pdf.action'))}>
+            {t('table.actionItem.pdf.text')}
+          </MenuItem>
+          <MenuItem onClick={this.handleClick(t('table.actionItem.txt.action'))}>
+            {t('table.actionItem.txt.text')}
+          </MenuItem>
+          <MenuItem onClick={this.handleClick(t('table.actionItem.copy.action'))}>
+            {t('table.actionItem.copy.text')}
+          </MenuItem>
+          <MenuItem onClick={this.handleClick(t('table.actionItem.delete.action'))}>
+            {t('table.actionItem.delete.text')}
+          </MenuItem>
         </Menu>
       </div>
     );
@@ -66,8 +77,6 @@ class CellActionItem extends Component {
 CellActionItem.propTypes = {
   classes: PropTypes.object.isRequired,
   id: PropTypes.number.isRequired,
-  handleClick: PropTypes.func.isRequired,
-  actionItem: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CellActionItem);
+export default translate('cv')(withStyles(styles)(CellActionItem));

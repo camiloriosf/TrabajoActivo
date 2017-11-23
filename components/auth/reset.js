@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
@@ -78,12 +79,12 @@ class Signin extends Component {
       loading,
       errorPassword,
       errorSubmit,
-      reset,
+      t,
     } = this.props;
     return (
       <div className={classes.root}>
         <Typography type="headline">
-          {reset.title}
+          {t('reset.reset.title')}
         </Typography>
         <form noValidate onSubmit={this.handleSubmit}>
           <TextField
@@ -93,7 +94,7 @@ class Signin extends Component {
             disabled={loading}
             value={this.state.password}
             onChange={this.handleChange('password')}
-            placeholder={reset.passwordPlaceholder}
+            placeholder={t('reset.reset.passwordPlaceholder')}
             InputProps={{
               disableUnderline: true,
               classes: {
@@ -112,7 +113,7 @@ class Signin extends Component {
               disabled={loading}
               className={classes.button}
             >
-              {reset.button}
+              {t('reset.reset.button')}
             </Button>
             {loading && <CircularProgress size={40} className={classes.buttonProgress} />}
           </div>
@@ -128,11 +129,10 @@ Signin.propTypes = {
   loading: PropTypes.bool,
   errorPassword: PropTypes.string.isRequired,
   errorSubmit: PropTypes.string.isRequired,
-  reset: PropTypes.object.isRequired,
 };
 
 Signin.defaultProps = {
   loading: false,
 };
 
-export default withStyles(styles)(Signin);
+export default translate('auth')(withStyles(styles)(Signin));

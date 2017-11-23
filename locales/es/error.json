@@ -1,0 +1,14 @@
+{
+  "text1": "Oops",
+  "text2": "Volver a ",
+  "text3": "o contactanos ",
+  "text4": "y descríbenos tu problema",
+  "link1": {
+    "link": "/",
+    "text": "pagina principal"
+  },
+  "link2": {
+    "link": "/contact",
+    "text": "aquí"
+  }
+}

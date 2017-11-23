@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
 import Router from 'next/router';
+import { translate } from 'react-i18next';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 // component imports
@@ -12,7 +13,6 @@ import DataTable from '../../components/user/cv/dataTable';
 import ActionDialog from '../../components/common/actionDialog';
 // local imports
 import { app, db } from '../../lib/google/firebase';
-import { user } from '../../lang/es.json';
 
 const styles = theme => ({ // eslint-disable-line no-unused-vars
   root: {
@@ -40,24 +40,6 @@ class CV extends Component {
     button: '',
     loading: false,
   }
-  onHeaderClickHandler = (page) => {
-    Router.push(page);
-  };
-  onHeaderChangeHandler = (event, value) => {
-    switch (value) {
-      case 0:
-        Router.push('/user/cv');
-        break;
-      case 1:
-        Router.push('/user/tests');
-        break;
-      case 2:
-        Router.push('/user/coaching');
-        break;
-      default:
-        break;
-    }
-  }
   onActionsClickHandler = async () => {
     try {
       this.setState({ loading: true });
@@ -65,9 +47,9 @@ class CV extends Component {
       const cvsRef = await db.collection('users').doc(this.props.user.uid).collection('cvs').get();
       if (userRef.data().plan === 'Starter' && cvsRef.docs.length > 0) {
         this.setState({
-          title: 'Ya tienes 1 CV creado',
-          content: 'Esta es una versión beta, por lo que por el momento solo permitimos crear 1 CV por usuario',
-          button: 'aceptar',
+          title: this.props.t('messages.cvLimit.title'),
+          content: this.props.t('messages.cvLimit.content'),
+          button: this.props.t('messages.cvLimit.button'),
           openActionDialog: true,
           loading: false,
         });
@@ -86,9 +68,9 @@ class CV extends Component {
       }
     } catch (error) {
       this.setState({
-        title: 'Error Desconocido',
-        content: 'Ha ocurrido un error desconocido, por favor contactanos para solucionar este problema.',
-        button: 'aceptar',
+        title: this.props.t('messages.unknown.title'),
+        content: this.props.t('messages.unknown.content'),
+        button: this.props.t('messages.unknown.button'),
         openActionDialog: true,
         loading: false,
       });
@@ -100,22 +82,17 @@ class CV extends Component {
   render() {
     const {
       classes,
+      t,
     } = this.props;
     return (
       <div className={classes.root}>
-        <Header
-          onClickHandler={this.onHeaderClickHandler}
-          header={user.header}
-          options
-          onChangeHandler={this.onHeaderChangeHandler}
-        />
+        <Header options t={t} />
         <div className={classes.container}>
           <TableActions
             loading={this.state.loading}
-            actions={user.cv.actions}
             onClickHandler={this.onActionsClickHandler}
           />
-          <DataTable table={user.cv.table} />
+          <DataTable />
         </div>
         <ActionDialog
           open={this.state.openActionDialog}
@@ -133,4 +110,4 @@ CV.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CV);
+export default translate('cv')(withStyles(styles)(CV));

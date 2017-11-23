@@ -3,6 +3,9 @@ Plataforma para CVs
 
 #### CHANGE LOG
 ***
+* V0.7.0
+  * Added react-i18n
+  * Fixed index container firebase listener
 * V0.6.1:
   * Check if cv was created
 * V0.6.0:

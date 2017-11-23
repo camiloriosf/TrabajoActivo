@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
@@ -45,15 +46,15 @@ class TableActions extends Component {
   render() {
     const {
       classes,
-      actions,
       loading,
       onClickHandler,
+      t,
     } = this.props;
     return (
       <div className={classes.root}>
         <Paper className={classes.paper} elevation={4}>
           <Typography type="headline" className={classes.title}>
-            {actions.title}
+            {t('actions.title')}
           </Typography>
           <div className={classes.wrapper}>
             <Button
@@ -63,7 +64,7 @@ class TableActions extends Component {
               className={classes.buttonCV}
               onClick={onClickHandler}
             >
-              {actions.button}
+              {t('actions.button')}
             </Button>
             {loading && <CircularProgress size={30} className={classes.buttonProgress} />}
           </div>
@@ -75,7 +76,6 @@ class TableActions extends Component {
 
 TableActions.propTypes = {
   classes: PropTypes.object.isRequired,
-  actions: PropTypes.object.isRequired,
   loading: PropTypes.bool,
   onClickHandler: PropTypes.func.isRequired,
 };
@@ -84,4 +84,4 @@ TableActions.defaultProps = {
   loading: false,
 };
 
-export default withStyles(styles)(TableActions);
+export default translate('cv')(withStyles(styles)(TableActions));

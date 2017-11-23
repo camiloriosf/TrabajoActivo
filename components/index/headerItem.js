@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
 import { Manager, Target, Popper } from 'react-popper';
+import Router from 'next/router';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
@@ -49,13 +50,16 @@ class HeaderItem extends Component {
   };
 
   shouldComponentUpdate = (nextProps, nextState) => {
-    if (this.state.open !== nextState.open) return true;
+    if (this.state.open !== nextState.open) {
+      console.log('update index/header/headerItem');
+      return true;
+    }
     return false;
   }
 
   handleClick = () => {
     if (this.props.menu) this.setState({ open: !this.state.open });
-    else this.props.onClickHandler(this.props.link);
+    else Router.push(this.props.link);
   };
 
   handleRequestClose = () => {
@@ -64,7 +68,7 @@ class HeaderItem extends Component {
 
   handleMenuItemClick = link => () => {
     this.setState({ open: false });
-    this.props.onClickHandler(link);
+    Router.push(link);
   }
 
   render() {
@@ -128,18 +132,16 @@ class HeaderItem extends Component {
 HeaderItem.propTypes = {
   classes: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
-  link: PropTypes.string,
+  link: PropTypes.string.isRequired,
   menu: PropTypes.bool,
   menuItem: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string,
     link: PropTypes.string,
   })),
-  onClickHandler: PropTypes.func.isRequired,
 };
 
 HeaderItem.defaultProps = {
   menu: false,
-  link: '',
   menuItem: [],
 };
 

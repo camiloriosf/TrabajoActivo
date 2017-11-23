@@ -2,8 +2,8 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
-import Router from 'next/router';
 import validator from 'validator';
+import { translate } from 'react-i18next';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 // component imports
@@ -13,7 +13,6 @@ import Reviews from '../components/auth/reviews';
 import ActionDialog from '../components/common/actionDialog';
 // local imports
 import { app } from '../lib/google/firebase';
-import { login, reviews, errors } from '../lang/es.json';
 
 const styles = theme => ({ // eslint-disable-line no-unused-vars
   root: {
@@ -35,18 +34,13 @@ class Login extends Component {
     errorEmail: '',
     errorSubmit: '',
     dialogOpen: false,
-    dialogTitle: login.dialog.title,
-    dialogContent: login.dialog.content,
   };
-  handleHeaderClick = link => () => {
-    Router.push(link);
-  }
   handleDialogRequestClose = () => {
     this.setState({ dialogOpen: false });
   };
   handleFormSubmit = async ({ email, password }) => {
     if (!validator.isEmail(email)) {
-      this.setState({ loading: false, errorEmail: errors.invalidEmail, errorSubmit: '' });
+      this.setState({ loading: false, errorEmail: this.props.t('common:errors.invalidEmail'), errorSubmit: '' });
       return;
     }
     this.setState({
@@ -56,9 +50,9 @@ class Login extends Component {
     try {
       const providers = await app.auth().fetchProvidersForEmail(email);
       if (providers.length === 0) {
-        this.setState({ loading: false, errorSubmit: errors.noAccount });
+        this.setState({ loading: false, errorSubmit: this.props.t('common:errors.noAccount') });
       } else if (providers.indexOf('password') === -1) {
-        this.setState({ loading: false, errorSubmit: errors.accountSocialExist });
+        this.setState({ loading: false, errorSubmit: this.props.t('common:errors.accountSocialExist') });
       } else {
         await app.auth().signInWithEmailAndPassword(email, password);
       }
@@ -66,13 +60,13 @@ class Login extends Component {
       const {
         code,
       } = err;
-      if (code === 'auth/wrong-password') this.setState({ loading: false, errorSubmit: errors.emailPassNoMatch });
-      else this.setState({ loading: false, errorSubmit: errors.unknown });
+      if (code === 'auth/wrong-password') this.setState({ loading: false, errorSubmit: this.props.t('common:errors.emailPassNoMatch') });
+      else this.setState({ loading: false, errorSubmit: this.props.t('common:errors.unknown') });
     }
   }
   handleResetSubmit = async (email) => {
     if (!validator.isEmail(email)) {
-      this.setState({ loading: false, errorEmail: errors.invalidEmail, errorSubmit: '' });
+      this.setState({ loading: false, errorEmail: this.props.t('common:errors.invalidEmail'), errorSubmit: '' });
       return;
     }
     this.setState({
@@ -82,9 +76,9 @@ class Login extends Component {
     try {
       const providers = await app.auth().fetchProvidersForEmail(email);
       if (providers.length === 0) {
-        this.setState({ loading: false, errorSubmit: errors.noAccount });
+        this.setState({ loading: false, errorSubmit: this.props.t('common:errors.noAccount') });
       } else if (providers.indexOf('password') === -1) {
-        this.setState({ loading: false, errorSubmit: errors.accountSocialExist });
+        this.setState({ loading: false, errorSubmit: this.props.t('common:errors.accountSocialExist') });
       } else {
         await app.auth().sendPasswordResetEmail(email);
         this.setState({
@@ -94,18 +88,20 @@ class Login extends Component {
       }
     } catch (err) {
       console.log(err); // eslint-disable-line no-console
-      this.setState({ loading: false, errorSubmit: errors.unknown });
+      this.setState({ loading: false, errorSubmit: this.props.t('common:errors.unknown') });
     }
   }
   render() {
     const {
       classes,
+      t,
     } = this.props;
     return (
       <div className={classes.root}>
         <Header
-          header={login.header}
-          handleClick={this.handleHeaderClick}
+          title={t('auth:login.header.title')}
+          button={t('auth:login.header.button')}
+          link={t('auth:login.header.link')}
           loading={this.state.loading}
         />
         <div className={classes.content}>
@@ -115,15 +111,14 @@ class Login extends Component {
             errorEmail={this.state.errorEmail}
             errorSubmit={this.state.errorSubmit}
             handleResetSubmit={this.handleResetSubmit}
-            signin={login.signin}
           />
-          <Reviews title={reviews.title} reviews={reviews.items} />
+          <Reviews />
         </div>
         <ActionDialog
           open={this.state.dialogOpen}
-          title={this.state.dialogTitle}
-          content={this.state.dialogContent}
-          button={login.dialog.button}
+          title={t('auth:login.dialog.title')}
+          content={t('auth:login.dialog.content')}
+          button={t('auth:login.dialog.button')}
           handleRequestClose={this.handleDialogRequestClose}
         />
       </div>
@@ -135,4 +130,4 @@ Login.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Login);
+export default translate(['auth', 'common'])(withStyles(styles)(Login));

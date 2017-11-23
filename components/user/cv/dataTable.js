@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+import { translate } from 'react-i18next';
 import {
   SortingState, PagingState,
   LocalPaging, LocalSorting,
@@ -52,11 +53,11 @@ class DataTable extends Component {
       },
     ],
     columns: [
-      { name: 'name', title: this.props.table.columns.name },
-      { name: 'updatedAt', title: this.props.table.columns.updatedAt },
-      { name: 'visits', title: this.props.table.columns.visits, width: 70 },
-      { name: 'active', title: this.props.table.columns.active, width: 70 },
-      { name: 'options', title: ' ', width: 70 },
+      { name: 'name', title: this.props.t('table.columns.name') },
+      { name: 'updatedAt', title: this.props.t('table.columns.updatedAt') },
+      { name: 'visits', title: this.props.t('table.columns.visits'), width: 70 },
+      { name: 'active', title: this.props.t('table.columns.active'), width: 70 },
+      { name: 'options', title: this.props.t('table.columns.options'), width: 70 },
     ],
     sorting: [],
     currentPage: 0,
@@ -75,7 +76,7 @@ class DataTable extends Component {
     if (column.name === 'options') {
       return (
         <TableCell>
-          <CellActionItem id={row.id} handleClick={this.onClick} actionItem={this.props.table.actionItem} />
+          <CellActionItem id={row.id} />
         </TableCell>
       );
     }
@@ -110,7 +111,7 @@ class DataTable extends Component {
       allowedPageSizes,
     } = this.state;
     const {
-      table,
+      t,
     } = this.props;
     return (
       <Grid
@@ -132,14 +133,14 @@ class DataTable extends Component {
         <TableView tableCellTemplate={this.tableCellTemplate} />
         <TableHeaderRow
           allowSorting
-          messages={{ sortingHint: table.sortingHint }}
+          messages={{ sortingHint: t('table.sortingHint') }}
         />
         <PagingPanel
           allowedPageSizes={allowedPageSizes}
           messages={{
-            showAll: table.pagging.showAll,
-            rowsPerPage: table.pagging.rowsPerPage,
-            info: table.pagging.info,
+            showAll: t('table.pagging.showAll'),
+            rowsPerPage: t('table.pagging.rowsPerPage'),
+            info: t('table.pagging.info'),
           }}
         />
       </Grid>
@@ -149,7 +150,6 @@ class DataTable extends Component {
 
 DataTable.propTypes = {
   classes: PropTypes.object.isRequired,
-  table: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(DataTable);
+export default translate('cv')(withStyles(styles)(DataTable));

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
 import { Manager, Target, Popper } from 'react-popper';
+import Router from 'next/router';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
@@ -61,7 +62,7 @@ class HeaderItem extends Component {
 
   handleClick = () => {
     if (this.props.menu) this.setState({ open: !this.state.open });
-    else this.props.onClickHandler(this.props.link);
+    else Router.push(this.props.link);
   };
 
   handleRequestClose = () => {
@@ -70,7 +71,7 @@ class HeaderItem extends Component {
 
   handleMenuItemClick = link => () => {
     this.setState({ open: false });
-    this.props.onClickHandler(link);
+    Router.push(link);
   }
 
   render() {
@@ -140,7 +141,6 @@ HeaderItem.propTypes = {
     title: PropTypes.string,
     link: PropTypes.string,
   })),
-  onClickHandler: PropTypes.func.isRequired,
 };
 
 HeaderItem.defaultProps = {

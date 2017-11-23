@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
+import Router from 'next/router';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
@@ -82,6 +84,9 @@ class Signup extends Component {
       [name]: event.target.value,
     });
   };
+  handleClick = link => () => {
+    Router.push(link);
+  }
   render() {
     const {
       classes,
@@ -89,13 +94,12 @@ class Signup extends Component {
       errorEmail,
       errorPassword,
       errorSubmit,
-      handleClick,
-      signup,
+      t,
     } = this.props;
     return (
       <div className={classes.root}>
         <Typography type="headline">
-          {signup.title}
+          {t('register.signup.title')}
         </Typography>
         <form noValidate onSubmit={this.handleSubmit}>
           <TextField
@@ -105,7 +109,7 @@ class Signup extends Component {
             disabled={loading}
             value={this.state.email}
             onChange={this.handleChange('email')}
-            placeholder={signup.emailPlaceholder}
+            placeholder={t('register.signup.emailPlaceholder')}
             InputProps={{
               disableUnderline: true,
               classes: {
@@ -122,7 +126,7 @@ class Signup extends Component {
             disabled={loading}
             value={this.state.password}
             onChange={this.handleChange('password')}
-            placeholder={signup.passwordPlaceholder}
+            placeholder={t('register.signup.passwordPlaceholder')}
             InputProps={{
               disableUnderline: true,
               classes: {
@@ -141,31 +145,31 @@ class Signup extends Component {
               disabled={loading}
               className={classes.button}
             >
-              {signup.button}
+              {t('register.signup.button')}
             </Button>
             {loading && <CircularProgress size={40} className={classes.buttonProgress} />}
           </div>
         </form>
         <Typography type="caption" className={classes.terms}>
-          {signup.footer.text1}
+          {t('register.signup.footer.text1')}
         </Typography>
         <Typography type="caption" className={classes.terms}>
           <Button
             color="primary"
             disabled={loading}
             className={classes.termsButton}
-            onClick={handleClick(signup.footer.link1)}
+            onClick={this.handleClick(t('register.signup.footer.link1'))}
           >
-            {signup.footer.button1}
+            {t('register.signup.footer.button1')}
           </Button>
-          {signup.footer.text2}
+          {t('register.signup.footer.text2')}
           <Button
             color="primary"
             disabled={loading}
             className={classes.termsButton}
-            onClick={handleClick(signup.footer.link2)}
+            onClick={this.handleClick(t('register.signup.footer.link2'))}
           >
-            {signup.footer.button2}
+            {t('register.signup.footer.button2')}
           </Button>
         </Typography>
       </div>
@@ -176,16 +180,14 @@ class Signup extends Component {
 Signup.propTypes = {
   classes: PropTypes.object.isRequired,
   handleFormSubmit: PropTypes.func.isRequired,
-  handleClick: PropTypes.func.isRequired,
   loading: PropTypes.bool,
   errorEmail: PropTypes.string.isRequired,
   errorPassword: PropTypes.string.isRequired,
   errorSubmit: PropTypes.string.isRequired,
-  signup: PropTypes.object.isRequired,
 };
 
 Signup.defaultProps = {
   loading: false,
 };
 
-export default withStyles(styles)(Signup);
+export default translate('auth')(withStyles(styles)(Signup));

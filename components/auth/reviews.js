@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
@@ -88,7 +89,7 @@ class Reviews extends Component {
     clearInterval(this.timer);
   }
   changeActiveReview = () => {
-    if (this.state.dot === this.props.reviews.length - 1) {
+    if (this.state.dot === 2) {
       this.setState({ dot: 0 });
     } else {
       this.setState(prevState => ({ dot: prevState.dot + 1 }));
@@ -104,15 +105,15 @@ class Reviews extends Component {
         <div className={this.props.classes.quoteDiv}>
           <FormatQuoteIcon className={this.props.classes.icon} />
           <Typography type="body1" className={this.props.classes.quoteText} paragraph>
-            {this.props.reviews[this.state.dot].quote}
+            {this.props.t(`reviews.items.${this.state.dot}.quote`)}
           </Typography>
         </div>
         <div className={this.props.classes.arrowUp} />
         <Typography type="body1" className={this.props.classes.author}>
-          {this.props.reviews[this.state.dot].author}
+          {this.props.t(`reviews.items.${this.state.dot}.author`)}
         </Typography>
         <Typography type="body1" className={this.props.classes.role}>
-          {this.props.reviews[this.state.dot].role}
+          {this.props.t(`reviews.items.${this.state.dot}.role`)}
         </Typography>
       </div>
     </Fade>
@@ -120,21 +121,20 @@ class Reviews extends Component {
   render() {
     const {
       classes,
-      title,
-      reviews,
+      t,
     } = this.props;
     const { dot } = this.state;
     return (
       <div className={classes.root}>
         <Typography type="headline" paragraph>
-          {title}
+          {t('reviews.title')}
         </Typography>
         {this.renderReview()}
         <div>
           {
-            reviews.map((review, index) => (
+            [0, 1, 2].map((item, index) => (
               <ButtonBase
-                key={review.author}
+                key={item}
                 disableRipple
                 className={classes.dotButton}
                 onClick={this.handleDotClick(index)}
@@ -151,8 +151,6 @@ class Reviews extends Component {
 
 Reviews.propTypes = {
   classes: PropTypes.object.isRequired,
-  title: PropTypes.string.isRequired,
-  reviews: PropTypes.array.isRequired,
 };
 
-export default withStyles(styles)(Reviews);
+export default translate('common')(withStyles(styles)(Reviews));

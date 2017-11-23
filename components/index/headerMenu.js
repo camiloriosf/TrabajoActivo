@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
 import { Manager, Target, Popper } from 'react-popper';
+import Router from 'next/router';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import IconButton from 'material-ui/IconButton';
@@ -22,7 +23,10 @@ class HeaderMenu extends Component {
     open: false,
   };
   shouldComponentUpdate = (nextProps, nextState) => {
-    if (this.state.open !== nextState.open) return true;
+    if (this.state.open !== nextState.open) {
+      console.log('update index/header/headerMenu');
+      return true;
+    }
     return false;
   }
 
@@ -36,7 +40,7 @@ class HeaderMenu extends Component {
 
   handleMenuItemClick = link => () => {
     this.setState({ open: false });
-    this.props.onClickHandler(link);
+    Router.push(link);
   }
   render() {
     const {
@@ -64,32 +68,16 @@ class HeaderMenu extends Component {
                 <Paper>
                   <MenuList role="menu">
                     {
-                      [
-                        open &&
-                        <MenuItem
-                          key={items.callToAction.title}
-                          onClick={this.handleMenuItemClick(items.callToAction.link)}
-                        >
-                          {items.callToAction.title}
-                        </MenuItem>,
-                        open && items.menu.map(item =>
-                          (
-                            <MenuItem
-                              key={item.title}
-                              onClick={this.handleMenuItemClick(item.link)}
-                            >
-                              {item.title}
-                            </MenuItem>
-                          )),
-                        open && <Divider key="divider" />,
-                        open &&
-                        <MenuItem
-                          key={items.account.title}
-                          onClick={this.handleMenuItemClick(items.account.link)}
-                        >
-                          {items.account.title}
-                        </MenuItem>,
-                      ]
+                      open && items.map(item =>
+                        ([
+                          <MenuItem
+                            key={item.title}
+                            onClick={this.handleMenuItemClick(item.link)}
+                          >
+                            {item.title}
+                          </MenuItem>,
+                          item.divider && <Divider />,
+                        ]))
                     }
                   </MenuList>
                 </Paper>
@@ -104,7 +92,7 @@ class HeaderMenu extends Component {
 
 HeaderMenu.propTypes = {
   classes: PropTypes.object.isRequired,
-  items: PropTypes.object.isRequired,
+  items: PropTypes.array.isRequired,
 };
 
 export default withStyles(styles)(HeaderMenu);

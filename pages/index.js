@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-import { withStyles } from 'material-ui/styles';
-import 'isomorphic-unfetch';
-import withRoot from '../hoc/withRoot';
+// supporting imports
+import { translate } from 'react-i18next';
+// component imports
 import IndexContainer from '../containers/index';
-
-const styles = {
-  root: {
-
-  },
-};
+// local imports
+import withRoot from '../hoc/withRoot';
+import i18n from '../lib/i18n/i18n';
 
 class Index extends Component {
   render() {
@@ -20,4 +17,11 @@ class Index extends Component {
   }
 }
 
-export default withRoot(withStyles(styles)(Index));
+const Extended = translate(['index', 'common'], { i18n, wait: process.browser })(withRoot(Index));
+
+Extended.getInitialProps = async ({ req }) => {
+  if (req && !process.browser) return i18n.getInitialProps(req, ['index', 'common']);
+  return {};
+};
+
+export default Extended;
