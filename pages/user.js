@@ -3,15 +3,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Router from 'next/router';
 import { translate } from 'react-i18next';
+import { bindActionCreators } from 'redux';
+import withRedux from 'next-redux-wrapper';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 // component imports
-import UserContainer from '../containers/user';
+import UserContainer from '../components/user/_user';
 import FullLoader from '../components/common/fullLoader';
 // local imports
-import withRoot from '../hoc/withRoot';
+import withRoot from '../lib/hoc/withRoot';
 import { app, db } from '../lib/google/firebase';
 import i18n from '../lib/i18n/i18n';
+import initStore from '../lib/redux/store';
+import { updateUid } from '../lib/redux/actions/user';
 
 const styles = {
   root: {
@@ -27,10 +31,6 @@ const styles = {
 };
 
 class User extends Component {
-  state = {
-    open: true,
-    user: null,
-  }
   componentDidMount = async () => {
     this.mounted = true;
     app.auth().onAuthStateChanged(async (user) => {
@@ -40,23 +40,27 @@ class User extends Component {
           await db.collection('users').doc(user.uid).set({
             email: user.email,
           }, { merge: true });
-          this.setState({ open: false, user });
-        } else this.setState({ open: false, user });
-      } else if (this.mounted) Router.push('/login');
+          this.props.updateUid({ uid: user.uid, email: user.email });
+        } else this.props.updateUid({ uid: user.uid, email: user.email });
+      } else if (this.mounted) {
+        this.props.updateUid(null);
+        Router.push('/login');
+      }
     });
   }
   componentWillUnmount = () => {
     this.mounted = false;
   }
+
   render() {
     const {
       classes,
     } = this.props;
     return (
       <div>
-        <FullLoader open={this.state.open} />
-        <div className={this.state.open ? classes.root : null}>
-          <UserContainer user={this.state.user} />
+        <FullLoader open={!this.props.user.uid} />
+        <div className={!this.props.user.uid ? classes.root : null}>
+          <UserContainer />
         </div>
       </div>
     );
@@ -74,4 +78,18 @@ Extended.getInitialProps = async ({ req }) => {
   return {};
 };
 
-export default Extended;
+const mapStateToProps = ({
+  user: {
+    uid,
+  },
+}) => ({
+  user: {
+    uid,
+  },
+});
+
+const mapDispatchToProps = dispatch => ({
+  updateUid: bindActionCreators(updateUid, dispatch),
+});
+
+export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(Extended);

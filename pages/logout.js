@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import withRoot from '../hoc/withRoot';
-import LogoutContainer from '../containers/logout';
+import withRoot from '../lib/hoc/withRoot';
+import LogoutContainer from '../components/auth/_logout';
 
 class Logout extends Component {
   render() {

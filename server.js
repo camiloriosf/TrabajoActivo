@@ -37,8 +37,8 @@ i18n
         server.post('/locales/add/:lng/:ns', i18nextMiddleware.missingKeyHandler(i18n));
 
         // use next.js
-        server.get('/user/cv/create/:id', (req, res) =>
-          app.render(req, res, '/user/cv/create', { id: req.params.id }));
+        server.get('/cv/create/:id', (req, res) =>
+          app.render(req, res, '/cv/create', { id: req.params.id }));
 
         server.get('*', (req, res) => handle(req, res));
 

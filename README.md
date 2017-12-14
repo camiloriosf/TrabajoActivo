@@ -3,6 +3,13 @@ Plataforma para CVs
 
 #### CHANGE LOG
 ***
+* Dev
+  * Added Redux Store
+  * Created cv/create page
+  * Added Sections
+  * Improved Mobile UI
+  * Refactor Page schema
+  * Refactor container/component schema
 * V0.7.0
   * Added react-i18n
   * Fixed index container firebase listener

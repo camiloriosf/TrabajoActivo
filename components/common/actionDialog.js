@@ -13,12 +13,15 @@ import Dialog, {
 } from 'material-ui/Dialog';
 
 class ActionDialog extends Component {
+  handleRequestClose = () => {
+    this.props.doShowActionDialog({ open: false });
+  }
   render() {
     const {
-      open,
       title,
       content,
       button,
+      open,
       handleRequestClose,
     } = this.props;
     return (
@@ -33,7 +36,7 @@ class ActionDialog extends Component {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleRequestClose} color="primary" autoFocus>
+          <Button onClick={this.handleRequestClose} color="primary" autoFocus>
             {button}
           </Button>
         </DialogActions>
@@ -43,10 +46,10 @@ class ActionDialog extends Component {
 }
 
 ActionDialog.propTypes = {
-  open: PropTypes.bool,
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   button: PropTypes.string.isRequired,
+  open: PropTypes.bool,
   handleRequestClose: PropTypes.func.isRequired,
 };
 

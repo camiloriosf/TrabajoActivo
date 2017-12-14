@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 // supporting imports
 import { translate } from 'react-i18next';
 // component imports
-import ErrorContainer from '../containers/error';
+import ErrorContainer from '../components/common/_error';
 // local imports
-import withRoot from '../hoc/withRoot';
+import withRoot from '../lib/hoc/withRoot';
 import i18n from '../lib/i18n/i18n';
 
 class Error extends Component {

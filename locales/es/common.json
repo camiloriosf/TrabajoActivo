@@ -1,4 +1,34 @@
 {
+  "header": {
+    "image": {
+      "link": "/static/images/bittersweet.png",
+      "alt": "Bittersweet.io"
+    },
+    "menu": {
+      "welcome": "Bienvenido",
+      "accountTitle": "Mi Cuenta",
+      "cv": "Mis CVs",
+      "test": "Tests Psicolaborales",
+      "coaching": "Coaching",
+      "settings": "Configuración",
+      "logout": "Cerrar Sesión",
+      "helpTitle": "Ayuda",
+      "help": "Centro de Ayuda",
+      "contact": "Contactanos",
+      "plans": "Planes"
+    }
+  },
+  "links": {
+    "cv": "/cv",
+    "cvCreate": "/cv/create",
+    "test": "/test",
+    "coaching": "/coaching",
+    "settings": "/settings",
+    "logout": "/logout",
+    "help": "/help",
+    "contact": "/contact",
+    "plans": "/plans"
+  },
   "reviews": {
     "title": "Reviews",
     "items": [

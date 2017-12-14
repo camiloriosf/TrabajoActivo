@@ -6,10 +6,10 @@ import { translate } from 'react-i18next';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 // component imports
-import ResetContainer from '../containers/reset';
+import ResetContainer from '../components/auth/_reset';
 import FullLoader from '../components/common/fullLoader';
 // local imports
-import withRoot from '../hoc/withRoot';
+import withRoot from '../lib/hoc/withRoot';
 import { app } from '../lib/google/firebase';
 import i18n from '../lib/i18n/i18n';
 

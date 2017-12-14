@@ -1,66 +1,26 @@
 {
   "title": "¡Te damos la bienvenida a eCV!",
   "subtitle": "Empieza aquí",
-  "header": {
-    "image": {
-      "link": "/static/images/bittersweet.png",
-      "alt": "Bittersweet.io"
-    },
-    "menu": [
-      {
-        "title": "Precios",
-        "link": "/pricing",
-        "menu": false, 
-        "menuItem": null
-      },
-      {
-        "title": "Ayuda",
-        "link": "/help",
-        "menu": true, 
-        "menuItem": [
-          { "title": "Centro de ayuda", "link": "/help" },
-          { "title": "Contacto", "link": "/contact" }
-        ]
-      },
-      {
-        "title": "Mi cuenta",
-        "link": "/user",
-        "menu": true, 
-        "menuItem": [
-          { "title": "Mis CVs", "link": "/user/cv" },
-          { "title": "Mis tests", "link": "/user/tests" },
-          { "title": "Mis cursos", "link": "/user/coaching" },
-          { "title": "Configuración", "link": "/user/settings" },
-          { "title": "Cerrar sesión", "link": "/logout" }
-        ]
-      }
-    ],
-    "options": {
-      "cv": "Mis CVs",
-      "test": "Mis Tests",
-      "coaching": "Mis Cursos"
-    }
-  },
   "options": [
     {
       "title": "Mis CVs",
       "body": "Crea y edita tus CVs",
       "button": "Empezar",
-      "link": "/user/cv",
+      "link": "/cv",
       "image": "/static/images/user/awrds.png"
     },
     {
       "title": "Mis Tests",
       "body": "Realiza tests psicolaborales y ve tus resultados",
       "button": "Empezar",
-      "link": "/user/tests",
+      "link": "/tests",
       "image": "/static/images/user/analytics.png"
     },
     {
       "title": "Mis Cursos",
       "body": "Sigue nuestros cursos de coaching",
       "button": "Empezar",
-      "link": "/user/coaching",
+      "link": "/coaching",
       "image": "/static/images/user/notifications.png"
     }
   ]
