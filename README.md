@@ -10,6 +10,7 @@ Plataforma para CVs
   * Improved Mobile UI
   * Refactor Page schema
   * Refactor container/component schema
+  * Implemented Download Functionality
 * V0.7.0
   * Added react-i18n
   * Fixed index container firebase listener

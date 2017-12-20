@@ -20,6 +20,7 @@ import {
   doReorderSectionItems,
   doAddNewSkill,
   doDeleteSectionItem,
+  doChangeSectionTitle,
 } from '../../../../lib/redux/actions/cv';
 import { makeGetSectionDataState } from '../../../../lib/reselect/cv';
 
@@ -69,6 +70,10 @@ class Index extends Component {
     this.props.doUpdateSectionDataArray({ name, value, index });
     this.delayedSaving({ selected: this.props.cv.id });
   }
+  onSectionTitleEdit = ({ id }) => (event) => {
+    this.props.doChangeSectionTitle({ id, value: event.target.value });
+    this.delayedSaving({ selected: this.props.cv.id });
+  }
   render() {
     const {
       classes,
@@ -78,8 +83,11 @@ class Index extends Component {
     return (
       <div className={classes.root}>
         <SectionHeader
-          title={t('create.sections.skills.title')}
+          title={cv.text !== '' ? cv.text : t('create.sections.skills.title')}
           subtitle={t('create.sections.skills.subtitle')}
+          id={cv.id}
+          editable
+          handleTitleEdit={this.onSectionTitleEdit}
         >
           <div className={classes.content}>
             a
@@ -148,6 +156,7 @@ const mapDispatchToProps = dispatch => ({
   doUpdateSectionDataArray: bindActionCreators(doUpdateSectionDataArray, dispatch),
   doAddNewSkill: bindActionCreators(doAddNewSkill, dispatch),
   doDeleteSectionItem: bindActionCreators(doDeleteSectionItem, dispatch),
+  doChangeSectionTitle: bindActionCreators(doChangeSectionTitle, dispatch),
 });
 
 export default connect(

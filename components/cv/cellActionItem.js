@@ -29,15 +29,15 @@ class CellActionItem extends Component {
   handleRequestClose = () => {
     this.setState({ open: false });
   };
-  handleClick = action => () => {
-    this.setState({ open: false });
-    console.log({ id: this.props.id, action });
-  }
   handleEditClick = () => {
     this.setState({ open: false });
     const href = `/cv/create?id=${this.props.id}`;
     const as = `/cv/create/${this.props.id}`;
     Router.push(href, as);
+  }
+  handlePDFDownload = () => {
+    this.setState({ open: false });
+    window.open(`/cv/view/${this.props.id}`, '_blank');
   }
   handleCopyClick = () => {
     this.setState({ open: false });
@@ -71,11 +71,8 @@ class CellActionItem extends Component {
           <MenuItem onClick={this.handleEditClick}>
             {t('table.actionItem.edit.text')}
           </MenuItem>
-          <MenuItem onClick={this.handleClick(t('table.actionItem.pdf.action'))}>
+          <MenuItem onClick={this.handlePDFDownload}>
             {t('table.actionItem.pdf.text')}
-          </MenuItem>
-          <MenuItem onClick={this.handleClick(t('table.actionItem.txt.action'))}>
-            {t('table.actionItem.txt.text')}
           </MenuItem>
           <MenuItem onClick={this.handleCopyClick}>
             {t('table.actionItem.copy.text')}

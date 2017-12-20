@@ -7,7 +7,7 @@
     "columns": {
       "name": "Nombre",
       "updatedAt": "Fecha de modificación",
-      "visits": "Visitas",
+      "visits": "Descargas",
       "active": "Activo",
       "options": " "
     },
@@ -25,10 +25,6 @@
       "pdf": {
         "action": "pdf",
         "text": "Descargar PDF"
-      },
-      "txt": {
-        "action": "txt",
-        "text": "Descargar .txt"
       },
       "copy": {
         "action": "copy",
@@ -61,6 +57,7 @@
         "buttonShow": "Ver consejos"
       },
       "name": "Nombre",
+      "sectionTitle": "Título",
       "download": "Descargar",
       "personal": {
         "title": "Información Personal",

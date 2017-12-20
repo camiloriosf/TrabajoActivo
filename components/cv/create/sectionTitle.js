@@ -43,6 +43,9 @@ class SectionTitle extends Component {
   handleClickAway = () => {
     this.setState({ edit: false });
   }
+  handleDownloadClick = () => {
+    window.open(`/cv/view/${this.props.id}`, '_blank');
+  }
   render() {
     const {
       classes,
@@ -84,7 +87,7 @@ class SectionTitle extends Component {
                 )
             }
           </div>
-          <Button raised color="primary">
+          <Button raised color="primary" onClick={this.handleDownloadClick}>
             {t('create.sections.download')}
           </Button>
         </Paper>
@@ -96,6 +99,7 @@ class SectionTitle extends Component {
 SectionTitle.propTypes = {
   classes: PropTypes.object.isRequired,
   name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
 };
 

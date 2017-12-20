@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const next = require('next');
+const { generatePDF } = require('./lib/pdf/pdfGenerator');
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
@@ -26,7 +27,6 @@ i18n
     app.prepare()
       .then(() => {
         const server = express();
-
         // enable middleware for i18next
         server.use(i18nextMiddleware.handle(i18n));
 
@@ -39,6 +39,10 @@ i18n
         // use next.js
         server.get('/cv/create/:id', (req, res) =>
           app.render(req, res, '/cv/create', { id: req.params.id }));
+
+        server.get('/cv/view/:id', (req, res) => {
+          generatePDF({ req, res });
+        });
 
         server.get('*', (req, res) => handle(req, res));
 

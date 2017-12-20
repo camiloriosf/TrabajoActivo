@@ -1,6 +1,9 @@
 const functions = require('firebase-functions');
+const admin = require('firebase-admin');
 const nodemailer = require('nodemailer');
+const PDFDocument = require('pdfkit');
 
+admin.initializeApp(functions.config().firebase);
 const user = functions.config().gmail.email;
 const pass = functions.config().gmail.password;
 const mailTransport = nodemailer.createTransport({
@@ -30,4 +33,24 @@ exports.sendWelcomeEmail = functions.auth.user().onCreate((event) => {
   }).catch((error) => {
     console.error('There was an error while sending the email:', error);
   });
+});
+
+exports.generatePDF = functions.https.onRequest((req, res) => {
+  const { id } = req.body;
+  const doc = new PDFDocument();
+  // const stream = doc.pipe(blobStream());
+  admin.firestore().collection('cvs').doc(id).get()
+    .then((docRef) => {
+      if (docRef.exists) {
+        doc.fontSize(25)
+          .text('Here is some vector graphics...', 100, 80);
+        doc.end();
+        doc.pipe(res);
+      } else {
+        res.send(`id: ${id}, no existe`);
+      }
+    })
+    .catch((error) => {
+      res.send(`id: ${id}, error: ${error}`);
+    });
 });

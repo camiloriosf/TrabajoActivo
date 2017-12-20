@@ -15,7 +15,7 @@ import withRoot from '../lib/hoc/withRoot';
 import { app, db } from '../lib/google/firebase';
 import i18n from '../lib/i18n/i18n';
 import initStore from '../lib/redux/store';
-import { doGetAllCVs } from '../lib/redux/actions/cv';
+import { doGetAllCVs, doResetALLCVs, doResetData } from '../lib/redux/actions/cv';
 import { doUpdateUID } from '../lib/redux/actions/user';
 import { getCVSDataState } from '../lib/reselect/cv';
 import { getUserDataState } from '../lib/reselect/user';
@@ -36,6 +36,7 @@ const styles = {
 class CV extends Component {
   componentDidMount = async () => {
     this.mounted = true;
+    this.props.doResetData();
     app.auth().onAuthStateChanged(async (user) => {
       if (user && this.mounted) {
         const doc = await db.collection('users').doc(user.uid).get();
@@ -46,7 +47,7 @@ class CV extends Component {
           this.props.doUpdateUID({ uid: user.uid, email: user.email });
         } else this.props.doUpdateUID({ uid: user.uid, email: user.email });
       } else if (this.mounted) {
-        this.props.doUpdateUID(null);
+        this.props.doUpdateUID({});
         Router.push('/login');
       }
     });
@@ -55,6 +56,7 @@ class CV extends Component {
     if (nextProps.user.uid && !nextProps.cv.data) this.props.doGetAllCVs();
   }
   componentWillUnmount = () => {
+    this.props.doResetALLCVs();
     this.mounted = false;
   }
   render() {
@@ -90,6 +92,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   doGetAllCVs: bindActionCreators(doGetAllCVs, dispatch),
+  doResetALLCVs: bindActionCreators(doResetALLCVs, dispatch),
+  doResetData: bindActionCreators(doResetData, dispatch),
   doUpdateUID: bindActionCreators(doUpdateUID, dispatch),
 });
 

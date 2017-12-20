@@ -3,12 +3,15 @@ import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
+import { connect } from 'react-redux';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 // component imports
 import Header from '../common/header';
 import Options from './options';
+// local imports
+import { getUserDataState } from '../../lib/reselect/user';
 
 const styles = theme => ({ // eslint-disable-line no-unused-vars
   root: {
@@ -36,10 +39,11 @@ class User extends Component {
     const {
       classes,
       t,
+      user,
     } = this.props;
     return (
       <div className={classes.root}>
-        <Header />
+        <Header email={user.email} />
         <div className={classes.container}>
           <div className={classes.head}>
             <Typography type="headline" color="default" >
@@ -60,4 +64,11 @@ User.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default translate('user')(withStyles(styles)(User));
+const mapStateToProps = state => ({
+  user: getUserDataState(state),
+});
+
+export default connect(
+  mapStateToProps,
+  null,
+)(translate('user')(withStyles(styles)(User)));

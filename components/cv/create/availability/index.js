@@ -20,6 +20,7 @@ import SectionHeader from '../sectionHeader';
 import {
   doUpdateSectionDataObject,
   doSectionDBUpdate,
+  doChangeSectionTitle,
 } from '../../../../lib/redux/actions/cv';
 import { makeGetSectionDataState } from '../../../../lib/reselect/cv';
 
@@ -50,7 +51,11 @@ class Index extends Component {
   componentDidMount = () => {
     this.delayedSaving = _.debounce(this.props.doSectionDBUpdate, 2000);
   }
-  handleChange = name => (event) => {
+  onSectionTitleEdit = ({ id }) => (event) => {
+    this.props.doChangeSectionTitle({ id, value: event.target.value });
+    this.delayedSaving({ selected: this.props.cv.id });
+  }
+  onChange = name => (event) => {
     this.props.doUpdateSectionDataObject({ name, value: event.target.value });
     this.delayedSaving({ selected: this.props.cv.id });
   };
@@ -63,8 +68,11 @@ class Index extends Component {
     return (
       <div className={classes.root}>
         <SectionHeader
-          title={t('create.sections.availability.title')}
+          title={cv.text !== '' ? cv.text : t('create.sections.availability.title')}
           subtitle={t('create.sections.availability.subtitle')}
+          id={cv.id}
+          editable
+          handleTitleEdit={this.onSectionTitleEdit}
         >
           <div className={classes.content}>
             a
@@ -79,7 +87,7 @@ class Index extends Component {
                 </InputLabel>
                 <Select
                   value={cv.data.availability ? cv.data.availability : ''}
-                  onChange={this.handleChange('availability')}
+                  onChange={this.onChange('availability')}
                   input={<Input name="availability" id="availability" />}
                 >
                   <MenuItem value="">
@@ -128,6 +136,7 @@ const makeMapStateToProps = () => {
 const mapDispatchToProps = dispatch => ({
   doUpdateSectionDataObject: bindActionCreators(doUpdateSectionDataObject, dispatch),
   doSectionDBUpdate: bindActionCreators(doSectionDBUpdate, dispatch),
+  doChangeSectionTitle: bindActionCreators(doChangeSectionTitle, dispatch),
 });
 
 export default connect(

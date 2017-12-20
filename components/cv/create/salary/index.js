@@ -15,10 +15,12 @@ import { FormControl, FormControlLabel } from 'material-ui/Form';
 import Switch from 'material-ui/Switch';
 // component imports
 import SectionHeader from '../sectionHeader';
+import NumberFormatCustom from './numberFormatCustom';
 // local imports
 import {
   doUpdateSectionDataObject,
   doSectionDBUpdate,
+  doChangeSectionTitle,
 } from '../../../../lib/redux/actions/cv';
 import { makeGetSectionDataState } from '../../../../lib/reselect/cv';
 
@@ -46,13 +48,20 @@ class Index extends Component {
   componentDidMount = () => {
     this.delayedSaving = _.debounce(this.props.doSectionDBUpdate, 2000);
   }
-  handleChange = name => (event) => {
+  onChange = name => (event) => {
     this.props.doUpdateSectionDataObject({ name, value: event.target.value });
     this.delayedSaving({ selected: this.props.cv.id });
   };
-  handleSwitchChange = name => (event, checked) => {
+  onSwitchChange = name => (event, checked) => {
     this.props.doUpdateSectionDataObject({ name, value: checked });
     this.delayedSaving({ selected: this.props.cv.id });
+  }
+  onSectionTitleEdit = ({ id }) => (event) => {
+    this.props.doChangeSectionTitle({ id, value: event.target.value });
+    this.delayedSaving({ selected: this.props.cv.id });
+  }
+  onTest = name => (event) => {
+    console.log(name, event.target.value);
   }
   render() {
     const {
@@ -63,8 +72,11 @@ class Index extends Component {
     return (
       <div className={classes.root}>
         <SectionHeader
-          title={t('create.sections.salary.title')}
+          title={cv.text !== '' ? cv.text : t('create.sections.salary.title')}
           subtitle={t('create.sections.salary.subtitle')}
+          id={cv.id}
+          editable
+          handleTitleEdit={this.onSectionTitleEdit}
         >
           <div className={classes.content}>
             a
@@ -88,8 +100,9 @@ class Index extends Component {
                     ? t('create.sections.salary.fields.from.placeholder')
                     : t('create.sections.salary.fields.salary.placeholder')
                   }
+                  inputComponent={NumberFormatCustom}
                   value={cv.data.from ? cv.data.from : ''}
-                  onChange={this.handleChange('from')}
+                  onChange={this.onChange('from')}
                   startAdornment={<InputAdornment position="start">$</InputAdornment>}
                 />
               </FormControl>
@@ -104,8 +117,9 @@ class Index extends Component {
                     <Input
                       id="to"
                       placeholder={t('create.sections.salary.fields.to.placeholder')}
+                      inputComponent={NumberFormatCustom}
                       value={cv.data.to ? cv.data.to : ''}
-                      onChange={this.handleChange('to')}
+                      onChange={this.onChange('to')}
                       startAdornment={<InputAdornment position="start">$</InputAdornment>}
                     />
                   </FormControl>
@@ -117,7 +131,7 @@ class Index extends Component {
                 control={
                   <Switch
                     checked={cv.data.range}
-                    onChange={this.handleSwitchChange('range')}
+                    onChange={this.onSwitchChange('range')}
                   />
                   }
                 label={t('create.sections.salary.fields.range.label')}
@@ -142,6 +156,7 @@ const makeMapStateToProps = () => {
 const mapDispatchToProps = dispatch => ({
   doUpdateSectionDataObject: bindActionCreators(doUpdateSectionDataObject, dispatch),
   doSectionDBUpdate: bindActionCreators(doSectionDBUpdate, dispatch),
+  doChangeSectionTitle: bindActionCreators(doChangeSectionTitle, dispatch),
 });
 
 export default connect(

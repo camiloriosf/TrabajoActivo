@@ -158,7 +158,7 @@ class Index extends Component {
           </Hidden>
           <div className={classes.form}>
             <div className={classes.sections}>
-              <SectionTitle name={cv.name} handleChange={this.onCVNameChange} />
+              <SectionTitle name={cv.name} id={cv.id} handleChange={this.onCVNameChange} />
               {this.renderSections()}
             </div>
             <NavButtons

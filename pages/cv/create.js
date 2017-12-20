@@ -51,7 +51,7 @@ class Create extends Component {
         Router.push('/cv');
       } else {
         Router.push('/login');
-        this.props.doUpdateUID(null);
+        this.props.doUpdateUID({});
       }
     });
   }

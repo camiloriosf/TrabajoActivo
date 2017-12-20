@@ -45,9 +45,11 @@ class ListItem extends Component {
     return (
       <div className={classes.root}>
         <TextField
-          id="responsibility"
+          id="item"
           className={classes.flex}
           margin="normal"
+          multiline
+          rowsMax={3}
           value={text}
           onChange={handleChange({ type, companyIndex, index })}
           onKeyDown={handleKeyPress({ type, companyIndex, index })}

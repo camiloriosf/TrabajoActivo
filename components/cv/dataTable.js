@@ -40,8 +40,8 @@ class DataTable extends Component {
     columns: [
       { name: 'name', title: this.props.t('table.columns.name') },
       { name: 'updatedAt', title: this.props.t('table.columns.updatedAt') },
-      { name: 'visits', title: this.props.t('table.columns.visits'), width: 70 },
-      { name: 'active', title: this.props.t('table.columns.active'), width: 70 },
+      { name: 'visits', title: this.props.t('table.columns.visits'), width: 80 },
+      { name: 'active', title: this.props.t('table.columns.active'), width: 60 },
       { name: 'options', title: this.props.t('table.columns.options'), width: 70 },
     ],
     sorting: [],

@@ -15,7 +15,8 @@ import withRoot from '../lib/hoc/withRoot';
 import { app, db } from '../lib/google/firebase';
 import i18n from '../lib/i18n/i18n';
 import initStore from '../lib/redux/store';
-import { updateUid } from '../lib/redux/actions/user';
+import { doUpdateUID } from '../lib/redux/actions/user';
+import { getUserDataState } from '../lib/reselect/user';
 
 const styles = {
   root: {
@@ -40,10 +41,10 @@ class User extends Component {
           await db.collection('users').doc(user.uid).set({
             email: user.email,
           }, { merge: true });
-          this.props.updateUid({ uid: user.uid, email: user.email });
-        } else this.props.updateUid({ uid: user.uid, email: user.email });
+          this.props.doUpdateUID({ uid: user.uid, email: user.email });
+        } else this.props.doUpdateUID({ uid: user.uid, email: user.email });
       } else if (this.mounted) {
-        this.props.updateUid(null);
+        this.props.doUpdateUID({});
         Router.push('/login');
       }
     });
@@ -55,12 +56,13 @@ class User extends Component {
   render() {
     const {
       classes,
+      user,
     } = this.props;
     return (
       <div>
         <FullLoader open={!this.props.user.uid} />
-        <div className={!this.props.user.uid ? classes.root : null}>
-          <UserContainer />
+        <div className={!user.uid ? classes.root : null}>
+          {user.uid && <UserContainer />}
         </div>
       </div>
     );
@@ -78,18 +80,12 @@ Extended.getInitialProps = async ({ req }) => {
   return {};
 };
 
-const mapStateToProps = ({
-  user: {
-    uid,
-  },
-}) => ({
-  user: {
-    uid,
-  },
+const mapStateToProps = state => ({
+  user: getUserDataState(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateUid: bindActionCreators(updateUid, dispatch),
+  doUpdateUID: bindActionCreators(doUpdateUID, dispatch),
 });
 
 export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(Extended);
