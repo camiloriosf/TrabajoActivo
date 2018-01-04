@@ -10,6 +10,8 @@ import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import { CircularProgress } from 'material-ui/Progress';
 import { FormHelperText } from 'material-ui/Form';
+// component imports
+import Social from './social';
 
 const styles = theme => ({ // eslint-disable-line no-unused-vars
   root: {
@@ -92,6 +94,7 @@ class Signin extends Component {
       loading,
       errorEmail,
       errorSubmit,
+      handleSocialLogin,
       t,
     } = this.props;
     return (
@@ -158,6 +161,10 @@ class Signin extends Component {
             {t('login.signin.resetPassword.button')}
           </Button>
         </Typography>
+        <Social
+          loading={loading}
+          handleSocialLogin={handleSocialLogin}
+        />
       </div>
     );
   }
@@ -166,6 +173,7 @@ class Signin extends Component {
 Signin.propTypes = {
   classes: PropTypes.object.isRequired,
   handleFormSubmit: PropTypes.func.isRequired,
+  handleSocialLogin: PropTypes.func.isRequired,
   loading: PropTypes.bool,
   errorEmail: PropTypes.string.isRequired,
   errorSubmit: PropTypes.string.isRequired,

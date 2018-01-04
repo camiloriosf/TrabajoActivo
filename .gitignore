@@ -1,5 +1,7 @@
 /node_modules
 /.next
 /lib/google/config.js
-/functions/node_modules
+/firebase/functions/node_modules
 firebase-debug.log
+/lib/pdf/config.js
+/lib/pdf/serviceAccount.json

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import withRoot from '../hoc/withRoot';
-import ActionsContainer from '../containers/actions';
+import withRoot from '../lib/hoc/withRoot';
+import ActionsContainer from '../components/auth/_actions';
 
 class Actions extends Component {
   render() {

@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 // supporting imports
 import { translate } from 'react-i18next';
+import Head from 'next/head';
 // component imports
-import IndexContainer from '../containers/index';
+import IndexContainer from '../components/index/_index';
 // local imports
-import withRoot from '../hoc/withRoot';
+import withRoot from '../lib/hoc/withRoot';
 import i18n from '../lib/i18n/i18n';
 
 class Index extends Component {
   render() {
     return (
       <div>
+        <Head>
+          <title>Trabajo Activo - Bienvenido</title>
+        </Head>
         <IndexContainer />
       </div>
     );

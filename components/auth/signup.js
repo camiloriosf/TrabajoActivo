@@ -1,9 +1,11 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 // react imports
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import Router from 'next/router';
+import Link from 'next/link';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
@@ -11,6 +13,8 @@ import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import { CircularProgress } from 'material-ui/Progress';
 import { FormHelperText } from 'material-ui/Form';
+// component imports
+import Social from './social';
 
 const styles = theme => ({ // eslint-disable-line no-unused-vars
   root: {
@@ -44,9 +48,9 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
     fontSize: 12,
     marginTop: 10,
   },
-  termsButton: {
-    fontSize: 12,
-    padding: 0,
+  anchor: {
+    color: theme.palette.primary[500],
+    textDecoration: 'none',
   },
   wrapper: {
     position: 'relative',
@@ -94,6 +98,7 @@ class Signup extends Component {
       errorEmail,
       errorPassword,
       errorSubmit,
+      handleSocialLogin,
       t,
     } = this.props;
     return (
@@ -152,26 +157,18 @@ class Signup extends Component {
         </form>
         <Typography type="caption" className={classes.terms}>
           {t('register.signup.footer.text1')}
-        </Typography>
-        <Typography type="caption" className={classes.terms}>
-          <Button
-            color="primary"
-            disabled={loading}
-            className={classes.termsButton}
-            onClick={this.handleClick(t('register.signup.footer.link1'))}
-          >
-            {t('register.signup.footer.button1')}
-          </Button>
+          <Link href={t('register.signup.footer.link1')}>
+            <a className={classes.anchor}>{t('register.signup.footer.button1')}</a>
+          </Link>
           {t('register.signup.footer.text2')}
-          <Button
-            color="primary"
-            disabled={loading}
-            className={classes.termsButton}
-            onClick={this.handleClick(t('register.signup.footer.link2'))}
-          >
-            {t('register.signup.footer.button2')}
-          </Button>
+          <Link href={t('register.signup.footer.link2')}>
+            <a className={classes.anchor}>{t('register.signup.footer.button2')}</a>
+          </Link>
         </Typography>
+        <Social
+          loading={loading}
+          handleSocialLogin={handleSocialLogin}
+        />
       </div>
     );
   }
@@ -180,6 +177,7 @@ class Signup extends Component {
 Signup.propTypes = {
   classes: PropTypes.object.isRequired,
   handleFormSubmit: PropTypes.func.isRequired,
+  handleSocialLogin: PropTypes.func.isRequired,
   loading: PropTypes.bool,
   errorEmail: PropTypes.string.isRequired,
   errorPassword: PropTypes.string.isRequired,

@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
+import Head from 'next/head';
 import Router from 'next/router';
 import { translate } from 'react-i18next';
+import { bindActionCreators } from 'redux';
+import withRedux from 'next-redux-wrapper';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 // component imports
-import UserContainer from '../containers/user';
+import Index from '../components/user/index';
 import FullLoader from '../components/common/fullLoader';
 // local imports
-import withRoot from '../hoc/withRoot';
+import withRoot from '../lib/hoc/withRoot';
 import { app, db } from '../lib/google/firebase';
 import i18n from '../lib/i18n/i18n';
+import initStore from '../lib/redux/store';
+import { doUpdateUID } from '../lib/redux/actions/user';
+import { getUserDataState } from '../lib/reselect/user';
 
 const styles = {
   root: {
@@ -27,10 +33,6 @@ const styles = {
 };
 
 class User extends Component {
-  state = {
-    open: true,
-    user: null,
-  }
   componentDidMount = async () => {
     this.mounted = true;
     app.auth().onAuthStateChanged(async (user) => {
@@ -40,23 +42,44 @@ class User extends Component {
           await db.collection('users').doc(user.uid).set({
             email: user.email,
           }, { merge: true });
-          this.setState({ open: false, user });
-        } else this.setState({ open: false, user });
-      } else if (this.mounted) Router.push('/login');
+          this.props.doUpdateUID({ uid: user.uid, email: user.email });
+        } else {
+          const {
+            name = null,
+            username = null,
+            plan = null,
+          } = doc.data();
+          this.props.doUpdateUID({
+            uid: user.uid,
+            email: user.email,
+            name,
+            username,
+            plan,
+          });
+        }
+      } else if (this.mounted) {
+        this.props.doUpdateUID({});
+        Router.push('/login');
+      }
     });
   }
   componentWillUnmount = () => {
     this.mounted = false;
   }
+
   render() {
     const {
       classes,
+      user,
     } = this.props;
     return (
       <div>
-        <FullLoader open={this.state.open} />
-        <div className={this.state.open ? classes.root : null}>
-          <UserContainer user={this.state.user} />
+        <Head>
+          <title>Trabajo Activo - Mi Cuenta</title>
+        </Head>
+        <FullLoader open={!this.props.user.uid} />
+        <div className={!user.uid ? classes.root : null}>
+          {user.uid && <Index />}
         </div>
       </div>
     );
@@ -74,4 +97,12 @@ Extended.getInitialProps = async ({ req }) => {
   return {};
 };
 
-export default Extended;
+const mapStateToProps = state => ({
+  user: getUserDataState(state),
+});
+
+const mapDispatchToProps = dispatch => ({
+  doUpdateUID: bindActionCreators(doUpdateUID, dispatch),
+});
+
+export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(Extended);

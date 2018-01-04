@@ -31,7 +31,7 @@ class HeaderMenu extends Component {
   }
 
   handleClick = () => {
-    this.setState({ open: true });
+    this.setState(prevState => ({ open: !prevState.open }));
   };
 
   handleRequestClose = () => {

@@ -18,9 +18,7 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
 });
 
 class Hero extends Component {
-  shouldComponentUpdate = () => {
-    return false;
-  }
+  shouldComponentUpdate = () => false
   render() {
     const {
       classes,

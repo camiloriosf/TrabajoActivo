@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
+import Link from 'next/link';
+import classnames from 'classnames';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
@@ -17,13 +19,20 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
   },
   appBar: {
     backgroundColor: theme.palette.common.transparent,
+  },
+  appBarFixed: {
     [theme.breakpoints.down('md')]: {
       backgroundColor: theme.palette.common.white,
       position: 'fixed',
     },
+  },
+  appBarNoShadow: {
     [theme.breakpoints.up('md')]: {
       boxShadow: 'none',
     },
+  },
+  appBarStatic: {
+    backgroundColor: theme.palette.primary[500],
   },
   flex: {
     flex: 1,
@@ -41,6 +50,7 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
   },
   image: {
     height: 30,
+    cursor: 'pointer',
   },
 });
 
@@ -66,16 +76,17 @@ class Header extends Component {
           {
             title: this.props.t('header.account.menuAuth.0.title'),
             link: this.props.t('header.account.menuAuth.0.link'),
-          },
-          {
-            title: this.props.t('header.account.menuAuth.1.title'),
-            link: this.props.t('header.account.menuAuth.1.link'),
-          },
-          {
-            title: this.props.t('header.account.menuAuth.2.title'),
-            link: this.props.t('header.account.menuAuth.2.link'),
             divider: true,
           },
+          // {
+          //   title: this.props.t('header.account.menuAuth.1.title'),
+          //   link: this.props.t('header.account.menuAuth.1.link'),
+          // },
+          // {
+          //   title: this.props.t('header.account.menuAuth.2.title'),
+          //   link: this.props.t('header.account.menuAuth.2.link'),
+          //   divider: true,
+          // },
           {
             title: this.props.t('header.account.menuAuth.3.title'),
             link: this.props.t('header.account.menuAuth.3.link'),
@@ -101,45 +112,45 @@ class Header extends Component {
       title={this.props.t('header.callToAction.title')}
       link={this.state.ctaLink}
     />,
-    <HeaderItem
-      key={this.props.t('header.blog.link')}
-      title={this.props.t('header.blog.title')}
-      link={this.props.t('header.blog.link')}
-      menu
-      menuItem={[
-        {
-          title: this.props.t('header.blog.menuItem.0.title'),
-          link: this.props.t('header.blog.menuItem.0.link'),
-          divider: true,
-        },
-        {
-          title: this.props.t('header.blog.menuItem.1.title'),
-          link: this.props.t('header.blog.menuItem.1.link'),
-        },
-        {
-          title: this.props.t('header.blog.menuItem.2.title'),
-          link: this.props.t('header.blog.menuItem.2.link'),
-        },
-        {
-          title: this.props.t('header.blog.menuItem.3.title'),
-          link: this.props.t('header.blog.menuItem.3.link'),
-        },
-        {
-          title: this.props.t('header.blog.menuItem.4.title'),
-          link: this.props.t('header.blog.menuItem.4.link'),
-        },
-      ]}
-    />,
-    <HeaderItem
-      key={this.props.t('header.pricing.link')}
-      title={this.props.t('header.pricing.title')}
-      link={this.props.t('header.pricing.link')}
-    />,
-    <HeaderItem
-      key={this.props.t('header.about.link')}
-      title={this.props.t('header.about.title')}
-      link={this.props.t('header.about.link')}
-    />,
+    // <HeaderItem
+    //   key={this.props.t('header.blog.link')}
+    //   title={this.props.t('header.blog.title')}
+    //   link={this.props.t('header.blog.link')}
+    //   menu
+    //   menuItem={[
+    //     {
+    //       title: this.props.t('header.blog.menuItem.0.title'),
+    //       link: this.props.t('header.blog.menuItem.0.link'),
+    //       divider: true,
+    //     },
+    //     {
+    //       title: this.props.t('header.blog.menuItem.1.title'),
+    //       link: this.props.t('header.blog.menuItem.1.link'),
+    //     },
+    //     {
+    //       title: this.props.t('header.blog.menuItem.2.title'),
+    //       link: this.props.t('header.blog.menuItem.2.link'),
+    //     },
+    //     {
+    //       title: this.props.t('header.blog.menuItem.3.title'),
+    //       link: this.props.t('header.blog.menuItem.3.link'),
+    //     },
+    //     {
+    //       title: this.props.t('header.blog.menuItem.4.title'),
+    //       link: this.props.t('header.blog.menuItem.4.link'),
+    //     },
+    //   ]}
+    // />,
+    // <HeaderItem
+    //   key={this.props.t('header.pricing.link')}
+    //   title={this.props.t('header.pricing.title')}
+    //   link={this.props.t('header.pricing.link')}
+    // />,
+    // <HeaderItem
+    //   key={this.props.t('header.about.link')}
+    //   title={this.props.t('header.about.title')}
+    //   link={this.props.t('header.about.link')}
+    // />,
     <HeaderItem
       key={this.props.t('header.contact.link')}
       title={this.props.t('header.contact.title')}
@@ -158,13 +169,24 @@ class Header extends Component {
     const {
       classes,
       t,
+      absolute,
     } = this.props;
     return (
       <div className={classes.root}>
-        <AppBar position="absolute" className={classes.appBar}>
+        <AppBar
+          position={!absolute ? 'static' : 'absolute'}
+          className={classnames(
+            classes.appBar,
+            absolute && classes.appBarNoShadow,
+            absolute && classes.appBarFixed,
+            !absolute && classes.appBarStatic,
+          )}
+        >
           <Toolbar>
             <div className={classes.flex}>
-              <img src={t('header.image.link')} alt={t('header.image.alt')} className={classes.image} />
+              <Link href="/">
+                <img src={t('header.image.link')} alt={t('header.image.alt')} className={classes.image} />
+              </Link>
             </div>
             <div className={classes.menuExtended}>
               {this.renderItems()}
@@ -177,18 +199,18 @@ class Header extends Component {
                     title: this.props.t('header.callToAction.title'),
                     link: this.state.ctaLink,
                   },
-                  {
-                    title: this.props.t('header.blog.title'),
-                    link: this.props.t('header.blog.link'),
-                  },
-                  {
-                    title: this.props.t('header.pricing.title'),
-                    link: this.props.t('header.pricing.link'),
-                  },
-                  {
-                    title: this.props.t('header.about.title'),
-                    link: this.props.t('header.about.link'),
-                  },
+                  // {
+                  //   title: this.props.t('header.blog.title'),
+                  //   link: this.props.t('header.blog.link'),
+                  // },
+                  // {
+                  //   title: this.props.t('header.pricing.title'),
+                  //   link: this.props.t('header.pricing.link'),
+                  // },
+                  // {
+                  //   title: this.props.t('header.about.title'),
+                  //   link: this.props.t('header.about.link'),
+                  // },
                   {
                     title: this.props.t('header.contact.title'),
                     link: this.props.t('header.contact.link'),
@@ -211,10 +233,12 @@ class Header extends Component {
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
   loggedIn: PropTypes.bool,
+  absolute: PropTypes.bool,
 };
 
 Header.defaultProps = {
   loggedIn: false,
+  absolute: true,
 };
 
 export default translate('index')(withStyles(styles)(Header));

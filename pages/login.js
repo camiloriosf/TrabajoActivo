@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
+import Head from 'next/head';
 import Router from 'next/router';
 import { translate } from 'react-i18next';
+import withRedux from 'next-redux-wrapper';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 // component imports
-import LoginContainer from '../containers/login';
+import LoginContainer from '../components/auth/_login';
 import FullLoader from '../components/common/fullLoader';
 // local imports
-import withRoot from '../hoc/withRoot';
+import withRoot from '../lib/hoc/withRoot';
 import { app } from '../lib/google/firebase';
 import i18n from '../lib/i18n/i18n';
+import initStore from '../lib/redux/store';
 
 const styles = {
   root: {
@@ -46,6 +49,9 @@ class Login extends Component {
     } = this.props;
     return (
       <div>
+        <Head>
+          <title>Trabajo Activo - Iniciar Sesión</title>
+        </Head>
         <FullLoader open={this.state.open} />
         <div className={this.state.open ? classes.root : null}>
           <LoginContainer />
@@ -66,4 +72,4 @@ Extended.getInitialProps = async ({ req }) => {
   return {};
 };
 
-export default Extended;
+export default withRedux(initStore, null, null)(Extended);
