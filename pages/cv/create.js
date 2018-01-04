@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
+import Head from 'next/head';
 import Router from 'next/router';
 import { translate } from 'react-i18next';
 import { bindActionCreators } from 'redux';
@@ -45,8 +46,20 @@ class Create extends Component {
           }, { merge: true });
           this.props.doUpdateUID({ uid: user.uid, email: user.email });
         } else {
-          this.props.doUpdateUID({ uid: user.uid, email: user.email });
+          const {
+            name = null,
+            username = null,
+            plan = null,
+          } = doc.data();
+          this.props.doUpdateUID({
+            uid: user.uid,
+            email: user.email,
+            name,
+            username,
+            plan,
+          });
         }
+        this.props.doGetCVData({ id: this.props.url.query.id });
       } else if (user && this.mounted) {
         Router.push('/cv');
       } else {
@@ -54,11 +67,6 @@ class Create extends Component {
         this.props.doUpdateUID({});
       }
     });
-  }
-  componentWillReceiveProps = (nextProps) => {
-    if (
-      nextProps.user.uid && !nextProps.cv.id
-    ) this.props.doGetCVData({ id: this.props.url.query.id });
   }
   componentWillUnmount = () => {
     this.mounted = false;
@@ -70,6 +78,9 @@ class Create extends Component {
     } = this.props;
     return (
       <div>
+        <Head>
+          <title>Trabajo Activo - Editar CV</title>
+        </Head>
         <FullLoader open={!this.props.cv.id} />
         <div className={!this.props.cv.id ? classes.root : null}>
           {this.props.cv.id && <Index />}

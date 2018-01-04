@@ -153,4 +153,4 @@ Reviews.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default translate('common')(withStyles(styles)(Reviews));
+export default translate('auth')(withStyles(styles)(Reviews));

@@ -9,6 +9,8 @@ import { bindActionCreators } from 'redux';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
+import Divider from 'material-ui/Divider';
+import Typography from 'material-ui/Typography';
 import Paper from 'material-ui/Paper';
 import Input, { InputLabel } from 'material-ui/Input';
 import { MenuItem } from 'material-ui/Menu';
@@ -75,7 +77,17 @@ class Index extends Component {
           handleTitleEdit={this.onSectionTitleEdit}
         >
           <div className={classes.content}>
-            a
+            <Divider />
+            <Grid container >
+              <Grid item xs={12}>
+                <Typography type="button" className={classes.tipTitle}>
+                  {t('create.sections.availability.tips.title')}
+                </Typography>
+                <Typography type="body2" color="secondary" className={classes.tipSubtitle}>
+                  <strong>{t('create.sections.availability.tips.text')}</strong>
+                </Typography>
+              </Grid>
+            </Grid>
           </div>
         </SectionHeader>
         <Paper elevation={4} className={classes.paper}>

@@ -6,13 +6,14 @@ import validator from 'validator';
 import { translate } from 'react-i18next';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
+import Typography from 'material-ui/Typography';
 // component imports
-import ActionDialog from '../common/actionDialog';
+import ResponsiveDialog from '../common/responsiveDialog';
 import Header from './header';
 import Signin from './signin';
 import Reviews from './reviews';
 // local imports
-import { app } from '../../lib/google/firebase';
+import { app, googleProvider, facebookProvider, twitterProvider } from '../../lib/google/firebase';
 
 const styles = theme => ({ // eslint-disable-line no-unused-vars
   root: {
@@ -33,14 +34,54 @@ class Login extends Component {
     loading: false,
     errorEmail: '',
     errorSubmit: '',
-    dialogOpen: false,
+    title: '',
+    content: '',
+    accept: '',
+    open: false,
   };
-  handleDialogRequestClose = () => {
-    this.setState({ dialogOpen: false });
-  };
-  handleFormSubmit = async ({ email, password }) => {
+  onSocialLogin = social => async () => {
+    try {
+      if (social === 'google') {
+        this.setState({
+          loading: true, errorEmail: '', errorSubmit: '',
+        });
+        await app.auth().signInWithPopup(googleProvider);
+      } else if (social === 'facebook') {
+        this.setState({
+          loading: true, errorEmail: '', errorSubmit: '',
+        });
+        await app.auth().signInWithPopup(facebookProvider);
+      } else if (social === 'twitter') {
+        this.setState({
+          loading: true, errorEmail: '', errorSubmit: '',
+        });
+        await app.auth().signInWithPopup(twitterProvider);
+      }
+    } catch (error) {
+      if (error.code === 'auth/account-exists-with-different-credential') {
+        this.setState({
+          open: true,
+          title: this.props.t('dialogs.accountExists.title'),
+          content: this.props.t('dialogs.accountExists.content'),
+          accept: this.props.t('dialogs.accountExists.accept'),
+        });
+      }
+      if (error.code === 'auth/user-disabled') {
+        this.setState({
+          open: true,
+          title: this.props.t('dialogs.userDisabled.title'),
+          content: this.props.t('dialogs.userDisabled.content'),
+          accept: this.props.t('dialogs.userDisabled.accept'),
+        });
+      }
+      this.setState({
+        loading: false,
+      });
+    }
+  }
+  onFormSubmit = async ({ email, password }) => {
     if (!validator.isEmail(email)) {
-      this.setState({ loading: false, errorEmail: this.props.t('common:errors.invalidEmail'), errorSubmit: '' });
+      this.setState({ loading: false, errorEmail: this.props.t('errors.invalidEmail'), errorSubmit: '' });
       return;
     }
     this.setState({
@@ -50,9 +91,19 @@ class Login extends Component {
     try {
       const providers = await app.auth().fetchProvidersForEmail(email);
       if (providers.length === 0) {
-        this.setState({ loading: false, errorSubmit: this.props.t('common:errors.noAccount') });
+        this.setState({ loading: false, errorSubmit: this.props.t('errors.noAccount') });
       } else if (providers.indexOf('password') === -1) {
-        this.setState({ loading: false, errorSubmit: this.props.t('common:errors.accountSocialExist') });
+        if (providers.indexOf('google.com') > -1) {
+          this.setState({ loading: false, errorSubmit: `${this.props.t('errors.accountSocialExist')}Google` });
+        } else if (providers.indexOf('facebook.com') > -1) {
+          this.setState({ loading: false, errorSubmit: `${this.props.t('errors.accountSocialExist')}Facebook` });
+        } else if (providers.indexOf('twitter.com') > -1) {
+          this.setState({ loading: false, errorSubmit: `${this.props.t('errors.accountSocialExist')}Twitter` });
+        } else if (providers.indexOf('linkedin.com') > -1) {
+          this.setState({ loading: false, errorSubmit: `${this.props.t('errors.accountSocialExist')}Twitter` });
+        } else {
+          this.setState({ loading: false, errorSubmit: `${this.props.t('errors.accountSocialExist')}` });
+        }
       } else {
         await app.auth().signInWithEmailAndPassword(email, password);
       }
@@ -60,13 +111,13 @@ class Login extends Component {
       const {
         code,
       } = err;
-      if (code === 'auth/wrong-password') this.setState({ loading: false, errorSubmit: this.props.t('common:errors.emailPassNoMatch') });
-      else this.setState({ loading: false, errorSubmit: this.props.t('common:errors.unknown') });
+      if (code === 'auth/wrong-password') this.setState({ loading: false, errorSubmit: this.props.t('errors.emailPassNoMatch') });
+      else this.setState({ loading: false, errorSubmit: this.props.t('errors.unknown') });
     }
   }
-  handleResetSubmit = async (email) => {
+  onResetSubmit = async (email) => {
     if (!validator.isEmail(email)) {
-      this.setState({ loading: false, errorEmail: this.props.t('common:errors.invalidEmail'), errorSubmit: '' });
+      this.setState({ loading: false, errorEmail: this.props.t('errors.invalidEmail'), errorSubmit: '' });
       return;
     }
     this.setState({
@@ -76,20 +127,28 @@ class Login extends Component {
     try {
       const providers = await app.auth().fetchProvidersForEmail(email);
       if (providers.length === 0) {
-        this.setState({ loading: false, errorSubmit: this.props.t('common:errors.noAccount') });
+        this.setState({ loading: false, errorSubmit: this.props.t('errors.noAccount') });
       } else if (providers.indexOf('password') === -1) {
-        this.setState({ loading: false, errorSubmit: this.props.t('common:errors.accountSocialExist') });
+        this.setState({ loading: false, errorSubmit: this.props.t('errors.accountSocialExist') });
       } else {
         await app.auth().sendPasswordResetEmail(email);
         this.setState({
           loading: false, errorEmail: '', errorSubmit: '',
         });
-        this.setState({ dialogOpen: true });
+        this.setState({
+          open: true,
+          title: this.props.t('dialogs.emailSent.title'),
+          content: this.props.t('dialogs.emailSent.content'),
+          accept: this.props.t('dialogs.emailSent.accept'),
+        });
       }
     } catch (err) {
       console.log(err); // eslint-disable-line no-console
-      this.setState({ loading: false, errorSubmit: this.props.t('common:errors.unknown') });
+      this.setState({ loading: false, errorSubmit: this.props.t('errors.unknown') });
     }
+  }
+  onResponsiveDialogClose = () => {
+    this.setState({ open: false });
   }
   render() {
     const {
@@ -99,27 +158,33 @@ class Login extends Component {
     return (
       <div className={classes.root}>
         <Header
-          title={t('auth:login.header.title')}
-          button={t('auth:login.header.button')}
-          link={t('auth:login.header.link')}
+          title={t('login.header.title')}
+          button={t('login.header.button')}
+          link={t('login.header.link')}
           loading={this.state.loading}
         />
         <div className={classes.content}>
           <Signin
-            handleFormSubmit={this.handleFormSubmit}
+            handleFormSubmit={this.onFormSubmit}
+            handleSocialLogin={this.onSocialLogin}
             loading={this.state.loading}
             errorEmail={this.state.errorEmail}
             errorSubmit={this.state.errorSubmit}
-            handleResetSubmit={this.handleResetSubmit}
+            handleResetSubmit={this.onResetSubmit}
           />
           <Reviews />
         </div>
-        <ActionDialog
-          open={this.state.dialogOpen}
-          title={t('auth:login.dialog.title')}
-          content={t('auth:login.dialog.content')}
-          button={t('auth:login.dialog.button')}
-          handleRequestClose={this.handleDialogRequestClose}
+        <ResponsiveDialog
+          open={this.state.open}
+          handleClose={this.onResponsiveDialogClose}
+          handleAccept={this.onResponsiveDialogClose}
+          title={this.state.title}
+          content={
+            <div>
+              <Typography type="subheading">{this.state.content}</Typography>
+            </div>
+          }
+          accept={this.state.accept}
         />
       </div>
     );
@@ -130,4 +195,4 @@ Login.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default translate(['auth', 'common'])(withStyles(styles)(Login));
+export default translate('auth')(withStyles(styles)(Login));

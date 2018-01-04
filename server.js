@@ -17,7 +17,7 @@ i18n
   .use(i18nextMiddleware.LanguageDetector)
   .init({
     preload: ['es'], // preload all langages
-    ns: ['common', 'index', 'auth', 'user', 'cv', 'error'], // need to preload all the namespaces
+    ns: ['common', 'index', 'auth', 'user', 'cv', 'settings', 'error'], // need to preload all the namespaces
     backend: {
       loadPath: path.join(__dirname, '/locales/{{lng}}/{{ns}}.json'),
       addPath: path.join(__dirname, '/locales/{{lng}}/{{ns}}.missing.json'),
@@ -48,7 +48,7 @@ i18n
 
         server.listen(port, (err) => {
           if (err) throw err;
-          console.log(`> Ready on http://localhost:${port}`); // eslint-disable-line no-console
+          console.log('> Ready'); // eslint-disable-line no-console
         });
       });
   });

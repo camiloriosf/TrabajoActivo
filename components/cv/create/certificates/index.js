@@ -9,8 +9,12 @@ import { bindActionCreators } from 'redux';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
+import Divider from 'material-ui/Divider';
+import Typography from 'material-ui/Typography';
+import Grid from 'material-ui/Grid';
 // component imports
 import SectionHeader from '../sectionHeader';
+import TipCard from '../tipCard';
 import Item from './item';
 import AddNew from './addNew';
 // local imports
@@ -30,6 +34,12 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
   },
   content: {
     marginTop: theme.spacing.unit * 3,
+  },
+  tipTitle: {
+    marginTop: theme.spacing.unit * 3,
+  },
+  tipSubtitle: {
+    marginTop: theme.spacing.unit,
   },
 });
 
@@ -78,7 +88,20 @@ class Index extends Component {
           handleTitleEdit={this.onSectionTitleEdit}
         >
           <div className={classes.content}>
-          a
+            <Divider />
+            <Grid container >
+              <Grid item xs={12}>
+                <Typography type="button" className={classes.tipTitle}>
+                  {t('create.sections.certificates.tips.title')}
+                </Typography>
+                <Typography type="body2" color="secondary" className={classes.tipSubtitle}>
+                  {t('create.sections.certificates.tips.text')}
+                </Typography>
+                <TipCard text={t('create.sections.certificates.tips.tip1')} />
+                <TipCard text={t('create.sections.certificates.tips.tip2')} />
+                <TipCard text={t('create.sections.certificates.tips.tip3')} />
+              </Grid>
+            </Grid>
           </div>
         </SectionHeader>
         <DragDropContext onDragEnd={this.onDragEnd}>

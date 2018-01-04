@@ -9,8 +9,13 @@ import { bindActionCreators } from 'redux';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
+import Divider from 'material-ui/Divider';
+import Typography from 'material-ui/Typography';
+import Grid from 'material-ui/Grid';
 // component imports
 import SectionHeader from '../sectionHeader';
+import TipCard from '../tipCard';
+import ExamplesSteppter from '../examplesStepper';
 import Item from './item';
 import AddNew from './addNew';
 // local imports
@@ -90,7 +95,38 @@ class Index extends Component {
           handleTitleEdit={this.onSectionTitleEdit}
         >
           <div className={classes.content}>
-            a
+            <Divider />
+            <Grid container >
+              <Grid item xs={12}>
+                <Typography type="button" className={classes.tipTitle}>
+                  {t('create.sections.skills.tips.title')}
+                </Typography>
+                <Typography type="body2" color="secondary" className={classes.tipSubtitle}>
+                  {t('create.sections.skills.tips.text1')}
+                </Typography>
+                <Typography type="body2" color="secondary" className={classes.tipSubtitle}>
+                  {t('create.sections.skills.tips.text2')}<strong>{t('create.sections.skills.tips.text3')}</strong>
+                </Typography>
+                <Typography type="body2" color="secondary" className={classes.tipSubtitle}>
+                  {t('create.sections.skills.tips.text4')}<strong>{t('create.sections.skills.tips.text5')}</strong>
+                </Typography>
+                <TipCard text={t('create.sections.skills.tips.tip1')} />
+                <TipCard text={t('create.sections.skills.tips.tip2')} wrong />
+                <Typography type="body2" color="secondary" className={classes.tipSubtitle}>
+                  {t('create.sections.skills.tips.text6')}<strong>{t('create.sections.skills.tips.text7')}</strong>
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <ExamplesSteppter
+                  items={[
+                    <Typography type="body2">{t('create.sections.skills.examples.0')}</Typography>,
+                    <Typography type="body2">{t('create.sections.skills.examples.1')}</Typography>,
+                    <Typography type="body2">{t('create.sections.skills.examples.2')}</Typography>,
+                    <Typography type="body2">{t('create.sections.skills.examples.3')}</Typography>,
+                  ]}
+                />
+              </Grid>
+            </Grid>
           </div>
         </SectionHeader>
         <DragDropContext onDragEnd={this.onDragEnd}>

@@ -29,7 +29,7 @@ class SnackFeedback extends Component {
       text,
       open,
       autoHideDuration,
-      onRequestClose,
+      onClose,
     } = this.props;
     return (
       <div className={classes.root}>
@@ -40,7 +40,7 @@ class SnackFeedback extends Component {
             horizontal: 'right',
           }}
           autoHideDuration={autoHideDuration}
-          onRequestClose={onRequestClose}
+          onClose={onClose}
           open={open}
           action={this.renderAction()}
           SnackbarContentProps={{
@@ -59,7 +59,7 @@ SnackFeedback.propTypes = {
   text: PropTypes.string.isRequired,
   open: PropTypes.bool,
   autoHideDuration: PropTypes.number,
-  onRequestClose: PropTypes.func,
+  onClose: PropTypes.func,
   saving: PropTypes.bool,
   saved: PropTypes.bool,
   error: PropTypes.bool,
@@ -69,7 +69,7 @@ SnackFeedback.defaultProps = {
   key: 'snackFeedback',
   open: false,
   autoHideDuration: null,
-  onRequestClose: null,
+  onClose: null,
   saving: false,
   saved: false,
   error: false,

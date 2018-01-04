@@ -9,8 +9,14 @@ import { bindActionCreators } from 'redux';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
+import Divider from 'material-ui/Divider';
+import Typography from 'material-ui/Typography';
+import Grid from 'material-ui/Grid';
 // component imports
 import SectionHeader from '../sectionHeader';
+import TipCard from '../tipCard';
+import ExamplesSteppter from '../examplesStepper';
+import Example from './example';
 import Item from './item';
 import AddNew from './addNew';
 // local imports
@@ -33,6 +39,12 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
   },
   content: {
     marginTop: theme.spacing.unit * 3,
+  },
+  tipTitle: {
+    marginTop: theme.spacing.unit * 3,
+  },
+  tipSubtitle: {
+    marginTop: theme.spacing.unit,
   },
 });
 
@@ -101,7 +113,102 @@ class Index extends Component {
           handleTitleEdit={this.onSectionTitleEdit}
         >
           <div className={classes.content}>
-          a
+            <Divider />
+            <Grid container >
+              <Grid item xs={12}>
+                <Typography type="button" className={classes.tipTitle}>
+                  {t('create.sections.experience.tips.title1')}
+                </Typography>
+                <Typography type="body2" color="secondary" className={classes.tipSubtitle}>
+                  {t('create.sections.experience.tips.text1')}
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography type="button" className={classes.tipTitle}>
+                  {t('create.sections.experience.tips.title2')}
+                </Typography>
+                <Typography type="body2" color="secondary" className={classes.tipSubtitle}>
+                  {t('create.sections.experience.tips.text2')}
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography type="button" className={classes.tipTitle}>
+                  {t('create.sections.experience.tips.title3')}
+                </Typography>
+                <Typography type="body2" color="secondary" className={classes.tipSubtitle}>
+                  {t('create.sections.experience.tips.text3')}
+                </Typography>
+                <TipCard text={t('create.sections.experience.tips.tip1')} />
+              </Grid>
+              <Grid item xs={12}>
+                <Typography type="button" className={classes.tipTitle}>
+                  {t('create.sections.experience.tips.title4')}
+                </Typography>
+                <Typography type="body2" color="secondary" className={classes.tipSubtitle}>
+                  {t('create.sections.experience.tips.text4')}
+                </Typography>
+                <TipCard text={t('create.sections.experience.tips.tip2')} />
+              </Grid>
+              <Grid item xs={12}>
+                <Typography type="button" className={classes.tipTitle}>
+                  {t('create.sections.experience.tips.title5')}
+                </Typography>
+                <Typography type="body2" color="secondary" className={classes.tipSubtitle}>
+                  {t('create.sections.experience.tips.text5')}
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography type="button" className={classes.tipTitle}>
+                  {t('create.sections.experience.tips.title6')}
+                </Typography>
+                <Typography type="body2" color="secondary" className={classes.tipSubtitle}>
+                  {t('create.sections.experience.tips.text6')}
+                </Typography>
+                <TipCard text={t('create.sections.experience.tips.tip3')} />
+              </Grid>
+              <Grid item xs={12}>
+                <ExamplesSteppter
+                  items={[
+                    <Example
+                      position={t('create.sections.experience.examples.items.0.position')}
+                      company={t('create.sections.experience.examples.items.0.company')}
+                      dates={t('create.sections.experience.examples.items.0.dates')}
+                      responsibilities={t('create.sections.experience.examples.items.0.responsibilities')}
+                      achievements={t('create.sections.experience.examples.items.0.achievements')}
+                      responsibility={t('create.sections.experience.examples.responsibility')}
+                      achievement={t('create.sections.experience.examples.achievement')}
+                    />,
+                    <Example
+                      position={t('create.sections.experience.examples.items.1.position')}
+                      company={t('create.sections.experience.examples.items.1.company')}
+                      dates={t('create.sections.experience.examples.items.1.dates')}
+                      responsibilities={t('create.sections.experience.examples.items.1.responsibilities')}
+                      achievements={t('create.sections.experience.examples.items.1.achievements')}
+                      responsibility={t('create.sections.experience.examples.responsibility')}
+                      achievement={t('create.sections.experience.examples.achievement')}
+                    />,
+                    <Example
+                      position={t('create.sections.experience.examples.items.2.position')}
+                      company={t('create.sections.experience.examples.items.2.company')}
+                      dates={t('create.sections.experience.examples.items.2.dates')}
+                      responsibilities={t('create.sections.experience.examples.items.2.responsibilities')}
+                      achievements={t('create.sections.experience.examples.items.2.achievements')}
+                      responsibility={t('create.sections.experience.examples.responsibility')}
+                      achievement={t('create.sections.experience.examples.achievement')}
+                    />,
+                    <Example
+                      position={t('create.sections.experience.examples.items.3.position')}
+                      company={t('create.sections.experience.examples.items.3.company')}
+                      dates={t('create.sections.experience.examples.items.3.dates')}
+                      responsibilities={t('create.sections.experience.examples.items.3.responsibilities')}
+                      achievements={t('create.sections.experience.examples.items.3.achievements')}
+                      responsibility={t('create.sections.experience.examples.responsibility')}
+                      achievement={t('create.sections.experience.examples.achievement')}
+                    />,
+                  ]}
+                />
+              </Grid>
+            </Grid>
           </div>
         </SectionHeader>
         <DragDropContext onDragEnd={this.onDragEnd}>

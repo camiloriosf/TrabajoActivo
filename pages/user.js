@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
+import Head from 'next/head';
 import Router from 'next/router';
 import { translate } from 'react-i18next';
 import { bindActionCreators } from 'redux';
@@ -8,7 +9,7 @@ import withRedux from 'next-redux-wrapper';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 // component imports
-import UserContainer from '../components/user/_user';
+import Index from '../components/user/index';
 import FullLoader from '../components/common/fullLoader';
 // local imports
 import withRoot from '../lib/hoc/withRoot';
@@ -42,7 +43,20 @@ class User extends Component {
             email: user.email,
           }, { merge: true });
           this.props.doUpdateUID({ uid: user.uid, email: user.email });
-        } else this.props.doUpdateUID({ uid: user.uid, email: user.email });
+        } else {
+          const {
+            name = null,
+            username = null,
+            plan = null,
+          } = doc.data();
+          this.props.doUpdateUID({
+            uid: user.uid,
+            email: user.email,
+            name,
+            username,
+            plan,
+          });
+        }
       } else if (this.mounted) {
         this.props.doUpdateUID({});
         Router.push('/login');
@@ -60,9 +74,12 @@ class User extends Component {
     } = this.props;
     return (
       <div>
+        <Head>
+          <title>Trabajo Activo - Mi Cuenta</title>
+        </Head>
         <FullLoader open={!this.props.user.uid} />
         <div className={!user.uid ? classes.root : null}>
-          {user.uid && <UserContainer />}
+          {user.uid && <Index />}
         </div>
       </div>
     );

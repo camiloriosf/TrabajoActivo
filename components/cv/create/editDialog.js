@@ -57,7 +57,7 @@ class EditDialog extends Component {
       <Dialog
         fullScreen={fullScreen}
         open={open}
-        onRequestClose={handleRequestClose}
+        onClose={handleRequestClose}
       >
         <DialogTitle>Secciones</DialogTitle>
         <DialogContent>

@@ -147,7 +147,7 @@ class Index extends Component {
       <div className={classes.root}>
         <Header email={user.email} />
         <div className={classes.container}>
-          <Hidden smDown>
+          <Hidden mdDown>
             <EditDrawer
               items={cv.sections}
               selected={ui.selected}
@@ -188,7 +188,7 @@ class Index extends Component {
           key="saved"
           open={ui.openSnackSaved}
           autoHideDuration={2000}
-          onRequestClose={this.onSnackFeedbackRequestClose}
+          onClose={this.onSnackFeedbackRequestClose}
           text={t('create.snackFeedback.saved')}
           saved
         />
@@ -196,7 +196,7 @@ class Index extends Component {
           key="error"
           open={ui.openSnackError}
           autoHideDuration={2000}
-          onRequestClose={this.onSnackFeedbackRequestClose}
+          onClose={this.onSnackFeedbackRequestClose}
           text={t('create.snackFeedback.error')}
           error
         />

@@ -32,7 +32,24 @@
       },
       "delete": {
         "action": "delete",
-        "text": "Borrar"
+        "text": "Borrar",
+        "dialog": {
+          "title": "Borrar CV",
+          "content": "¿Estás seguro que quieres borrar {{name}}?",
+          "accept": "Borrar",
+          "cancel": "Cancelar"
+        }
+      },
+      "share": {
+        "action": "share",
+        "text": "Compartir",
+        "dialog": {
+          "title": "Compartir CV",
+          "content": "Comparte el siguiente link para que puedan descargar tu CV:",
+          "link":"http://localhost:3000/cv/view/",
+          "accept": "Aceptar",
+          "cancel": "Cancelar"
+        }
       }
     }
   },
@@ -153,6 +170,24 @@
       "skills": {
         "title": "Habilidades",
         "subtitle": "Muestra a los reclutadores lo que puedes hacer. Agrega diferentes habilidades como \"Solución de problemas\" o \"Microsoft Word\" para mostrar tus habilidades.",
+        "tips": {
+          "title": "Coloca tus habilidades en la primera página de tu currículum.",
+          "text1": "Has coincidir tus habilidades con el trabajo al que estás postulando y coloca las habilidades más importantes en la parte superior de la lista.",
+          "text2": "Usa números y hechos, por ejemplo: ",
+          "text3": "Administrar equipo de ventas de más de 30 personas.",
+          "text4": "Piensa en cómo puedes destacar. En lugar de escribir conocimiento de MS Excel, escribe ",
+          "text5": "conocimiento avanzado de MS Excel (macros, tablas dinámicas).",
+          "text6": "Describe el nivel de tu habilidad o usa una calificación. Califica tus habilidades del 1 al 5. ",
+          "text7": "Pero ten en cuenta que habilidades con menos de 3 estrellas no serán tan relevantes para tu curriculum, solo agregalas si son un requisito del puesto.",
+          "tip1": "Conocimiento avanzado de MS Excel (macros, tablas dinámicas, visualización de datos)",
+          "tip2": "Excel"
+        },
+        "examples": [
+          "Gestión de Proyectos - Experto",
+          "MS Office (Word, Excel, Powerpoint) - Profesional",
+          "SAP - Usuario Avanzado",
+          "Trabajo en Equipo (parte del equipo de ventas que generó los mayores ingresos de la empresa)"
+        ],
         "fields": {
           "skill": {
             "label": "Habilidad",
@@ -179,6 +214,57 @@
       "experience": {
         "title": "Experiencia",
         "subtitle": "Agrega tu experiencia laboral, los diferentes puestos que has ocupado y describe tus responsabilidades. ¡No olvides destacar tus mayores logros!",
+        "tips": {
+          "title1": "Usa un orden cronológico inverso",
+          "text1": "Comienza con tu posición actual, luego enumera todas las posiciones anteriores.",
+          "title2": "Agrega 6 a 8 puntos (entre funciones y logros).",
+          "text2": "Evita largas descripciones y grandes bloques de texto.",
+          "title3": "Agrega una responsabilidad/logro por línea",
+          "text3": "Para tus logros usa la fórmula: resolví el problema X implementando la acción Y que resulto en Z.",
+          "title4": "Agrega datos",
+          "text4": "Muestra tus logros con datos cuantificables. No proporciones información confidencial.",
+          "title5": "Ajusta tu CV",
+          "text5": "Agrega la experiencia que coincida con los requisitos del puesto al que estás postulando. Elimina cualquier información innecesaria.",
+          "title6": "Palabras que demuestren Acción",
+          "text6": "Usa palabras que muestren acción en lugar de clichés para resaltar tus puntos fuertes.",
+          "tip1": "Disminuir el costo de los productos en US$1.500.000 anuales mediante la búsqueda, análisis y validación de 2 nuevos proveedores",
+          "tip2": "Aumentar ventas en un 20% en 12 meses.",
+          "tip3": "Liderar, Generar, Aumentar, Organizar, etc."
+        },
+        "examples": {
+          "responsibility": "Responsabilidades/Funciones",
+          "achievement": "Logros",
+          "items": [
+            {
+              "position": "Asistente Administrativa,",
+              "company": "Corporación ACME",
+              "dates": "Junio 2011 - Mayo 2016",
+              "responsibilities": "• Administrar presupuesto de MM$200 para coordinar los arreglos de viajes internacionales para ejecutivos./• Entrenar Asistentes Administrativos en servicio al cliente y otros procedimientos./• Administrar la transición de facturas en papel a facturación electrónica.",
+              "achievements": "• Ahorrar MM$2 al año en suministros de oficina después de negociar nuevo trato con proveedor actual."
+            },
+            {
+              "position": "Contador,",
+              "company": "Banco BBB",
+              "dates": "Mayo 2016 - a la fecha",
+              "responsibilities": "• Administrar activos, pasivos y entradas de capital./• Compilar y analizar la información contable./• Recomendar y ejecutar acciones financieras.",
+              "achievements": "• Ahorrar un promedio de 10% anual a través de la implemntación de sistema de contabilidad./• Gestionar equipo financiero de más de 5 empleados responsables de la nómina de personal./• Aumentar la eficiencia en el departamento en un 12%."
+            },
+            {
+              "position": "Estudiante,",
+              "company": "Universidad de Santiago",
+              "dates": "Marzo 2014 - a la fecha",
+              "responsibilities": "",
+              "achievements": "• Liderar grupo de ayuda social, logrando recaudaciones por MM$10./• Editor revista de la Universidad./• Promedio general de 6.5."
+            },
+            {
+              "position": "Profesor Enseñanza Básica,",
+              "company": "Instituto Versalles",
+              "dates": "Marzo 2004 - Octubre 2017",
+              "responsibilities": "• Integrar nuevas tecnologías en la sala de clases, como iPads, pizarras inteligentes y computadoras./• Modificar el curriculum de Inglés para una enseñanza más sencilla.",
+              "achievements": "• Aumentar el puntaje de pruebas estandarizada (SIMCE) en Matemáticas (30%) e Inglés (24%) mediante la implementación de cursos creativos en el plan de estudios./• Crear club de lectura extracurricular con más de 50 estudiantes, con un promedio de 15 libros leídos al año."
+            }
+          ]
+        },
         "fields": {
           "role": {
             "label": "Posición",
@@ -213,6 +299,13 @@
       "education": {
         "title": "Educación",
         "subtitle": "Agrega las diferentes universidades/institutos a los que asististe. Descríbelas agregando información acerca de tus especializaciones o actividades extracurriculares.",
+        "tips": {
+          "text1": "Si tiene más de dos años de experiencia laboral, la sección de educación debe aparecer bajo la sección de experiencia.",
+          "text2": "Agrega tu carrera y el nombre de la universidad/instituto. No incluyas información acerca de tu educación secundaria (por ejemplo, la escuela básica) a menos que el perfil de la escuela esté estrechamente relacionado con tu profesión.",
+          "text3": "Puedes agregar logros académicos si lo deseas. Estos pueden incluir tu registro académico, becas, premios, etc. Pero siempre ten presente que la información que agregues sea un aporte a tu CV.",
+          "tip1": "Enfermera, Universidad Politécnica (Marzo 2001 - Junio 2007)",
+          "tip2": "Ingeniero Civil"
+        },
         "fields": {
           "career": {
             "label": "Carrera",
@@ -245,6 +338,19 @@
       "language": {
         "title": "Idiomas",
         "subtitle": "Si conoces idiomas extranjeros, inclúyelos en esta sección. Puedes calificarlos o agregar una breve descripción (por ejemplo, \"nivel medio\" o \"bilingüe\").",
+        "tips": {
+          "title": "No agregues idiomas extranjeros si no los conoce lo suficiente como para comunicarte.",
+          "text1": "El sistema de clasificación es excelente para selecctionar tu nivel.",
+          "text2": "También puedes describir qué tan fluido eres en cada idioma (escrito, hablado, etc.)",
+          "tip1": "Inglés - Bilingüe",
+          "tip2": "Alemán - Alto (escrito, hablado)",
+          "tip3": "Inglés, Español, Alemán"
+        },
+        "examples": [
+          "Inglés - Bilingüe (hablado y escrito, TOEFL 110/120)",
+          "Portugués - Bilingüe",
+          "Alemán - Alto (escrito)"
+        ],
         "fields": {
           "language": {
             "label": "Idioma",
@@ -270,6 +376,13 @@
       "certificates": {
         "title": "Certificados",
         "subtitle": "Si has adquirido algún certificado, asegúrate de incluirlos en esta sección. Son una excelente forma de generar confianza en tu currículum.",
+        "tips": {
+          "title": "Pon el más importante en la parte superior de la lista.",
+          "text": "Los certificados deben limitarse a aquellos relevantes para el puesto al que estás postulando.",
+          "tip1": "Google Certified Associate",
+          "tip2": "AWS Certified Solutions Architect",
+          "tip3": "Project Management Professional"
+        },
         "fields": {
           "title": {
             "label": "Título",
@@ -294,6 +407,13 @@
       "references": {
         "title": "Referencias",
         "subtitle": "Las referencias son una excelente forma de generar confianza en tu currículum. Puedes incluirlas en esta sección.",
+        "tips": {
+          "title": "Las referencias dan credibilidad a tu experiencia y logros.",
+          "text1": "Pero solo agregalas si te lo piden para el puesto al que estás postulando.",
+          "text2": "Puedes agregar la información de contacto de personas de referencia y la relación que tienes que con ellos (jefe, compañero de trabajo, proveedor, cliente, etc).",
+          "tip1": "Juan Aceituno - Jefe - juan.aceituno@acme.com",
+          "tip2": "Esteban García"
+        },
         "fields": {
           "name": {
             "label": "Nombre",
@@ -318,6 +438,13 @@
       "salary": {
         "title": "Renta",
         "subtitle": "Ingresa la renta que estás buscando. Te recomendamos ingresar un rago de rentas, así podrás negociar mejor tu salario.",
+        "tips": {
+          "title": "Indica el nivel de renta que esperas recibir en la posición a la que estás postulando.",
+          "text1": "Siempre es mejor que indiques un rango, de esta forma no quedarás fuera de procesos por un sueldo muy alto/bajo, y podrás negociar de mejor manera tu salario en una eventual entrevista.",
+          "text2": "Si especificas un rago, la diferencia debiese ser entre un 10% y un 20% del promedio de los sueldos.",
+          "text3": "Indica tu salario solo en caso de que se pida.",
+          "tip": "$700.000 - $900.000"
+        },
         "fields": {
           "salary": {
             "label": "Renta líquida",
@@ -340,6 +467,10 @@
       "availability": {
         "title": "Disponibilidad",
         "subtitle": "Indica la disponibilidad que tienes para el puesto al cual estás postulando",
+        "tips": {
+          "title": "Especifíca que tipo de disponibilidad tienes.",
+          "text": "Indica tu disponibilidad solo en caso de que se pida."
+        },
         "fields": {
           "availability": {
             "label": "Disponibilidad",
@@ -357,6 +488,10 @@
           }
         }
       }
+    },
+    "examplesStepper": {
+      "back": "Anterior",
+      "next": "Siguiente"
     },
     "snackFeedback": {
       "loading": "Cargando datos",

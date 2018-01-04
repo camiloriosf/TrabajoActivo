@@ -59,6 +59,7 @@ class DataTable extends Component {
         <TableCell>
           <CellActionItem
             id={row.id}
+            name={row.name}
             handleCVCopy={this.props.handleCVCopy}
             handleCVDelete={this.props.handleCVDelete}
           />

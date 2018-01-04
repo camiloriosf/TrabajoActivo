@@ -6,12 +6,14 @@ import validator from 'validator';
 import { translate } from 'react-i18next';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
+import Typography from 'material-ui/Typography';
 // component imports
 import Header from './header';
 import Signup from './signup';
 import Reviews from './reviews';
+import ResponsiveDialog from '../common/responsiveDialog';
 // local imports
-import { app } from '../../lib/google/firebase';
+import { app, googleProvider, facebookProvider, twitterProvider } from '../../lib/google/firebase';
 
 const styles = theme => ({ // eslint-disable-line no-unused-vars
   root: {
@@ -33,17 +35,61 @@ class Register extends Component {
     errorEmail: '',
     errorPassword: '',
     errorSubmit: '',
+    title: '',
+    content: '',
+    accept: '',
+    open: false,
   };
-  handleFormSubmit = async ({ email, password }) => {
+  onSocialLogin = social => async () => {
+    try {
+      if (social === 'google') {
+        this.setState({
+          loading: true, errorEmail: '', errorPassword: '', errorSubmit: '',
+        });
+        await app.auth().signInWithPopup(googleProvider);
+      } else if (social === 'facebook') {
+        this.setState({
+          loading: true, errorEmail: '', errorPassword: '', errorSubmit: '',
+        });
+        await app.auth().signInWithPopup(facebookProvider);
+      } else if (social === 'twitter') {
+        this.setState({
+          loading: true, errorEmail: '', errorPassword: '', errorSubmit: '',
+        });
+        await app.auth().signInWithPopup(twitterProvider);
+      }
+    } catch (error) {
+      if (error.code === 'auth/account-exists-with-different-credential') {
+        this.setState({
+          open: true,
+          title: this.props.t('dialogs.accountExists.title'),
+          content: this.props.t('dialogs.accountExists.content'),
+          accept: this.props.t('dialogs.accountExists.accept'),
+        });
+      }
+      if (error.code === 'auth/user-disabled') {
+        this.setState({
+          open: true,
+          title: this.props.t('dialogs.userDisabled.title'),
+          content: this.props.t('dialogs.userDisabled.content'),
+          accept: this.props.t('dialogs.userDisabled.accept'),
+        });
+      }
+      this.setState({
+        loading: false,
+      });
+    }
+  }
+  onFormSubmit = async ({ email, password }) => {
     let error = false;
     const hasNumber = /\d/;
     const hasAlpha = /[a-z]/i;
     if (!validator.isEmail(email)) {
-      this.setState({ loading: false, errorEmail: this.props.t('common:errors.invalidEmail') });
+      this.setState({ loading: false, errorEmail: this.props.t('errors.invalidEmail') });
       error = true;
     }
     if (password.length < 8 || !hasAlpha.test(password) || !hasNumber.test(password)) {
-      this.setState({ loading: false, errorPassword: this.props.t('common:errors.invalidPassword') });
+      this.setState({ loading: false, errorPassword: this.props.t('errors.invalidPassword') });
       error = true;
     }
     if (error) return;
@@ -56,7 +102,17 @@ class Register extends Component {
       if (providers.length === 0) {
         await app.auth().createUserWithEmailAndPassword(email, password);
       } else if (providers.indexOf('password') === -1) {
-        this.setState({ loading: false, errorSubmit: this.props.t('common:errors.accountSocialExist') });
+        if (providers.indexOf('google.com') > -1) {
+          this.setState({ loading: false, errorSubmit: `${this.props.t('errors.accountSocialExist')}Google` });
+        } else if (providers.indexOf('facebook.com') > -1) {
+          this.setState({ loading: false, errorSubmit: `${this.props.t('errors.accountSocialExist')}Facebook` });
+        } else if (providers.indexOf('twitter.com') > -1) {
+          this.setState({ loading: false, errorSubmit: `${this.props.t('errors.accountSocialExist')}Twitter` });
+        } else if (providers.indexOf('linkedin.com') > -1) {
+          this.setState({ loading: false, errorSubmit: `${this.props.t('errors.accountSocialExist')}Twitter` });
+        } else {
+          this.setState({ loading: false, errorSubmit: `${this.props.t('errors.accountSocialExist')}` });
+        }
       } else {
         await app.auth().signInWithEmailAndPassword(email, password);
       }
@@ -64,9 +120,12 @@ class Register extends Component {
       const {
         code,
       } = err;
-      if (code === 'auth/wrong-password') this.setState({ loading: false, errorSubmit: this.props.t('common:errors.emailPassNoMatch') });
-      else this.setState({ loading: false, errorSubmit: this.props.t('common:errors.unknown') });
+      if (code === 'auth/wrong-password') this.setState({ loading: false, errorSubmit: this.props.t('errors.emailPassNoMatch') });
+      else this.setState({ loading: false, errorSubmit: this.props.t('errors.unknown') });
     }
+  }
+  onResponsiveDialogClose = () => {
+    this.setState({ open: false });
   }
   render() {
     const {
@@ -76,20 +135,33 @@ class Register extends Component {
     return (
       <div className={classes.root}>
         <Header
-          title={t('auth:register.header.title')}
-          button={t('auth:register.header.button')}
-          link={t('auth:register.header.link')}
+          title={t('register.header.title')}
+          button={t('register.header.button')}
+          link={t('register.header.link')}
           loading={this.state.loading}
         />
         <div className={classes.content}>
           <Signup
-            handleFormSubmit={this.handleFormSubmit}
+            handleFormSubmit={this.onFormSubmit}
+            handleSocialLogin={this.onSocialLogin}
             loading={this.state.loading}
             errorEmail={this.state.errorEmail}
             errorPassword={this.state.errorPassword}
             errorSubmit={this.state.errorSubmit}
           />
           <Reviews />
+          <ResponsiveDialog
+            open={this.state.open}
+            handleClose={this.onResponsiveDialogClose}
+            handleAccept={this.onResponsiveDialogClose}
+            title={this.state.title}
+            content={
+              <div>
+                <Typography type="subheading">{this.state.content}</Typography>
+              </div>
+          }
+            accept={this.state.accept}
+          />
         </div>
       </div>
     );
@@ -100,4 +172,4 @@ Register.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default translate(['auth', 'common'])(withStyles(styles)(Register));
+export default translate('auth')(withStyles(styles)(Register));

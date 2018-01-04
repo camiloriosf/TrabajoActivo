@@ -9,12 +9,15 @@ import { bindActionCreators } from 'redux';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
+import Divider from 'material-ui/Divider';
+import Typography from 'material-ui/Typography';
 import Paper from 'material-ui/Paper';
 import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
 import { FormControl, FormControlLabel } from 'material-ui/Form';
 import Switch from 'material-ui/Switch';
 // component imports
 import SectionHeader from '../sectionHeader';
+import TipCard from '../tipCard';
 import NumberFormatCustom from './numberFormatCustom';
 // local imports
 import {
@@ -60,9 +63,6 @@ class Index extends Component {
     this.props.doChangeSectionTitle({ id, value: event.target.value });
     this.delayedSaving({ selected: this.props.cv.id });
   }
-  onTest = name => (event) => {
-    console.log(name, event.target.value);
-  }
   render() {
     const {
       classes,
@@ -79,7 +79,24 @@ class Index extends Component {
           handleTitleEdit={this.onSectionTitleEdit}
         >
           <div className={classes.content}>
-            a
+            <Divider />
+            <Grid container >
+              <Grid item xs={12}>
+                <Typography type="button" className={classes.tipTitle}>
+                  {t('create.sections.salary.tips.title')}
+                </Typography>
+                <Typography type="body2" color="secondary" className={classes.tipSubtitle}>
+                  {t('create.sections.salary.tips.text1')}
+                </Typography>
+                <TipCard text={t('create.sections.salary.tips.tip')} />
+                <Typography type="body2" color="secondary" className={classes.tipSubtitle}>
+                  {t('create.sections.salary.tips.text2')}
+                </Typography>
+                <Typography type="body2" color="secondary" className={classes.tipSubtitle}>
+                  <strong>{t('create.sections.salary.tips.text3')}</strong>
+                </Typography>
+              </Grid>
+            </Grid>
           </div>
         </SectionHeader>
         <Paper elevation={4} className={classes.paper}>

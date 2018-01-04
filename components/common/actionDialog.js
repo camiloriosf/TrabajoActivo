@@ -27,7 +27,7 @@ class ActionDialog extends Component {
     return (
       <Dialog
         open={open}
-        onRequestClose={handleRequestClose}
+        onClose={handleRequestClose}
       >
         <DialogTitle>{title}</DialogTitle>
         <DialogContent>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
+import Head from 'next/head';
 import Router from 'next/router';
 import { translate } from 'react-i18next';
 import withRedux from 'next-redux-wrapper';
@@ -48,6 +49,9 @@ class Login extends Component {
     } = this.props;
     return (
       <div>
+        <Head>
+          <title>Trabajo Activo - Iniciar Sesión</title>
+        </Head>
         <FullLoader open={this.state.open} />
         <div className={this.state.open ? classes.root : null}>
           <LoginContainer />

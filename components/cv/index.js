@@ -94,7 +94,7 @@ class CV extends Component {
           key="saved"
           open={ui.openSnackSaved}
           autoHideDuration={2000}
-          onRequestClose={this.onSnackFeedbackRequestClose}
+          onClose={this.onSnackFeedbackRequestClose}
           text={t('create.snackFeedback.saved')}
           saved
         />
@@ -102,7 +102,7 @@ class CV extends Component {
           key="error"
           open={ui.openSnackError}
           autoHideDuration={2000}
-          onRequestClose={this.onSnackFeedbackRequestClose}
+          onClose={this.onSnackFeedbackRequestClose}
           text={t('create.snackFeedback.error')}
           error
         />

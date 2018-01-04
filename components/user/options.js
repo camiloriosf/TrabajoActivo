@@ -32,7 +32,7 @@ class Options extends Component {
           link={t('options.0.link')}
           image={t('options.0.image')}
         />
-        <OptionCard
+        {/* <OptionCard
           title={t('options.1.title')}
           body={t('options.1.body')}
           button={t('options.1.button')}
@@ -45,7 +45,7 @@ class Options extends Component {
           button={t('options.2.button')}
           link={t('options.2.link')}
           image={t('options.2.image')}
-        />
+        /> */}
       </div>
     );
   }

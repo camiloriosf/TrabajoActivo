@@ -21,7 +21,7 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
     backgroundColor: blueGrey[700],
     color: theme.palette.common.darkWhite,
     padding: 10,
-    width: 300,
+    width: 450,
     margin: '0 auto',
     borderWidth: 1,
     borderStyle: 'solid',

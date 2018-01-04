@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
+import Head from 'next/head';
 import Router from 'next/router';
 import { translate } from 'react-i18next';
 import { bindActionCreators } from 'redux';
@@ -45,7 +46,20 @@ class CV extends Component {
             email: user.email,
           }, { merge: true });
           this.props.doUpdateUID({ uid: user.uid, email: user.email });
-        } else this.props.doUpdateUID({ uid: user.uid, email: user.email });
+        } else {
+          const {
+            name = null,
+            username = null,
+            plan = null,
+          } = doc.data();
+          this.props.doUpdateUID({
+            uid: user.uid,
+            email: user.email,
+            name,
+            username,
+            plan,
+          });
+        }
       } else if (this.mounted) {
         this.props.doUpdateUID({});
         Router.push('/login');
@@ -65,6 +79,9 @@ class CV extends Component {
     } = this.props;
     return (
       <div>
+        <Head>
+          <title>Trabajo Activo - Mis CVs</title>
+        </Head>
         <FullLoader open={!Array.isArray(this.props.cv.data)} />
         <div className={!Array.isArray(this.props.cv.data) ? classes.root : null}>
           {Array.isArray(this.props.cv.data) && <Index />}

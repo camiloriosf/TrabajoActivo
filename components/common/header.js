@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import Router from 'next/router';
+import Link from 'next/link';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
@@ -15,13 +16,13 @@ import List, { ListItem, ListItemIcon, ListItemText, ListSubheader } from 'mater
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 import DescriptionIcon from 'material-ui-icons/Description';
-import EventSeatIcon from 'material-ui-icons/EventSeat';
-import VideoLibraryIcon from 'material-ui-icons/VideoLibrary';
+// import EventSeatIcon from 'material-ui-icons/EventSeat';
+// import VideoLibraryIcon from 'material-ui-icons/VideoLibrary';
 import SettingsIcon from 'material-ui-icons/Settings';
 import PowerSettingsNewIcon from 'material-ui-icons/PowerSettingsNew';
-import HelpIcon from 'material-ui-icons/Help';
+// import HelpIcon from 'material-ui-icons/Help';
 import EmailIcon from 'material-ui-icons/Email';
-import ViewCarousel from 'material-ui-icons/ViewCarousel';
+// import ViewCarousel from 'material-ui-icons/ViewCarousel';
 
 const styles = theme => ({ // eslint-disable-line no-unused-vars
   root: {
@@ -35,6 +36,7 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
   },
   image: {
     height: 30,
+    cursor: 'pointer',
   },
   menuButton: {
     marginLeft: 20,
@@ -71,18 +73,18 @@ class Header extends Component {
             </ListItemIcon>
             <ListItemText primary={this.props.t('header.menu.cv')} />
           </ListItem>
-          <ListItem button onClick={this.handleClick(this.props.t('links.test'))}>
+          {/* <ListItem button onClick={this.handleClick(this.props.t('links.test'))}>
             <ListItemIcon>
               <EventSeatIcon />
             </ListItemIcon>
             <ListItemText primary={this.props.t('header.menu.test')} />
-          </ListItem>
-          <ListItem button onClick={this.handleClick(this.props.t('links.coaching'))}>
+          </ListItem> */}
+          {/* <ListItem button onClick={this.handleClick(this.props.t('links.coaching'))}>
             <ListItemIcon>
               <VideoLibraryIcon />
             </ListItemIcon>
             <ListItemText primary={this.props.t('header.menu.coaching')} />
-          </ListItem>
+          </ListItem> */}
           <ListItem button onClick={this.handleClick(this.props.t('links.settings'))}>
             <ListItemIcon>
               <SettingsIcon />
@@ -98,24 +100,24 @@ class Header extends Component {
         </List>
         <Divider inset />
         <List subheader={<ListSubheader>{this.props.t('header.menu.helpTitle')}</ListSubheader>}>
-          <ListItem button onClick={this.handleClick(this.props.t('links.help'))}>
+          {/* <ListItem button onClick={this.handleClick(this.props.t('links.help'))}>
             <ListItemIcon>
               <HelpIcon />
             </ListItemIcon>
             <ListItemText primary={this.props.t('header.menu.help')} />
-          </ListItem>
+          </ListItem> */}
           <ListItem button onClick={this.handleClick(this.props.t('links.contact'))}>
             <ListItemIcon>
               <EmailIcon />
             </ListItemIcon>
             <ListItemText primary={this.props.t('header.menu.contact')} />
           </ListItem>
-          <ListItem button onClick={this.handleClick(this.props.t('links.plans'))}>
+          {/* <ListItem button onClick={this.handleClick(this.props.t('links.plans'))}>
             <ListItemIcon>
               <ViewCarousel />
             </ListItemIcon>
             <ListItemText primary={this.props.t('header.menu.plans')} />
-          </ListItem>
+          </ListItem> */}
         </List>
       </div>
     );
@@ -128,7 +130,9 @@ class Header extends Component {
         <AppBar position="static" className={classes.appBar}>
           <Toolbar>
             <div className={classes.flex}>
-              <img src={t('header.image.link')} alt={t('header.image.alt')} className={classes.image} />
+              <Link href="/">
+                <img src={t('header.image.link')} alt={t('header.image.alt')} className={classes.image} />
+              </Link>
             </div>
             <IconButton
               aria-label="open drawer"
@@ -142,7 +146,7 @@ class Header extends Component {
         <Drawer
           anchor="right"
           open={this.state.open}
-          onRequestClose={this.toggleDrawer}
+          onClose={this.toggleDrawer}
         >
           <div
             tabIndex={0}

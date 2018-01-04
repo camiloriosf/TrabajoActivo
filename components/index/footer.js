@@ -44,11 +44,11 @@ class Footer extends Component {
           {t('footer.text')}
         </Typography>
         <div className={classes.menu}>
-          <FooterItem
+          {/* <FooterItem
             link={t('footer.items.0.link')}
             text={t('footer.items.0.text')}
             divider
-          />
+          /> */}
           <FooterItem
             link={t('footer.items.1.link')}
             text={t('footer.items.1.text')}

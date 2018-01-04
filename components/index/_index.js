@@ -12,14 +12,14 @@ import LightbulbOutlineIcon from 'material-ui-icons/LightbulbOutline';
 // component imports
 import Header from './header';
 import Hero from './hero';
-import Press from './press';
+// import Press from './press';
 import Section from './section';
 import Features from './features';
 import Quote from './quote';
 import Benefits from './benefits';
 import PublishLink from './publishLink';
 import PublishFeatures from './publishFeatures';
-import Prices from './prices';
+// import Prices from './prices';
 import Footer from './footer';
 // local imports
 import { app } from '../../lib/google/firebase';
@@ -66,7 +66,6 @@ class Index extends Component {
   }
   shouldComponentUpdate = (nextProps, nextState) => {
     if (this.state.loggedIn === nextState.loggedIn) return false;
-    console.log('update index');
     return true;
   }
   componentWillUnmount = () => {
@@ -100,7 +99,7 @@ class Index extends Component {
             {t('hero.0.button')}
           </Button>
         </Hero>
-        <Press />
+        {/* <Press /> */}
         <Section title={t('features.title')}>
           <Features />
         </Section>
@@ -124,13 +123,13 @@ class Index extends Component {
           </Button>
           <PublishFeatures />
         </Hero>
-        <Section title={t('prices.title')}>
+        {/* <Section title={t('prices.title')}>
           <Prices />
         </Section>
         <Quote
           quote={t('quotes.1.quote')}
           author={t('quotes.1.author')}
-        />
+        /> */}
         <Section
           title={t('section.title')}
           icon={<LightbulbOutlineIcon className={classes.footerCallToActionIcon} />}

@@ -1,4 +1,4 @@
 /node_modules
 /.next
-/functions
+/firebase
 firebase-debug.log

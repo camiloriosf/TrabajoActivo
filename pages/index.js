@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // supporting imports
 import { translate } from 'react-i18next';
+import Head from 'next/head';
 // component imports
 import IndexContainer from '../components/index/_index';
 // local imports
@@ -11,6 +12,9 @@ class Index extends Component {
   render() {
     return (
       <div>
+        <Head>
+          <title>Trabajo Activo - Bienvenido</title>
+        </Head>
         <IndexContainer />
       </div>
     );

@@ -99,7 +99,7 @@ class SectionHeader extends Component {
           <Typography type="body1" component="p">
             {subtitle}
           </Typography>
-          <Collapse in={this.state.open} transitionDuration="auto" unmountOnExit>
+          <Collapse in={this.state.open} timeout="auto" unmountOnExit>
             {children}
           </Collapse>
           <div className={classes.button}>

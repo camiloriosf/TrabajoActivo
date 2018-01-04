@@ -1,0 +1,47 @@
+{
+  "title": "Configuración",
+  "snackFeedback": {
+    "saving": "Guardando datos",
+    "saved": "Todos los cambios guardados",
+    "error": "Error al guardar datos, intentalo nuevamente"
+  },
+  "fields": {
+    "name": "Nombre",
+    "email": "Correo",
+    "username": "Nombre de Usuario",
+    "errors": {
+      "usernameExists": "Nombre de usuario ya existe"
+    }
+  },
+  "buttons": {
+    "changePassword": "Cambiar Contraseña",
+    "logout": "Cerrar Sesión",
+    "deleteAccount": "Eliminar Cuenta"
+  },
+  "dialogs": {
+    "changePassword": {
+      "title": "Cambiar Contraseña",
+      "errorText": "La contraseña debe contener al menos 8 caracteres, con al menos 1 numero y 1 letra.",
+      "fields": {
+        "oldPassword": {
+          "label": "Contraseña actual"
+        },
+        "newPassword": {
+          "label": "Nueva contraseña"
+        }
+      },
+      "buttons": {
+        "accept": "Cambiar",
+        "cancel": "Cancelar"
+      }
+    },
+    "deleteAccount": {
+      "title": "Eliminar Cuenta",
+      "content": "¿Estás seguro que quieres eliminar tu cuenta?",
+      "buttons": {
+        "accept": "Eliminar Cuenta",
+        "cancel": "Cancelar"
+      }
+    }
+  }
+}

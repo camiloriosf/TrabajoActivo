@@ -34,7 +34,7 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
   },
 });
 
-class User extends Component {
+class Index extends Component {
   render() {
     const {
       classes,
@@ -60,7 +60,7 @@ class User extends Component {
   }
 }
 
-User.propTypes = {
+Index.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
@@ -71,4 +71,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   null,
-)(translate('user')(withStyles(styles)(User)));
+)(translate('user')(withStyles(styles)(Index)));
