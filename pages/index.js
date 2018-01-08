@@ -13,7 +13,7 @@ class Index extends Component {
     return (
       <div>
         <Head>
-          <title>Trabajo Activo - Bienvenido</title>
+          <title>TrabajoActivo - Bienvenido</title>
         </Head>
         <IndexContainer />
       </div>

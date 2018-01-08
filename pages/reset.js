@@ -48,7 +48,7 @@ class Reset extends Component {
     return (
       <div>
         <Head>
-          <title>Trabajo Activo - Restablecer Contraseña</title>
+          <title>TrabajoActivo - Restablecer Contraseña</title>
         </Head>
         <FullLoader open={this.state.open} />
         <div className={this.state.open ? classes.root : null}>

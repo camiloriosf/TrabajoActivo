@@ -50,7 +50,7 @@ class Login extends Component {
     return (
       <div>
         <Head>
-          <title>Trabajo Activo - Iniciar Sesión</title>
+          <title>TrabajoActivo - Iniciar Sesión</title>
         </Head>
         <FullLoader open={this.state.open} />
         <div className={this.state.open ? classes.root : null}>

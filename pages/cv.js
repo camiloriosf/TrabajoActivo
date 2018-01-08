@@ -80,7 +80,7 @@ class CV extends Component {
     return (
       <div>
         <Head>
-          <title>Trabajo Activo - Mis CVs</title>
+          <title>TrabajoActivo - Mis CVs</title>
         </Head>
         <FullLoader open={!Array.isArray(this.props.cv.data)} />
         <div className={!Array.isArray(this.props.cv.data) ? classes.root : null}>

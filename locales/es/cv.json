@@ -46,7 +46,7 @@
         "dialog": {
           "title": "Compartir CV",
           "content": "Comparte el siguiente link para que puedan descargar tu CV:",
-          "link":"http://localhost:3000/cv/view/",
+          "link":"https://app.trabajoactivo.com/",
           "accept": "Aceptar",
           "cancel": "Cancelar"
         }

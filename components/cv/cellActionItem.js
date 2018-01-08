@@ -35,7 +35,7 @@ class CellActionItem extends Component {
   };
   onPDFDownload = () => {
     this.setState({ open: false });
-    window.open(`/cv/view/${this.props.id}`, '_blank');
+    window.open(`https://app.trabajoactivo.com/${this.props.id}`, '_blank');
   };
   onShare = () => {
     this.setState({ open: false, openShareDialog: true });

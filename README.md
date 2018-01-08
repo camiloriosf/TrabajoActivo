@@ -3,6 +3,9 @@ Plataforma para CVs
 
 #### CHANGE LOG
 ***
+* New Features
+  * Moved PdfGenerator to own Project
+  * Fixed Links (changed to next/link)
 * V0.8.0
   * Added Redux Store
   * Created cv/create page

@@ -13,7 +13,7 @@ class Terms extends Component {
     return (
       <div>
         <Head>
-          <title>Trabajo Activo - Condiciones de Uso</title>
+          <title>TrabajoActivo - Condiciones de Uso</title>
         </Head>
         <TermsContainer />
       </div>

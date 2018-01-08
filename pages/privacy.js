@@ -13,7 +13,7 @@ class Privacy extends Component {
     return (
       <div>
         <Head>
-          <title>Trabajo Activo - Política de Privacidad</title>
+          <title>TrabajoActivo - Política de Privacidad</title>
         </Head>
         <PrivacyContainer />
       </div>

@@ -126,16 +126,16 @@
   },
   "quotes": [
     {
-      "quote": "En la escuela y universidad nunca me enseñaron a escribir un CV profesional, EmpleoActivo me simplificó la vida.",
+      "quote": "En la escuela y universidad nunca me enseñaron a escribir un CV profesional, TrabajoActivo me simplificó la vida.",
       "author": "~ Esteban García"
     },
     {
-      "quote": "La plataforma de EmpleoActivo es rápida y fácil de usar. Me encantó el formato en el que me entregaron mi CV",
+      "quote": "La plataforma de TrabajoActivo es rápida y fácil de usar. Me encantó el formato en el que me entregaron mi CV",
       "author": "~ Florencia Barros"
     }
   ],
   "benefits": {
-    "title": "¿Por qué deberías usar EmpleoActivo para crear tu CV?",
+    "title": "¿Por qué deberías usar TrabajoActivo para crear tu CV?",
     "items": [
       {
         "title": "Formato Profesional",
@@ -160,7 +160,7 @@
     ]
   },
   "publish": {
-    "link": "https://empleoactivo.com/cv/view/m4Uj1lVOE4zUlQ5qEB37",
+    "link": "https://app.trabajoactivo.com/m4Uj1lVOE4zUlQ5qEB37",
     "items":[
       {
         "text":"Comparte una url para que descarguen tu CV."
@@ -199,11 +199,11 @@
     ]
   },
   "section": {
-    "title": "Prueba EmpleoActivo ahora y crea tu CV Profesional.",
+    "title": "Prueba TrabajoActivo ahora y crea tu CV Profesional.",
     "button": "Crear mi CV"
   },
   "footer": {
-    "text": "© 2017 - 2018 EmpleoActivo. Todos los derechos reservados.",
+    "text": "© 2017 - 2018 TrabajoActivo. Todos los derechos reservados.",
     "developed": "Desarrollado por BitterSweet.io",
     "items": [
       {

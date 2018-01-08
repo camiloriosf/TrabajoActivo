@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 // react imports
 import React, { Component } from 'react';
 // supporting imports
@@ -185,7 +186,9 @@ class Header extends Component {
           <Toolbar>
             <div className={classes.flex}>
               <Link href="/">
-                <img src={t('header.image.link')} alt={t('header.image.alt')} className={classes.image} />
+                <a>
+                  <img src={t('header.image.link')} alt={t('header.image.alt')} className={classes.image} />
+                </a>
               </Link>
             </div>
             <div className={classes.menuExtended}>

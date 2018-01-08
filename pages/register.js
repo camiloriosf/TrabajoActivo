@@ -48,7 +48,7 @@ class Register extends Component {
     return (
       <div>
         <Head>
-          <title>Trabajo Activo - Crear Cuenta</title>
+          <title>TrabajoActivo - Crear Cuenta</title>
         </Head>
         <FullLoader open={this.state.open} />
         <div className={this.state.open ? classes.root : null}>

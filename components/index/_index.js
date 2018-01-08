@@ -1,8 +1,9 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 // react imports
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
-import Router from 'next/router';
+import Link from 'next/link';
 import { translate } from 'react-i18next';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
@@ -52,6 +53,9 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
   footerCallToActionIcon: {
     color: theme.palette.common.white, width: 30, height: 30,
   },
+  link: {
+    textDecoration: 'none',
+  },
 });
 
 class Index extends Component {
@@ -71,15 +75,6 @@ class Index extends Component {
   componentWillUnmount = () => {
     this.mounted = false;
   }
-  onHeroClickHandler = () => {
-    Router.push('/register');
-  };
-  onHeroPublishClickHandler = () => {
-    Router.push('/register');
-  };
-  onFooterCallToActionClickHandler = () => {
-    Router.push('/register');
-  };
   render() {
     const {
       classes,
@@ -95,9 +90,13 @@ class Index extends Component {
           <Typography type="display1" color="inherit" className={classes.heroSubTitle} >
             {t('hero.0.text2')}
           </Typography>
-          <Button raised color="primary" className={classes.heroCallToAction} onClick={this.onHeroClickHandler} >
-            {t('hero.0.button')}
-          </Button>
+          <Link href="/register">
+            <a className={classes.link}>
+              <Button raised color="primary" className={classes.heroCallToAction} >
+                {t('hero.0.button')}
+              </Button>
+            </a>
+          </Link>
         </Hero>
         {/* <Press /> */}
         <Section title={t('features.title')}>
@@ -118,9 +117,13 @@ class Index extends Component {
             {t('hero.1.text2')}
           </Typography>
           <PublishLink link={t('publish.link')} />
-          <Button raised color="primary" className={classes.publishCallToAction} onClick={this.onHeroPublishClickHandler} >
-            {t('hero.1.button')}
-          </Button>
+          <Link href="/register">
+            <a className={classes.link}>
+              <Button raised color="primary" className={classes.publishCallToAction} >
+                {t('hero.1.button')}
+              </Button>
+            </a>
+          </Link>
           <PublishFeatures />
         </Hero>
         {/* <Section title={t('prices.title')}>
@@ -134,9 +137,13 @@ class Index extends Component {
           title={t('section.title')}
           icon={<LightbulbOutlineIcon className={classes.footerCallToActionIcon} />}
         >
-          <Button raised color="accent" className={classes.footerCallToAction} onClick={this.onFooterCallToActionClickHandler}>
-            {t('section.button')}
-          </Button>
+          <Link href="/register">
+            <a className={classes.link}>
+              <Button raised color="accent" className={classes.footerCallToAction} onClick={this.onFooterCallToActionClickHandler}>
+                {t('section.button')}
+              </Button>
+            </a>
+          </Link>
         </Section>
         <Footer />
       </div>

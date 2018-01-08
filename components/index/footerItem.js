@@ -1,8 +1,9 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 // react imports
 import React, { Component } from 'react';
 // supporting imports
 import PropTypes from 'prop-types';
-import Router from 'next/router';
+import Link from 'next/link';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 import ButtonBase from 'material-ui/Button';
@@ -24,12 +25,12 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
   divider: {
 
   },
+  link: {
+    textDecoration: 'none',
+  },
 });
 
 class FooterItem extends Component {
-  handleClick = () => {
-    Router.push(this.props.link);
-  }
   render() {
     const {
       classes,
@@ -38,16 +39,20 @@ class FooterItem extends Component {
     } = this.props;
     return (
       <div className={classes.root}>
-        <ButtonBase
-          key="footerButton"
-          focusRipple
-          className={classes.button}
-          onClick={this.handleClick}
-        >
-          <Typography type="body1" color="inherit" className={classes.typography} >
-            {text}
-          </Typography>
-        </ButtonBase>
+        <Link href={this.props.link}>
+          <a className={classes.link}>
+            <ButtonBase
+              key="footerButton"
+              focusRipple
+              className={classes.button}
+              onClick={this.handleClick}
+            >
+              <Typography type="body1" color="inherit" className={classes.typography} >
+                {text}
+              </Typography>
+            </ButtonBase>
+          </a>
+        </Link>
         {divider && <Typography type="body1" color="inherit" className={classes.typography} >|</Typography>}
       </div>
     );
