@@ -75,7 +75,7 @@ class User extends Component {
     return (
       <div>
         <Head>
-          <title>Trabajo Activo - Configuración</title>
+          <title>TrabajoActivo - Configuración</title>
         </Head>
         <FullLoader open={!this.props.user.uid} />
         <div className={!user.uid ? classes.root : null}>

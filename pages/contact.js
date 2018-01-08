@@ -13,7 +13,7 @@ class Contact extends Component {
     return (
       <div>
         <Head>
-          <title>Trabajo Activo - Contáctanos</title>
+          <title>TrabajoActivo - Contáctanos</title>
         </Head>
         <ContactContainer />
       </div>

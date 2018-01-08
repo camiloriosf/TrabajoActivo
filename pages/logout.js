@@ -8,7 +8,7 @@ class Logout extends Component {
     return (
       <div>
         <Head>
-          <title>Trabajo Activo - Cerrar Sesión</title>
+          <title>TrabajoActivo - Cerrar Sesión</title>
         </Head>
         <LogoutContainer />
       </div>

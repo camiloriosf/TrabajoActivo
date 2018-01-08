@@ -79,7 +79,7 @@ class Create extends Component {
     return (
       <div>
         <Head>
-          <title>Trabajo Activo - Editar CV</title>
+          <title>TrabajoActivo - Editar CV</title>
         </Head>
         <FullLoader open={!this.props.cv.id} />
         <div className={!this.props.cv.id ? classes.root : null}>

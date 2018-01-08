@@ -44,7 +44,7 @@ class SectionTitle extends Component {
     this.setState({ edit: false });
   }
   handleDownloadClick = () => {
-    window.open(`/cv/view/${this.props.id}`, '_blank');
+    window.open(`https://app.trabajoactivo.com/${this.props.id}`, '_blank');
   }
   render() {
     const {
