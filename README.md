@@ -3,6 +3,10 @@ Plataforma para CVs
 
 #### CHANGE LOG
 ***
+* DEV
+  * Updated terms and privacy pages
+  * Added cookies page
+  * Added Google Analytics
 * V0.9.0
   * Moved PdfGenerator to own Project
   * Fixed Links (changed to next/link)
