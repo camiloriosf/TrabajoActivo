@@ -6,6 +6,7 @@ import Router from 'next/router';
 import { translate } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import withRedux from 'next-redux-wrapper';
+import ReactGA from 'react-ga';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 // component imports
@@ -36,6 +37,8 @@ const styles = {
 
 class Create extends Component {
   componentDidMount = async () => {
+    ReactGA.initialize('UA-100581684-2');
+    ReactGA.pageview(window.location.pathname + window.location.search);
     this.mounted = true;
     app.auth().onAuthStateChanged(async (user) => {
       if (user && this.mounted && this.props.url.query.id) {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // supporting imports
 import { translate } from 'react-i18next';
+import ReactGA from 'react-ga';
 // component imports
 import ErrorContainer from '../components/common/_error';
 // local imports
@@ -11,6 +12,11 @@ class Error extends Component {
   static getInitialProps({ res, err }) {
     const statusCode = res ? res.statusCode : err ? err.statusCode : null;
     return { statusCode };
+  }
+
+  componentDidMount = () => {
+    ReactGA.initialize('UA-100581684-2');
+    ReactGA.pageview(window.location.pathname + window.location.search);
   }
 
   render() {

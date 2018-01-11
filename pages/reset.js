@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Router from 'next/router';
 import { translate } from 'react-i18next';
+import ReactGA from 'react-ga';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
 // component imports
@@ -32,6 +33,8 @@ class Reset extends Component {
     open: true,
   }
   componentDidMount = () => {
+    ReactGA.initialize('UA-100581684-2');
+    ReactGA.pageview(window.location.pathname + window.location.search);
     this.mounted = true;
     app.auth().onAuthStateChanged((user) => {
       if (user && this.mounted) Router.push('/user');

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // supporting imports
 import { translate } from 'react-i18next';
 import Head from 'next/head';
+import ReactGA from 'react-ga';
 // component imports
 import PrivacyContainer from '../components/privacy/index';
 // local imports
@@ -9,6 +10,10 @@ import withRoot from '../lib/hoc/withRoot';
 import i18n from '../lib/i18n/i18n';
 
 class Privacy extends Component {
+  componentDidMount = () => {
+    ReactGA.initialize('UA-100581684-2');
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }
   render() {
     return (
       <div>

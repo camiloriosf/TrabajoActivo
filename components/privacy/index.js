@@ -77,7 +77,7 @@ class Privacy extends Component {
             Tu privacidad es importante para nosotros.
           </Typography>
           <Typography type="subheading" paragraph>
-            El objetivo de LinkedIn es conectar a los profesionales de todo el mundo para ayudarles a ser más productivos y a alcanzar sus metas laborales. Clave para esta misión es nuestro compromiso a ser transparentes contigo sobre los datos que recabamos sobre ti y el modo en que se utilizan y comparten.
+            Nuestro objetivo es ayudar a profesionales de todo el mundo a alcanzar sus metas laborales. Nuestros servicios están diseñados para ser un apoyo en el crecimiento profesional de nuestros usuarios. Clave para esta misión es nuestro compromiso a ser transparentes contigo sobre los datos que recabamos sobre ti y el modo en que se utilizan y comparten.
             <br /><br />
             Al utilizar nuestros Servicios, aceptas que usemos tus datos conforme a lo establecido en esta Política de privacidad.
           </Typography>
@@ -87,22 +87,22 @@ class Privacy extends Component {
               1. Introducción
             </Typography>
             <Typography type="subheading" className={classes.quote} paragraph>
-              Somos una red social y una plataforma en línea para profesionales. La gente utiliza nuestros Servicios para encontrar oportunidades laborales o para que ellas les encuentren, así como para conectarse con otras personas y tener acceso a información. Nuestra Política de privacidad se aplica a cualquier Miembro o Visitante de los Servicios cubiertos.
+              Somos una plataforma en línea para profesionales. La gente utiliza nuestros Servicios para crecer profesionalmente, así como para su autoconocimiento y tener acceso a información. Nuestra Política de privacidad se aplica a cualquier Miembro o Visitante de los Servicios cubiertos.
             </Typography>
             <Typography type="body1" paragraph>
-              Nuestros usuarios registrados («Miembros») comparten su identidad profesional, interactúan con su red de contactos, intercambian información y conocimientos profesionales, publican y ven contenido relevante, se informan y encuentran oportunidades profesionales y de negocio. Parte del contenido de algunos de nuestros Servicios está disponible para personas que no son miembros («Visitantes»).
+              Nuestros usuarios registrados («Miembros») comparten su identidad profesional, intercambian información y conocimientos profesionales, publican y ven contenido relevante, se informan y encuentran oportunidades profesionales y de negocio. Parte del contenido de algunos de nuestros Servicios está disponible para personas que no son miembros («Visitantes»).
             </Typography>
             <Typography type="body2">
               Responsables del tratamiento de datos
             </Typography>
             <Typography type="body1" paragraph>
-              Si resides en Estados Unidos, estás suscribiendo las Condiciones de uso con LinkedIn Corporation, que será responsable de tus datos personales proporcionados a o recopilados por nuestros Servicios. Si resides fuera de Estados Unidos, estás suscribiendo las <Link href="/terms"><a>Condiciones de uso</a></Link> con LinkedIn Ireland U.C., que será responsable de tus datos personales proporcionados a o recopilados por nuestros Servicios.
+              Independiente de donde residas, estás suscribiendo las <Link href="/terms"><a>Condiciones de uso</a></Link> con BitterSweet SpA, que será responsable de tus datos personales proporcionados a o recopilados por nuestros Servicios.
             </Typography>
             <Typography type="body2">
               Servicios
             </Typography>
             <Typography type="body1" paragraph>
-              Esta Política de privacidad se aplica a LinkedIn.com, a las aplicaciones de la marca LinkedIn, a Slideshare, a LinkedIn Learning y a otros sitios relacionados con LinkedIn, a las aplicaciones, comunicaciones y servicios («Servicios»), incluidos los Servicios ofrecidos fuera del sitio web, como nuestros servicios de publicidad y los complementos «Solicitar con LinkedIn» y «Compartir en LinkedIn», pero quedan excluidos los servicios que se ofrecen en virtud de una política de privacidad diferente.
+              Esta Política de privacidad se aplica a TrabajoActico.com, a las aplicaciones de la marca BitterSweet y a otros sitios relacionados con TrabajoActico y BitterSweet, a las aplicaciones, comunicaciones y servicios («Servicios»), incluidos los Servicios ofrecidos fuera del sitio web, como nuestros servicios de publicidad, pero quedan excluidos los servicios que se ofrecen en virtud de una política de privacidad diferente.
             </Typography>
             <Typography type="subheading" className={classes.quote} paragraph>
               Si utilizas nuestros Servicios, aceptas esta Política de privacidad, incluida nuestra Política de cookies.
@@ -131,7 +131,7 @@ class Privacy extends Component {
               2.1 Información que nos proporcionas
             </Typography>
             <Typography type="subheading" className={classes.quote} paragraph>
-              Nos proporcionas datos para crear una cuenta en LinkedIn.
+              Nos proporcionas datos para crear una cuenta en TrabajoActico.
             </Typography>
             <Typography type="body2">
               Registro
@@ -140,13 +140,13 @@ class Privacy extends Component {
               Para crear una cuenta, debes proporcionarnos datos como tu nombre, tu dirección de correo electrónico o número de móvil, y una contraseña. Si te registras en un Servicio Premium, te pediremos tu información de pago y de facturación (por ejemplo, tu tarjeta de crédito).
             </Typography>
             <Typography type="subheading" className={classes.quote} paragraph>
-              Creas un perfil en LinkedIn (un perfil completo te ayuda a sacar el máximo provecho de nuestros Servicios).
+              Creas un perfil en TrabajoActico (un perfil completo te ayuda a sacar el máximo provecho de nuestros Servicios).
             </Typography>
             <Typography type="body2">
               Perfil
             </Typography>
             <Typography type="body1" paragraph>
-              En tu perfil tienes diferentes opciones que puedes incluir como la educación, la experiencia laboral, las aptitudes, una fotografía, tu ciudad o ubicación y las validaciones. Algunos profesionales pueden escoger completar un perfil independiente de ProFinder. La información del perfil te ayuda a sacar mayor provecho de nuestros Servicios, como ayudar a que te encuentren los técnicos de selección y a encontrar oportunidades de negocio. Tú decides si deseas incluir información delicada en tu perfil. No publiques o añadas datos personales que no quieras que se hagan públicos.
+              En tu perfil tienes diferentes opciones que puedes incluir como la educación, la experiencia laboral, las aptitudes, una fotografía, tu ciudad o ubicación y las validaciones. La información del perfil te ayuda a sacar mayor provecho de nuestros Servicios, como ayudar a que te encuentren los técnicos de selección y a encontrar oportunidades de negocio. Tú decides si deseas incluir información delicada en tu perfil. No publiques o añadas datos personales que no quieras que se hagan públicos.
             </Typography>
             <Typography type="subheading" className={classes.quote} paragraph>
               Nos proporcionas otros datos al sincronizar tu agenda de direcciones o tu calendario.
@@ -155,7 +155,7 @@ class Privacy extends Component {
               Publicación y carga de contenidos
             </Typography>
             <Typography type="body1" paragraph>
-              Recopilamos datos personales tuyos cuando nos los proporcionas, publicas o cargas en nuestros Servicios, como cuando rellenas un formulario, respondes a una encuesta (por ejemplo, sobre el sueldo de los Miembros), envías un currículum y solicitas o guardas empleos o envías invitaciones. Si decides importar tu agenda de direcciones, recibiremos tus contactos (incluida la información de contacto que tu(s) proveedor(es) de servicios o aplicaciones hayan añadido automáticamente a tu agenda de direcciones cuando te hayas comunicado con direcciones o números que no estén todavía en tu lista). Si sincronizas tu correo electrónico o tus calendarios con nuestros Servicios, recabaremos el encabezado del correo electrónico y la información de las reuniones del calendario (por ejemplo, horarios, lugares, asistentes y contactos).
+              Recopilamos datos personales tuyos cuando nos los proporcionas, publicas o cargas en nuestros Servicios, como cuando rellenas un formulario, respondes a una encuesta (por ejemplo, sobre el sueldo de los Miembros), envías un currículum y solicitas o guardas empleos. Si decides importar tu agenda de direcciones, recibiremos tus contactos (incluida la información de contacto que tu(s) proveedor(es) de servicios o aplicaciones hayan añadido automáticamente a tu agenda de direcciones cuando te hayas comunicado con direcciones o números que no estén todavía en tu lista). Si sincronizas tu correo electrónico o tus calendarios con nuestros Servicios, recabaremos el encabezado del correo electrónico y la información de las reuniones del calendario (por ejemplo, horarios, lugares, asistentes y contactos).
             </Typography>
             <Typography type="title" paragraph>
               2.2 Información de otras personas
@@ -194,7 +194,7 @@ class Privacy extends Component {
               Registramos tus visitas y tu uso de nuestros Servicios, incluidas las aplicaciones móviles.
             </Typography>
             <Typography type="body1" paragraph>
-              Registramos los datos de uso cuando visitas o utilizas de otro modo nuestros Servicios, incluidos nuestros sitios web, las aplicaciones y la tecnología de la plataforma (por ejemplo, nuestros complementos en otros sitios web), como cuando ves o haces clic en un contenido (por ejemplo, un vídeo de aprendizaje) o en anuncios (en nuestros sitios web y aplicaciones o fuera de ellos), realizas una búsqueda, instalas una de nuestras aplicaciones móviles, compartes artículos o solicitas empleos. Utilizamos registros de inicio de sesión, información de dispositivos y direcciones de protocolo de Internet («IP») para identificarte y registrar tu uso en LinkedIn.
+              Registramos los datos de uso cuando visitas o utilizas de otro modo nuestros Servicios, incluidos nuestros sitios web, las aplicaciones y la tecnología de la plataforma (por ejemplo, nuestros complementos en otros sitios web), como cuando ves o haces clic en un contenido (por ejemplo, un vídeo de aprendizaje) o en anuncios (en nuestros sitios web y aplicaciones o fuera de ellos), realizas una búsqueda, instalas una de nuestras aplicaciones móviles, compartes artículos o solicitas empleos. Utilizamos registros de inicio de sesión, información de dispositivos y direcciones de protocolo de Internet («IP») para identificarte y registrar tu uso en TrabajoActico.
             </Typography>
             <Typography type="title" paragraph>
               2.4 Cookies, balizas web y otras tecnologías similares.
@@ -221,7 +221,7 @@ class Privacy extends Component {
               Si te comunicas a través de nuestros Servicios, recibiremos esa información.
             </Typography>
             <Typography type="body1" paragraph>
-              Recabamos información sobre ti cuando envías, recibes o interactúas con mensajes relacionados con nuestros Servicios. Por ejemplo, si recibes una solicitud de contacto en LinkedIn, realizamos un seguimiento para ver si has realizado alguna acción al respecto y te mandaremos recordatorios. También utilizamos tecnología de escaneo automático en los mensajes.
+              Recabamos información sobre ti cuando envías, recibes o interactúas con mensajes relacionados con nuestros Servicios. Por ejemplo, si recibes una solicitud de contacto en TrabajoActico, realizamos un seguimiento para ver si has realizado alguna acción al respecto y te mandaremos recordatorios. También utilizamos tecnología de escaneo automático en los mensajes.
             </Typography>
             <Typography type="title" paragraph>
               2.7 Información proporcionada por la empresa
@@ -236,10 +236,10 @@ class Privacy extends Component {
               2.8 Sitios y servicios de terceros.
             </Typography>
             <Typography type="subheading" className={classes.quote} paragraph>
-              Obtenemos datos cuando visitas sitios que incluyen nuestros complementos, anuncios, cookies o cuando inicias sesión en los servicios de otras personas a través de tu cuenta de LinkedIn.
+              Obtenemos datos cuando visitas sitios que incluyen nuestros complementos, anuncios, cookies o cuando inicias sesión en los servicios de otras personas a través de tu cuenta de TrabajoActico.
             </Typography>
             <Typography type="body1" paragraph>
-              Recibimos información sobre tus visitas e interacción con los servicios proporcionados por otras personas cuando inicias sesión con LinkedIn o visitas servicios de otras personas que incluyen nuestros complementos (como «Compartir en LinkedIn» o «Solicitar con LinkedIn»), anuncios, cookies o tecnologías similares.
+              Recibimos información sobre tus visitas e interacción con los servicios proporcionados por otras personas cuando inicias sesión con TrabajoActico o visitas servicios de otras personas que incluyen nuestros complementos, anuncios, cookies o tecnologías similares.
             </Typography>
             <Typography type="title" paragraph>
               2.9 Otra información.
@@ -307,7 +307,7 @@ class Privacy extends Component {
               Nuestros Servicios Premium permiten a los usuarios de pago buscar y contactar con Miembros a través de nuestros Servicios (como candidatos para un empleo, posibles clientes y compañeros de trabajo), para gestionar candidatos y para promover contenido a través de las redes sociales.
             </Typography>
             <Typography type="body1" paragraph>
-              Como parte de nuestras soluciones de selección de candidatos, marketing y ventas, vendemos Servicios Premium que proporcionan a nuestros clientes funcionalidades y herramientas de búsqueda personalizadas (como mensajes y alertas de actividad). Estos suscriptores pueden exportar información limitada de tu perfil como el nombre, titular, empresa actual, cargo actual y la ubicación general (por ejemplo, Dublín) a fin de gestionar los posibles clientes de ventas o candidatos, salvo que marques la opción de autoexclusión. No proporcionamos información de contacto a estos suscriptores como parte de estos Servicios Premium sin tu consentimiento. Un suscriptor de Servicios Premium puede almacenar la información que tenga sobre ti en nuestros Servicios Premium, como el currículum vítae, la información de contacto o el historial de ventas. Los datos proporcionados sobre ti por estos suscriptores dependerán de las políticas de esos suscriptores. Otros Servicios de empresa que utilizan tus datos son LinkedIn Referrals (recomendaciones de empleo), Lookup (directorio de empresas) y Elevate (promoción social de contenido). Más información.
+              Como parte de nuestras soluciones de selección de candidatos, marketing y ventas, vendemos Servicios Premium que proporcionan a nuestros clientes funcionalidades y herramientas de búsqueda personalizadas (como mensajes y alertas de actividad). Estos suscriptores pueden exportar información limitada de tu perfil como el nombre, titular, empresa actual, cargo actual y la ubicación general (por ejemplo, Dublín) a fin de gestionar los posibles clientes de ventas o candidatos, salvo que marques la opción de autoexclusión. No proporcionamos información de contacto a estos suscriptores como parte de estos Servicios Premium sin tu consentimiento. Un suscriptor de Servicios Premium puede almacenar la información que tenga sobre ti en nuestros Servicios Premium, como el currículum vítae, la información de contacto o el historial de ventas. Los datos proporcionados sobre ti por estos suscriptores dependerán de las políticas de esos suscriptores. Otros Servicios de empresa que utilizan tus datos son TrabajoActico Referrals (recomendaciones de empleo), Lookup (directorio de empresas) y Elevate (promoción social de contenido). Más información.
             </Typography>
             <Typography type="title" paragraph>
               3.3 Comunicaciones
@@ -316,7 +316,7 @@ class Privacy extends Component {
               Te contactamos y permitimos las comunicaciones entre Miembros. Ofrecemos una configuración que te permite controlar qué y con qué frecuencia recibes algunos tipos de mensajes.
             </Typography>
             <Typography type="body1" paragraph>
-              Contactaremos contigo por correo electrónico, a través de avisos publicados en los sitios web o aplicaciones de LinkedIn, mensajes en tu buzón de LinkedIn y a través de otros medios disponibles en nuestros Servicios, incluidos los mensajes de texto y las notificaciones automáticas. Te enviaremos mensajes sobre la disponibilidad de nuestros Servicios, la seguridad u otras cuestiones relacionadas con los servicios prestados. Te mandaremos también mensajes sobre cómo usar los Servicios, actualizaciones de red, recordatorios, sugerencias de empleo y mensajes promocionales nuestros y de nuestros socios. Puedes cambiar tus preferencias de comunicación en cualquier momento. Ten en cuenta que no puedes autoexcluirte de nuestros mensajes de servicio, incluidos avisos de seguridad y de naturaleza jurídica.
+              Contactaremos contigo por correo electrónico, a través de avisos publicados en los sitios web o aplicaciones de TrabajoActico, mensajes en tu buzón de TrabajoActico y a través de otros medios disponibles en nuestros Servicios, incluidos los mensajes de texto y las notificaciones automáticas. Te enviaremos mensajes sobre la disponibilidad de nuestros Servicios, la seguridad u otras cuestiones relacionadas con los servicios prestados. Te mandaremos también mensajes sobre cómo usar los Servicios, actualizaciones de red, recordatorios, sugerencias de empleo y mensajes promocionales nuestros y de nuestros socios. Puedes cambiar tus preferencias de comunicación en cualquier momento. Ten en cuenta que no puedes autoexcluirte de nuestros mensajes de servicio, incluidos avisos de seguridad y de naturaleza jurídica.
             </Typography>
             <Typography type="body1" paragraph>
               También posibilitamos las comunicaciones entre tú y otras personas a través de nuestros Servicios, incluidas, por ejemplo, las invitaciones, los mensajes InMail, los grupos y los mensajes entre contactos.
@@ -468,7 +468,7 @@ class Privacy extends Component {
               Cuentas de empresa
             </Typography>
             <Typography type="body1" paragraph>
-              Puede que tu empresa te ofrezca acceder a nuestros Servicios de empresa como Recruiter, Sales Navigator, Elevate, Referrals, Lookup o nuestro Administrador de campañas publicitarias. También pueden adquirir tu acceso a nuestros productos de aprendizaje en línea. Tu empresa puede revisar y gestionar tu uso de esos Servicios de empresa.
+              Puede que tu empresa te ofrezca acceder a nuestros Servicios de empresa. También pueden adquirir tu acceso a nuestros productos de aprendizaje en línea. Tu empresa puede revisar y gestionar tu uso de esos Servicios de empresa.
             </Typography>
             <Typography type="body1" paragraph>
               En función del Servicio de empresa, y antes de que utilices dicho Servicio, te pediremos permiso para compartir datos relevantes de tu perfil o tu uso de nuestros Servicios que no son para empresas. Por ejemplo, a los usuarios de Sales Navigator se les pedirá que compartan su índice de ventas con redes sociales, un baremo calculado en parte con base en la actividad de su cuenta personal. Comprendemos que determinadas actividades como los mensajes personales y aquellas relacionadas con la búsqueda de empleo son sensibles y, por tanto, no compartiremos esa información con tu empresa, salvo que escojas compartirla a través de nuestros Servicios (por ejemplo, solicitando un nuevo puesto en la misma empresa o si mencionas que estás buscando trabajo en un mensaje a un compañero de trabajo a través de nuestros Servicios).
@@ -491,19 +491,19 @@ class Privacy extends Component {
               En función de tus preferencias, otros servicios pueden buscar tu perfil.
             </Typography>
             <Typography type="body1" paragraph>
-              Cuando decides vincular tu cuenta con otros servicios, tus datos personales estarán disponibles para los mismos. Se describirá, o se asociará, en una pantalla de consentimiento qué se entiende por compartir y utilizar esos datos personales cuando vincules las cuentas. Por ejemplo, puedes asociar tus cuentas de Twitter o WeChat para compartir contenido de nuestros Servicios en esos otros servicios, o tu proveedor de correo electrónico puede darte la opción de cargar tus contactos de LinkedIn en su propio servicio. Puedes revocar la vinculación de esas cuentas.
+              Cuando decides vincular tu cuenta con otros servicios, tus datos personales estarán disponibles para los mismos. Se describirá, o se asociará, en una pantalla de consentimiento qué se entiende por compartir y utilizar esos datos personales cuando vincules las cuentas. Por ejemplo, puedes asociar tus cuentas de Twitter o WeChat para compartir contenido de nuestros Servicios en esos otros servicios, o tu proveedor de correo electrónico puede darte la opción de cargar tus contactos de TrabajoActico en su propio servicio. Puedes revocar la vinculación de esas cuentas.
             </Typography>
             <Typography type="body1" paragraph>
-              En función de tu configuración, aparecerán extractos de tu perfil en los servicios de terceros (por ejemplo, en los resultados de motores de búsqueda, aplicaciones de correo electrónico y de calendario que muestran a un usuario un miniperfil de LinkedIn de la persona con la que va a reunirse o mensajes, agregadores de redes sociales, o administradores de candidatos o de posibles clientes). La información de perfil «antigua» permanecerá en estos servicios hasta que estos servicios actualicen su caché de datos con los cambios que hayas realizado en tu perfil.
+              En función de tu configuración, aparecerán extractos de tu perfil en los servicios de terceros (por ejemplo, en los resultados de motores de búsqueda, aplicaciones de correo electrónico y de calendario que muestran a un usuario un miniperfil de TrabajoActico de la persona con la que va a reunirse o mensajes, agregadores de redes sociales, o administradores de candidatos o de posibles clientes). La información de perfil «antigua» permanecerá en estos servicios hasta que estos servicios actualicen su caché de datos con los cambios que hayas realizado en tu perfil.
             </Typography>
             <Typography type="title" paragraph>
               4.4 Servicios relacionados
             </Typography>
             <Typography type="subheading" className={classes.quote} paragraph>
-              Compartimos tus datos entre nuestros Servicios y con las entidades afiliadas a LinkedIn.
+              Compartimos tus datos entre nuestros Servicios y con las entidades afiliadas a TrabajoActico.
             </Typography>
             <Typography type="body1" paragraph>
-              Compartiremos tus datos personales con nuestras filiales para proporcionar o desarrollar nuestros Servicios. Combinamos la información internamente entre los diferentes Servicios cubiertos por esta Política de privacidad. Por ejemplo, SlideShare te recomendará mejores contenidos basándose en tu perfil de LinkedIn o en los artículos que lees en Pulse, y LinkedIn podría personalizar tu feed o tus recomendaciones de empleo basándose en tu historial de vídeos de aprendizaje, ya que podemos identificarte en los diferentes Servicios utilizando cookies y tecnologías similares.
+              Compartiremos tus datos personales con nuestras filiales para proporcionar o desarrollar nuestros Servicios. Combinamos la información internamente entre los diferentes Servicios cubiertos por esta Política de privacidad. Por ejemplo, SlideShare te recomendará mejores contenidos basándose en tu perfil de TrabajoActico, y TrabajoActico podría personalizar tu feed o tus recomendaciones de empleo basándose en tu historial de vídeos de aprendizaje, ya que podemos identificarte en los diferentes Servicios utilizando cookies y tecnologías similares.
             </Typography>
             <Typography type="title" paragraph>
               4.5 Proveedores de servicios.
@@ -521,7 +521,7 @@ class Privacy extends Component {
               Puede que debamos compartir tus datos cuando pensemos que es necesario por ley o para proteger tus derechos, los nuestros y nuestra seguridad.
             </Typography>
             <Typography type="body1" paragraph>
-              Puede que debamos divulgar tu información cuando se exija por ley, en una citación u otro procedimiento judicial o si creemos, de buena fe, que la divulgación es razonablemente necesaria para (1) investigar, prevenir o actuar frente a supuestas actividades ilegales o para ayudar a las fuerzas de seguridad; (2) para hacer cumplir las Condiciones de uso; (3) investigar y defendernos de reclamaciones o alegaciones de terceros; (4) proteger la seguridad o la integridad de nuestro Servicio (como compartiendo información con empresas que se enfrentan con amenazas similares); o (5) ejercer o proteger los derechos y la seguridad de LinkedIn, de nuestros Miembros, nuestro personal u otras personas. Trataremos de notificar a los Miembros que sus datos personales han sido solicitados jurídicamente cuando lo consideremos adecuado a nuestro juicio, salvo que se prohíba por ley, por una orden judicial o cuando la solicitud sea una emergencia. Podemos poner en tela de juicio dichos requerimientos cuando consideremos, a nuestro entender, que las solicitudes son demasiado amplias, vagas o carecen de la autoridad necesaria, aunque no nos comprometemos a desafiar cada petición. Para obtener más información consulta nuestras Directrices sobre solicitudes de datos y el Informe de transparencia.
+              Puede que debamos divulgar tu información cuando se exija por ley, en una citación u otro procedimiento judicial o si creemos, de buena fe, que la divulgación es razonablemente necesaria para (1) investigar, prevenir o actuar frente a supuestas actividades ilegales o para ayudar a las fuerzas de seguridad; (2) para hacer cumplir las Condiciones de uso; (3) investigar y defendernos de reclamaciones o alegaciones de terceros; (4) proteger la seguridad o la integridad de nuestro Servicio (como compartiendo información con empresas que se enfrentan con amenazas similares); o (5) ejercer o proteger los derechos y la seguridad de TrabajoActico, de nuestros Miembros, nuestro personal u otras personas. Trataremos de notificar a los Miembros que sus datos personales han sido solicitados jurídicamente cuando lo consideremos adecuado a nuestro juicio, salvo que se prohíba por ley, por una orden judicial o cuando la solicitud sea una emergencia. Podemos poner en tela de juicio dichos requerimientos cuando consideremos, a nuestro entender, que las solicitudes son demasiado amplias, vagas o carecen de la autoridad necesaria, aunque no nos comprometemos a desafiar cada petición. Para obtener más información consulta nuestras Directrices sobre solicitudes de datos y el Informe de transparencia.
             </Typography>
             <Typography type="title" paragraph>
               4.7 Cambio de control o venta.
@@ -544,7 +544,7 @@ class Privacy extends Component {
               Conservamos la mayor parte de tus datos personales siempre que mantengas la cuenta abierta.
             </Typography>
             <Typography type="body1" paragraph>
-              Conservaremos los datos personales que nos facilites mientras tu cuenta siga activa o en la medida en que sea necesario para proporcionarte los Servicios. Incluso aunque solo utilices nuestros Servicios cuando busques un nuevo empleo cada varios años, conservaremos tu información y mantendremos tu perfil abierto hasta que decidas cerrar la cuenta. En algunos casos escogemos conservar determinada información (por ejemplo, las visitas a sitios que tienen los complementos «Compartir en LinkedIn» o «Solicitar con LinkedIn» sin hacer clic en el complemento) de una forma despersonalizada o agregada.
+              Conservaremos los datos personales que nos facilites mientras tu cuenta siga activa o en la medida en que sea necesario para proporcionarte los Servicios. Incluso aunque solo utilices nuestros Servicios cuando busques un nuevo empleo cada varios años, conservaremos tu información y mantendremos tu perfil abierto hasta que decidas cerrar la cuenta. En algunos casos escogemos conservar determinada información de una forma despersonalizada o agregada.
             </Typography>
             <Typography type="title" paragraph>
               5.2 Derecho de acceso y control de tus datos personales
@@ -562,13 +562,13 @@ class Privacy extends Component {
               Conservamos algunos de tus datos incluso después de haber cerrado tu cuenta.
             </Typography>
             <Typography type="body1" paragraph>
-              Si decides cerrar tu cuenta de LinkedIn (o SlideShare), tus datos personales dejarán de verse en nuestros Servicios, por lo general, en un plazo de 24 horas. Normalmente, borramos la información de las cuentas cerradas en un plazo de 30 días desde el cierre de la cuenta, salvo en los casos citados a continuación.
+              Si decides cerrar tu cuenta de TrabajoActico, tus datos personales dejarán de verse en nuestros Servicios, por lo general, en un plazo de 24 horas. Normalmente, borramos la información de las cuentas cerradas en un plazo de 30 días desde el cierre de la cuenta, salvo en los casos citados a continuación.
             </Typography>
             <Typography type="body1" paragraph>
-              Conservaremos tus datos personales incluso después de haber cerrado la cuenta si es razonablemente necesario para cumplir con nuestras obligaciones legales (incluidas, las peticiones de las fuerzas del orden), reunir los requisitos reglamentarios, resolver disputas, mantener la seguridad, evitar casos de fraude y abuso, aplicar nuestras Condiciones de uso o cumplir tu solicitud de darte de baja de futuros mensajes que recibas de LinkedIn. Conservaremos la información despersonalizada después de que cierres tu cuenta.
+              Conservaremos tus datos personales incluso después de haber cerrado la cuenta si es razonablemente necesario para cumplir con nuestras obligaciones legales (incluidas, las peticiones de las fuerzas del orden), reunir los requisitos reglamentarios, resolver disputas, mantener la seguridad, evitar casos de fraude y abuso, aplicar nuestras Condiciones de uso o cumplir tu solicitud de darte de baja de futuros mensajes que recibas de TrabajoActico. Conservaremos la información despersonalizada después de que cierres tu cuenta.
             </Typography>
             <Typography type="body1" paragraph>
-              La información que hayas compartido con otras personas (por ejemplo, a través de mensajes InMail, actualizaciones o publicaciones de grupo) seguirá viéndose después de cerrar la cuenta o de haber borrado la información de tu propio perfil o buzón, y no controlamos los datos que otros Miembros hayan copiado de nuestros Servicios. Los contenidos de Grupos asociados a cuentas cerradas mostrarán a un usuario desconocido como el propietario. Tu perfil podría seguir mostrándose en los servicios de terceros (por ejemplo, los resultados de motores de búsqueda) hasta que actualicen su memoria caché.
+              La información que hayas compartido con otras personas seguirá viéndose después de cerrar la cuenta o de haber borrado la información de tu propio perfil o buzón, y no controlamos los datos que otros Miembros hayan copiado de nuestros Servicios. Los contenidos de Grupos asociados a cuentas cerradas mostrarán a un usuario desconocido como el propietario. Tu perfil podría seguir mostrándose en los servicios de terceros (por ejemplo, los resultados de motores de búsqueda) hasta que actualicen su memoria caché.
             </Typography>
           </section>
           <section id="otros">
@@ -593,26 +593,20 @@ class Privacy extends Component {
             <Typography type="body1" paragraph>
               Procesamos datos tanto dentro como fuera de Estados Unidos. Averigua más sobre los mecanismos jurídicos en los que confiamos para transferir datos entre países.
             </Typography>
-            <Typography type="body1" paragraph>
-              LinkedIn participa en los Escudos de Privacidad UE-EE. UU. y Suiza-EE. UU. Para obtener más información, consulta nuestra Declaración sobre el Escudo de Privacidad.
-            </Typography>
             <Typography type="title" paragraph>
               6.3 Marketing directo y señales de «no rastreo»
             </Typography>
-            <Typography type="subheading" className={classes.quote} paragraph>
-              Nuestras declaraciones sobre el marketing directo y las señales de «no rastreo»
-            </Typography>
             <Typography type="body1" paragraph>
-              Actualmente no compartimos datos personales con terceros para fines de marketing directo sin tu permiso. Averigua más sobre este asunto y sobre nuestra respuesta a las señales de «no rastreo».
+              Actualmente no compartimos datos personales con terceros para fines de marketing directo sin tu permiso.
             </Typography>
             <Typography type="title" paragraph>
               6.4 Información de contacto
             </Typography>
             <Typography type="subheading" className={classes.quote} paragraph>
-              Puedes contactarnos o utilizar otras opciones para resolver cualquier queja.
+              Puedes contactarnos en contact@bittersweet.io o utilizar otras opciones para resolver cualquier queja.
             </Typography>
             <Typography type="body1" paragraph>
-              Si tienes alguna pregunta o queja sobre esta Política, contacta con LinkedIn en línea primero. También puedes contactarnos por correo postal. Si tras contactarnos no se resuelve tu queja, existen otras opciones disponibles.
+              Si tienes alguna pregunta o queja sobre esta Política, contacta con TrabajoActico en línea primero. También puedes contactarnos por correo postal. Si tras contactarnos no se resuelve tu queja, existen otras opciones disponibles.
             </Typography>
           </section>
         </div>
