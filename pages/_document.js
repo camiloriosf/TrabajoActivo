@@ -11,6 +11,7 @@ class MyDocument extends Document {
       <html lang="en" dir="ltr">
         <Head>
           <title>TrabajoActivo</title>
+          <link rel="shortcut icon" href="/static/favicon.ico" />
           <meta charSet="utf-8" />
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta
