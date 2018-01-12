@@ -3,7 +3,7 @@ Plataforma para CVs
 
 #### CHANGE LOG
 ***
-* Dev
+* V1.0.1
   * Added favicon
 * V1.0.0
   * Updated terms and privacy pages
