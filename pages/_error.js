@@ -1,17 +1,31 @@
 import React, { Component } from 'react';
 // supporting imports
-import { translate } from 'react-i18next';
 import ReactGA from 'react-ga';
+import { I18nextProvider } from 'react-i18next';
 // component imports
 import ErrorContainer from '../components/common/_error';
 // local imports
 import withRoot from '../lib/hoc/withRoot';
-import i18n from '../lib/i18n/i18n';
+import startI18n from '../lib/i18n/startI18n';
+import { getTranslation } from '../lib/i18n/translationHelpers';
+
+const lang = 'es';
 
 class Error extends Component {
-  static getInitialProps({ res, err }) {
-    const statusCode = res ? res.statusCode : err ? err.statusCode : null;
-    return { statusCode };
+  static async getInitialProps({ res, err }) {
+    const statusCode = res ? res.statusCode : err ? err.statusCode : null; // eslint-disable-line
+    const translations = await getTranslation(
+      lang,
+      ['common', 'error'],
+      'http://localhost:3000/static/locales/',
+    );
+    return { statusCode, translations };
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.i18n = startI18n(props.translations, lang);
   }
 
   componentDidMount = () => {
@@ -21,18 +35,13 @@ class Error extends Component {
 
   render() {
     return (
-      <div>
-        <ErrorContainer statusCode={this.props.statusCode} />
-      </div>
+      <I18nextProvider i18n={this.i18n}>
+        <div>
+          <ErrorContainer statusCode={this.props.statusCode} />
+        </div>
+      </I18nextProvider>
     );
   }
 }
 
-const Extended = translate(['error', 'common'], { i18n, wait: process.browser })(withRoot(Error));
-
-Extended.getInitialProps = async ({ req }) => {
-  if (req && !process.browser) return i18n.getInitialProps(req, ['error', 'common']);
-  return {};
-};
-
-export default Extended;
+export default withRoot(Error);

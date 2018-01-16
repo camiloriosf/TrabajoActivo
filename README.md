@@ -3,6 +3,8 @@ Plataforma para CVs
 
 #### CHANGE LOG
 ***
+* V1.0.3
+  * Refactor i18n
 * V1.0.2
   * Update Firebase Function sendContactEmail -> changed bcc email
   * Update contact form to reset form after succesful submit
