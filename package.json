@@ -1,6 +1,6 @@
 {
   "name": "e-cv",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Plataforma para CVs",
   "main": "index.js",
   "scripts": {
