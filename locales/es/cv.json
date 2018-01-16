@@ -339,7 +339,7 @@
         "title": "Idiomas",
         "subtitle": "Si conoces idiomas extranjeros, inclúyelos en esta sección. Puedes calificarlos o agregar una breve descripción (por ejemplo, \"nivel medio\" o \"bilingüe\").",
         "tips": {
-          "title": "No agregues idiomas extranjeros si no los conoce lo suficiente como para comunicarte.",
+          "title": "No agregues idiomas extranjeros si no los conoces lo suficiente como para comunicarte.",
           "text1": "El sistema de clasificación es excelente para selecctionar tu nivel.",
           "text2": "También puedes describir qué tan fluido eres en cada idioma (escrito, hablado, etc.)",
           "tip1": "Inglés - Bilingüe",
@@ -437,7 +437,7 @@
       },
       "salary": {
         "title": "Renta",
-        "subtitle": "Ingresa la renta que estás buscando. Te recomendamos ingresar un rago de rentas, así podrás negociar mejor tu salario.",
+        "subtitle": "Ingresa la renta que estás buscando. Te recomendamos ingresar un rango de rentas, así podrás negociar mejor tu salario.",
         "tips": {
           "title": "Indica el nivel de renta que esperas recibir en la posición a la que estás postulando.",
           "text1": "Siempre es mejor que indiques un rango, de esta forma no quedarás fuera de procesos por un sueldo muy alto/bajo, y podrás negociar de mejor manera tu salario en una eventual entrevista.",

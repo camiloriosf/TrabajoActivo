@@ -23,10 +23,7 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
     marginRight: theme.spacing.unit * 3,
   },
   menu: {
-    position: 'fixed',
-    bottom: 0,
-    left: 0,
-    margin: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit * 3,
   },
 });
 
@@ -42,45 +39,38 @@ class NavButtons extends Component {
     return (
       <div>
         <div className={classes.nav}>
-          {
-            !first && (
-              <Button
-                raised
-                color="accent"
-                dense
-                className={classes.navLeft}
-                onClick={onNavChange('left')}
-              >
-                <KeyboardArrowLeftIcon />
-              </Button>
-            )
-          }
-          {
-            !last && (
-              <Button
-                raised
-                color="accent"
-                dense
-                onClick={onNavChange('right')}
-              >
-                <KeyboardArrowRightIcon />
-              </Button>
-            )
-          }
-        </div>
-        <Hidden mdUp>
-          <div className={classes.menu}>
+          <Hidden mdUp>
             <Button
               fab
               mini
               aria-label="sections"
               color="primary"
+              className={classes.menu}
               onClick={onMenuClick}
             >
               <LayersIcon />
             </Button>
-          </div>
-        </Hidden>
+          </Hidden>
+          <Button
+            raised
+            color="accent"
+            dense
+            className={classes.navLeft}
+            disabled={first}
+            onClick={onNavChange('left')}
+          >
+            <KeyboardArrowLeftIcon />
+          </Button>
+          <Button
+            raised
+            color="accent"
+            dense
+            disabled={last}
+            onClick={onNavChange('right')}
+          >
+            <KeyboardArrowRightIcon />
+          </Button>
+        </div>
       </div>
     );
   }

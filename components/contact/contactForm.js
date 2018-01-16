@@ -47,6 +47,9 @@ class ContactForm extends Component {
     email: '',
     message: '',
   }
+  componentWillReceiveProps = (nextProps) => {
+    if (nextProps.status === 2) this.setState({ name: '', email: '', message: '' });
+  }
   onChange = name => (event) => {
     this.setState({
       [name]: event.target.value,

@@ -42,7 +42,7 @@ exports.sendContactEmail = functions.firestore.document('contacts/{contactId}').
   const mailOptions = {
     from: '"Bittersweet.io" <noreply@bittersweet.io>',
     to: email,
-    bcc: 'camilo.rios.f@gmail.com',
+    bcc: 'contact@bittersweet.io',
     subject: 'Hemos recibido tu mensaje',
     text: `Hola ${name}, gracias por escribirnos. Nos pondremos en contacto a la brevedad. Mensaje: ${message}`,
     html: `<p>Hola ${name},</p><p>Gracias por escribirnos, nos pondremos en contacto a la brevedad.</p><p>Mensaje: ${message}</p>`,

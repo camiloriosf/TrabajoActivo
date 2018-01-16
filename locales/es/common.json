@@ -1,8 +1,9 @@
 {
   "header": {
     "image": {
-      "link": "/static/images/bittersweet.png",
-      "alt": "Bittersweet.io"
+      "link": "/static/images/trabajoactivo.png",
+      "linkFilled": "/static/images/trabajoactivo_filled.png",
+      "alt": "TrabajoActivo.com"
     },
     "menu": {
       "welcome": "Bienvenido",

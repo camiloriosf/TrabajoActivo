@@ -35,7 +35,7 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
     flex: 1,
   },
   image: {
-    height: 30,
+    width: 150,
     cursor: 'pointer',
   },
   menuButton: {
@@ -131,7 +131,7 @@ class Header extends Component {
           <Toolbar>
             <div className={classes.flex}>
               <Link href="/">
-                <img src={t('header.image.link')} alt={t('header.image.alt')} className={classes.image} />
+                <img src={t('header.image.linkFilled')} alt={t('header.image.alt')} className={classes.image} />
               </Link>
             </div>
             <IconButton

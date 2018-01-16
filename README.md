@@ -3,6 +3,11 @@ Plataforma para CVs
 
 #### CHANGE LOG
 ***
+* V1.0.2
+  * Update Firebase Function sendContactEmail -> changed bcc email
+  * Update contact form to reset form after succesful submit
+  * Update Logo
+  * Fix Typos
 * V1.0.1
   * Added favicon
 * V1.0.0

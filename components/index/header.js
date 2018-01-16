@@ -50,7 +50,7 @@ const styles = theme => ({ // eslint-disable-line no-unused-vars
     },
   },
   image: {
-    height: 30,
+    width: 150,
     cursor: 'pointer',
   },
 });
@@ -187,7 +187,7 @@ class Header extends Component {
             <div className={classes.flex}>
               <Link href="/">
                 <a>
-                  <img src={t('header.image.link')} alt={t('header.image.alt')} className={classes.image} />
+                  <img src={t('header.image.linkFilled')} alt={t('header.image.alt')} className={classes.image} />
                 </a>
               </Link>
             </div>

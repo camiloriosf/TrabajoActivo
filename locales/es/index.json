@@ -1,8 +1,8 @@
 {
   "header": {
     "image": {
-      "link": "static/images/bittersweet.png",
-      "alt": "BitterSweet.io"
+      "linkFilled": "static/images/trabajoactivo_filled.png",
+      "alt": "TrabajoActivo.com"
     },
     "callToAction": {
       "title": "Crear CV",
