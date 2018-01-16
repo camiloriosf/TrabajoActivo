@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Router from 'next/router';
-import { translate } from 'react-i18next';
+import { I18nextProvider } from 'react-i18next';
 import withRedux from 'next-redux-wrapper';
 import ReactGA from 'react-ga';
 // material-ui imports
@@ -14,8 +14,12 @@ import FullLoader from '../components/common/fullLoader';
 // local imports
 import withRoot from '../lib/hoc/withRoot';
 import { app } from '../lib/google/firebase';
-import i18n from '../lib/i18n/i18n';
+import startI18n from '../lib/i18n/startI18n';
+import { getTranslation } from '../lib/i18n/translationHelpers';
 import initStore from '../lib/redux/store';
+
+const lang = 'es';
+const url = process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : 'https://trabajoactivo.com';
 
 const styles = {
   root: {
@@ -31,6 +35,21 @@ const styles = {
 };
 
 class Login extends Component {
+  static async getInitialProps() {
+    const translations = await getTranslation(
+      lang,
+      ['common', 'auth'],
+      `${url}/static/locales/`,
+    );
+
+    return { translations };
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.i18n = startI18n(props.translations, lang);
+  }
   state = {
     open: true,
   }
@@ -51,15 +70,17 @@ class Login extends Component {
       classes,
     } = this.props;
     return (
-      <div>
-        <Head>
-          <title>TrabajoActivo - Iniciar Sesión</title>
-        </Head>
-        <FullLoader open={this.state.open} />
-        <div className={this.state.open ? classes.root : null}>
-          <LoginContainer />
+      <I18nextProvider i18n={this.i18n}>
+        <div>
+          <Head>
+            <title>TrabajoActivo - Iniciar Sesión</title>
+          </Head>
+          <FullLoader open={this.state.open} />
+          <div className={this.state.open ? classes.root : null}>
+            <LoginContainer />
+          </div>
         </div>
-      </div>
+      </I18nextProvider>
     );
   }
 }
@@ -68,11 +89,6 @@ Login.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-const Extended = translate(['auth', 'common'], { i18n, wait: process.browser })(withRoot(withStyles(styles)(Login)));
-
-Extended.getInitialProps = async ({ req }) => {
-  if (req && !process.browser) return i18n.getInitialProps(req, ['auth', 'common']);
-  return {};
-};
+const Extended = withRoot(withStyles(styles)(Login));
 
 export default withRedux(initStore, null, null)(Extended);

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Router from 'next/router';
-import { translate } from 'react-i18next';
+import { I18nextProvider } from 'react-i18next';
 import ReactGA from 'react-ga';
 // material-ui imports
 import { withStyles } from 'material-ui/styles';
@@ -13,7 +13,11 @@ import FullLoader from '../components/common/fullLoader';
 // local imports
 import withRoot from '../lib/hoc/withRoot';
 import { app } from '../lib/google/firebase';
-import i18n from '../lib/i18n/i18n';
+import startI18n from '../lib/i18n/startI18n';
+import { getTranslation } from '../lib/i18n/translationHelpers';
+
+const lang = 'es';
+const url = process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : 'https://trabajoactivo.com';
 
 const styles = {
   root: {
@@ -29,6 +33,21 @@ const styles = {
 };
 
 class Register extends Component {
+  static async getInitialProps() {
+    const translations = await getTranslation(
+      lang,
+      ['common', 'auth'],
+      `${url}/static/locales/`,
+    );
+
+    return { translations };
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.i18n = startI18n(props.translations, lang);
+  }
   state = {
     open: true,
   }
@@ -49,15 +68,17 @@ class Register extends Component {
       classes,
     } = this.props;
     return (
-      <div>
-        <Head>
-          <title>TrabajoActivo - Crear Cuenta</title>
-        </Head>
-        <FullLoader open={this.state.open} />
-        <div className={this.state.open ? classes.root : null}>
-          <RegisterContainer />
+      <I18nextProvider i18n={this.i18n}>
+        <div>
+          <Head>
+            <title>TrabajoActivo - Crear Cuenta</title>
+          </Head>
+          <FullLoader open={this.state.open} />
+          <div className={this.state.open ? classes.root : null}>
+            <RegisterContainer />
+          </div>
         </div>
-      </div>
+      </I18nextProvider>
     );
   }
 }
@@ -66,11 +87,4 @@ Register.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-const Extended = translate(['auth', 'common'], { i18n, wait: process.browser })(withRoot(withStyles(styles)(Register)));
-
-Extended.getInitialProps = async ({ req }) => {
-  if (req && !process.browser) return i18n.getInitialProps(req, ['auth', 'common']);
-  return {};
-};
-
-export default Extended;
+export default withRoot(withStyles(styles)(Register));
